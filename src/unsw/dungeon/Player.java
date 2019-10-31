@@ -28,7 +28,7 @@ public class Player extends Entity {
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		//System.out.println(entity.checkMovement(this));
-        		if (entity.checkMovement(this) == false) {
+        		if (entity.canMove(this, entity, "UP") == false) {
         			return;
         		}
         	}
@@ -42,7 +42,7 @@ public class Player extends Entity {
             y().set(getY() + 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
+        		if (entity.canMove(this, entity, "DOWN") == false) {
         			return;
         		}
         	}
@@ -56,7 +56,7 @@ public class Player extends Entity {
             x().set(getX() - 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
+        		if (entity.canMove(this, entity, "LEFT") == false) {
         			return;
         		}
         	}
@@ -70,7 +70,7 @@ public class Player extends Entity {
             x().set(getX() + 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
+        		if (entity.canMove(this, entity, "RIGHT") == false) {
         			return;
         		}
         	}

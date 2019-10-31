@@ -11,61 +11,65 @@ public class Boulder extends Entity{
 		this.dungeon = dungeon;
 	}
 	
-	public void pushUp() {
+	public boolean pushUp() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() - 1);
         if (getY() > 0 && moveTo.size() == 0) {
             y().set(getY() - 1);  
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		//System.out.println(entity.checkMovement(this));
-        		if (entity.checkMovement(this) == false) {
-        			return;
+        		if (entity.canMove(this, entity, "UP") == false) {
+        			return false;
         		}
         	}
         	y().set(getY() - 1);  
         }
+        return true;
     }
 
-    public void pushDown() {
+    public boolean pushDown() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
             y().set(getY() + 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
-        			return;
+        		if (entity.canMove(this, entity, "DOWN") == false) {
+        			return false;
         		}
         	}
         	y().set(getY() + 1);  
         } 
+        return true;
     }
 
-    public void pushLeft() {
+    public boolean pushLeft() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() - 1, this.getY());
         if (getX() > 0 && moveTo.size() == 0) {
             x().set(getX() - 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
-        			return;
+        		if (entity.canMove(this, entity, "LEFT") == false) {
+        			return false;
         		}
         	}
         	x().set(getX() - 1);  
         } 
+        return true;
     }
 
-    public void pushRight() {
+    public boolean pushRight() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() + 1, this.getY());
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {
             x().set(getX() + 1);
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
-        		if (entity.checkMovement(this) == false) {
-        			return;
+        		if (entity.canMove(this, entity, "RIGHT") == false) {
+        			return false;
         		}
         	}
         	x().set(getX() + 1);  
         } 
+        return true;
     }
 	
 	

@@ -42,8 +42,8 @@ public class Entity {
         return x().get();
     }
 
-	public boolean checkMovement(Entity entity) {
-		return movement.canMove(entity);
+	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {
+		return movement.canMove(movingEntity, stationaryEntity, direction);
 	}
     
     

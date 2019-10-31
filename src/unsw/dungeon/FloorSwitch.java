@@ -5,7 +5,7 @@ import java.util.List;
 public class FloorSwitch extends Entity {
 	
 	private Dungeon dungeon;
-	private boolean on;
+	private boolean on;  // doesn't do anything yet.
 	
 	public FloorSwitch(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
