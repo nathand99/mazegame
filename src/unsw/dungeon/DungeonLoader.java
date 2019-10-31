@@ -61,14 +61,20 @@ public abstract class DungeonLoader {
             entity = wall;
             break;
         // TODO Handle other possible entities
+        case "enemy":
+        	Enemy enemy = new Enemy(dungeon, x, y);
+        	onLoad(enemy);
+        	entity = enemy;
+        	break;
         }
-        dungeon.addEntity(entity);
+        dungeon.addEntity(entity); // where the entity is added.
     }
 
     public abstract void onLoad(Entity player);
-
+    
     public abstract void onLoad(Wall wall);
 
     // TODO Create additional abstract methods for the other entities
-
+    public abstract void onLoad(Enemy enemy);
+    
 }

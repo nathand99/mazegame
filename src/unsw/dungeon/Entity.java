@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+//import java.util.ArrayList;
+//import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -9,9 +12,9 @@ import javafx.beans.property.SimpleIntegerProperty;
  *
  */
 public class Entity {
-
+	
     // IntegerProperty is used so that changes to the entities position can be
-    // externally observed.
+    // externally observed
     private IntegerProperty x, y;
 
     /**
@@ -39,4 +42,23 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+    
+    public int[] getXY() {
+    	// returns both the X and Y co-ord in a nice 2 block int array.
+    	int xy[] = new int[2];
+    	xy[0] = x().get();
+    	xy[1] = y().get();
+    	return xy;
+    }
+    
+    /*public List<Integer> convertInteger(int[] xy) {
+		// the passed in xy is always size 2.
+    	List<Integer> xyInteger = new ArrayList<Integer>();
+    	Integer xInteger = Integer.valueOf(xy[0]);
+    	Integer yInteger = Integer.valueOf(xy[1]);
+    	xyInteger.add(xInteger);
+    	xyInteger.add(yInteger);
+    	
+    	return xyInteger;
+    }*/
 }

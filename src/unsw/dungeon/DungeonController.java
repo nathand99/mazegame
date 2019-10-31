@@ -16,6 +16,8 @@ import javafx.scene.layout.GridPane;
  */
 public class DungeonController {
 
+	
+	// this stuff comes first in the loading sequence.
     @FXML
     private GridPane squares;
 
