@@ -47,4 +47,17 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    
+    public List<Entity> getCurrentEntity (int x, int y) {
+    	List<Entity> particular_entity = new ArrayList<Entity>();
+    	
+    	for (Entity curr_e: this.entities) {
+    		if (curr_e == null) continue;
+    		if ((curr_e.getX() == x) && (curr_e.getY() == y)) {
+    			particular_entity.add(curr_e);
+    		}
+    	}
+		return particular_entity;
+    }
+
 }
