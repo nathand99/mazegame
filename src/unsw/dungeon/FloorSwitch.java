@@ -13,7 +13,7 @@ public class FloorSwitch extends Entity {
 		this.on = checkOnOff();
 	}
 	
-	public boolean checkOnOff() {
+	public boolean checkOnOff() {  // must be attached to a listener
 		List<Entity> entities = dungeon.getCurrentEntity(this.getX(), this.getY());
 		for (Entity entity : entities) {
 			if (entity instanceof Boulder) {
