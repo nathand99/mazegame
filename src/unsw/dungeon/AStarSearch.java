@@ -86,12 +86,14 @@ public class AStarSearch {
 	}
 	
 	public void addChild(AStarNode child) { // best if collision is checked here.
+		// collision check
 		List <Entity> entities = dungeon.getCurrentEntity(child.getX(), child.getY());
 		for (Entity entity : entities) {
 			if (entity instanceof Wall) {
 				return;
 			}
 		}
+		// collision check end.
 		if (!alreadyChecked(child, this.open) && !alreadyChecked(child, this.closed)) {
 			addAndSort(child);
 		}

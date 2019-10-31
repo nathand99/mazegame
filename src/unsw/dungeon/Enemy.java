@@ -41,9 +41,66 @@ public class Enemy extends Entity{
 		kill(playerXY);
 	}
 	
+	public void escape() {
+		Player player = dungeon.getPlayer();
+		int[] playerXY = player.getXY();
+		int distance = Math.abs(playerXY[0] - this.getX()) + Math.abs(playerXY[1] - this.getY());
+		
+		// can probs be its own func, currently just testing functionality.
+		int[] enemyUp = this.getXY();
+		enemyUp[1] = enemyUp[1] - 1;
+		if(moveValid(distance, enemyUp, playerXY, "UP")) {
+			return;
+		}
+		
+		int[] enemyDown = this.getXY();
+		enemyDown[1] = enemyDown[1] + 1;
+		if(moveValid(distance, enemyDown, playerXY, "DOWN")) {
+			return;
+		}
+		
+		int[] enemyLeft = this.getXY();
+		enemyLeft[0] = enemyLeft[0] - 1;
+		if(moveValid(distance, enemyLeft, playerXY, "LEFT")) {
+			return;
+		}
+		
+		int[] enemyRight = this.getXY();
+		enemyRight[0] = enemyRight[0] + 1;
+		if(moveValid(distance, enemyRight, playerXY, "RIGHT")) {
+			return;
+		}
+	}
+	
 	public boolean kill(int[] playerXY) {
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isFurther(int distance, int[] enemyXY, int playerXY[]) {
+		int newDist = Math.abs(playerXY[0] - enemyXY[0]) + Math.abs(playerXY[1] - enemyXY[1]);
+		if (newDist > distance) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean collision(int[] newXY) {
+		List <Entity> entities = dungeon.getCurrentEntity(newXY[0], newXY[1]);
+		for (Entity entity : entities) {
+			if (entity instanceof Wall) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean moveValid(int distance, int[] newXY, int[] playerXY, String direction) {
+		if (!collision(newXY) && isFurther(distance, newXY, playerXY)) {
+			enemyMove(direction);
 			return true;
 		}
 		return false;
