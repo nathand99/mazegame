@@ -64,7 +64,7 @@ public abstract class DungeonLoader {
             break;
         // TODO Handle other possible entities
         case "boulder":
-        	Boulder boulder = new Boulder(dungeon, x, y, new Pushable());
+        	Boulder boulder = new Boulder(dungeon, x, y, new Interactable());
         	onLoad(boulder);
         	entity = boulder;
         	break;

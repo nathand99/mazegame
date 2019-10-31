@@ -17,6 +17,7 @@ public class FloorSwitch extends Entity {
 		List<Entity> entities = dungeon.getCurrentEntity(this.getX(), this.getY());
 		for (Entity entity : entities) {
 			if (entity instanceof Boulder) {
+				System.out.println("There is a boulder now");
 				return true;
 			}
 		}
