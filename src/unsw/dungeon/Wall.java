@@ -6,4 +6,8 @@ public class Wall extends Entity {
         super(x, y);
     }
 
+    @Override
+	public void walk(Player p, String direction) {
+		p.setAbleToMove(false);
+	}
 }

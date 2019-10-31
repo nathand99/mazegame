@@ -39,4 +39,8 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+    
+    public void walk(Player p, String direction) {
+    	
+    }
 }

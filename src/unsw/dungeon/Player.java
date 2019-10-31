@@ -8,6 +8,7 @@ package unsw.dungeon;
 public class Player extends Entity {
 
     private Dungeon dungeon;
+	private boolean ableToMove = true;
 
     /**
      * Create a player positioned in square (x,y)
@@ -19,23 +20,39 @@ public class Player extends Entity {
         this.dungeon = dungeon;
     }
 
+    //check if there is an obstacle, if so player can't move
     public void moveUp() {
-        if (getY() > 0)
+    	dungeon.checkForcedMove(getX(), getY()-1, "up");
+        if (getY() > 0 && ableToMove == true)
             y().set(getY() - 1);
+        ableToMove = true;
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
+    	dungeon.checkForcedMove(getX(), getY()+1, "down");
+        if (getY() < (dungeon.getHeight() - 1) && ableToMove == true)
             y().set(getY() + 1);
+        ableToMove = true;
     }
 
     public void moveLeft() {
-        if (getX() > 0)
+    	dungeon.checkForcedMove(getX()-1, getY(), "left");
+        if (getX() > 0 &&ableToMove == true)
             x().set(getX() - 1);
+        ableToMove = true;
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1)
+    	dungeon.checkForcedMove(getX()+1, getY(), "right");
+        if (getX() < (dungeon.getWidth() - 1) && ableToMove == true)
             x().set(getX() + 1);
+        ableToMove = true;
     }
+
+    //does entity allow us to move
+    //e.g. wall has set to false, so we cant move
+	public void setAbleToMove(boolean ableToMove) {
+		// TODO Auto-generated method stub
+		this.ableToMove  = ableToMove; 
+	}
 }
