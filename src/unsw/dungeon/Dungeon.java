@@ -11,6 +11,9 @@ import java.util.List;
  *
  * A dungeon can contain many entities, each occupy a square. More than one
  * entity can occupy the same square.
+ * 
+ * A dungeon can contain many Pickup_items, each occupy a square. Only one
+ * pickup_item can occupy the same square.
  *
  * @author Robert Clifton-Everest
  *
@@ -19,12 +22,14 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Pickup_item> pickup_items;
     private Player player;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.pickup_items = new ArrayList<>();
         this.player = null;
     }
 
@@ -58,6 +63,39 @@ public class Dungeon {
     }
     
     // from Alek's Code
+
+    public List<Entity> getEntities () {
+		return this.entities;
+    }
+    
+    public void addPickup_item(Pickup_item pickup_item) {
+        pickup_items.add(pickup_item);
+    }
+    
+    public void removePickup_item(Pickup_item pickup_item) {
+        pickup_items.remove(pickup_item);
+    }
+    
+    /**
+     * if there is a Pickup_item on the square, return it, else, return null
+     * @param x
+     * @param y
+     * @return Pickup item
+     */
+    public Pickup_item getCurrentPickup_item (int x, int y) {
+    	if (this.pickup_items.size() == 0) {
+    		return null;
+    	}
+    	for (Pickup_item curr_p: this.pickup_items) {
+    		if (curr_p == null) continue;
+    		if ((curr_p.getX() == x) && (curr_p.getY() == y)) {
+    			return curr_p;
+    		}
+    	}
+		return null;
+    }
+
+
     public List<Entity> getCurrentEntity (int x, int y) {
     	List<Entity> particular_entity = new ArrayList<Entity>();
     	

@@ -6,8 +6,6 @@ import java.util.List;
 public class Enemy extends Entity{
 	
 	private Dungeon dungeon;
-	private String state = "Aggressive"; // 2 states: aggressive and fearful.
-	
 	
 	/**
      * Create an enemy positioned in square (x,y)
@@ -15,10 +13,9 @@ public class Enemy extends Entity{
      * @param y
 	 * @throws InterruptedException 
      */
-	public Enemy(Dungeon dungeon, int x, int y) {
-		super(x, y);
+	public Enemy(Dungeon dungeon, int x, int y, Movement movement) {
+		super(x, y, movement);
 		this.dungeon = dungeon;
-		//approach();
 		
 	}
 	
@@ -91,11 +88,11 @@ public class Enemy extends Entity{
 	public boolean collision(int[] newXY) {
 		List <Entity> entities = dungeon.getCurrentEntity(newXY[0], newXY[1]);
 		for (Entity entity : entities) {
-			if (entity instanceof Wall) {
-				return true;
+			if (!entity.canMove(this, entity, "")) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean moveValid(int distance, int[] newXY, int[] playerXY, String direction) {

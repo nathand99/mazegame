@@ -16,15 +16,17 @@ public class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed
     private IntegerProperty x, y;
+    private Movement movement;
 
     /**
      * Create an entity positioned in square (x,y)
      * @param x
      * @param y
      */
-    public Entity(int x, int y) {
+    public Entity(int x, int y, Movement movement) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.movement = movement;
     }
 
     public IntegerProperty x() {
@@ -61,4 +63,9 @@ public class Entity {
     	
     	return xyInteger;
     }*/
+
+	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {
+		return movement.canMove(movingEntity, stationaryEntity, direction);
+	}
+    
 }

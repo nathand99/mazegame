@@ -48,24 +48,42 @@ public abstract class DungeonLoader {
         int y = json.getInt("y");
 
         Entity entity = null;
+        
+        
         switch (type) {
         case "player":
-            Player player = new Player(dungeon, x, y);
+            Player player = new Player(dungeon, x, y, new Moveable());
             dungeon.setPlayer(player);
             onLoad(player);
             entity = player;
             break;
         case "wall":
-            Wall wall = new Wall(x, y);
+            Wall wall = new Wall(x, y, new Immovable());
             onLoad(wall);
             entity = wall;
             break;
         // TODO Handle other possible entities
         case "enemy":
-        	Enemy enemy = new Enemy(dungeon, x, y);
+        	Enemy enemy = new Enemy(dungeon, x, y, new Interactable());  // moveable or interactable?
         	onLoad(enemy);
         	entity = enemy;
         	break;
+        case "boulder":
+        	Boulder boulder = new Boulder(dungeon, x, y, new Interactable());
+        	onLoad(boulder);
+        	entity = boulder;
+        	break;
+        case "switch":
+        	FloorSwitch fSwitch = new FloorSwitch(dungeon, x, y, new Moveable());
+        	onLoad(fSwitch);
+        	entity = fSwitch;
+        	break;
+        case "portal":
+        	int id = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, id, new Interactable() );
+            onLoad(portal);
+            entity = portal;
+            break;
         }
         dungeon.addEntity(entity); // where the entity is added.
     }
@@ -77,4 +95,9 @@ public abstract class DungeonLoader {
     // TODO Create additional abstract methods for the other entities
     public abstract void onLoad(Enemy enemy);
     
+    public abstract void onLoad(Boulder boulder);
+    
+    public abstract void onLoad(FloorSwitch fSwitch);
+    
+    public abstract void onLoad(Portal portal);
 }
