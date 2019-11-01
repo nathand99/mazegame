@@ -23,11 +23,11 @@ public class Treasure extends Entity implements Pickup_item {
     }
     
 	@Override
-	public Pickup_item pickup(Player p, Dungeon d) {	
-		// add treasure to players treasure inventory
-		p.treasure.add(this);
+	public Entity pickup(Player p, Dungeon d) {	
+		// increment players treasure counter
+		p.addTreasure();
 		// remove picked up treasure from the dungeon
-		d.removePickup_item(this);
+		d.removeEntity(this);
 		// you can only pick up treasure - cannot drop it, so return null
 		return null;
 	}

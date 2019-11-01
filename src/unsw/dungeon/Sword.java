@@ -23,16 +23,16 @@ public class Sword extends Entity implements Pickup_item {
     }
     
 	@Override
-	public Pickup_item pickup(Player p, Dungeon d) {
+	public Entity pickup(Player p, Dungeon d) {
 		// if player has no sword, put this sword in inventory - return null
 		if (p.sword == null) {
 			p.sword = this;
-			d.removePickup_item(this);
+			d.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - place players sword on ground
 		} else {			
 			Sword temp = p.sword;
-			d.removePickup_item(this);
+			d.removeEntity(this);
 			p.sword = this;
 			// drop key where the player is with the ID of the key the player had
 			return new Sword(dungeon, p.getX(), p.getY(), temp.swordID, new Moveable());			

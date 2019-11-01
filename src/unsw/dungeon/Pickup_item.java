@@ -13,7 +13,7 @@ public interface Pickup_item {
 	 * 
 	 * returns null if no Pickup_item is swapped and put on the ground
 	 */
-	public Pickup_item pickup(Player p, Dungeon d);
+	public Entity pickup(Player p, Dungeon d);
 	public int getY();
 	public int getX();
 }
