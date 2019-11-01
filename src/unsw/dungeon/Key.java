@@ -5,14 +5,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Key implements Pickup_item {
 	
-	int keyID;
-	
 	private IntegerProperty x, y;
-
+	int keyID;	
+	
     /**
-     * Create an entity positioned in square (x,y)
+     * Create a keypositioned in square (x,y) with keyID
      * @param x
      * @param y
+     * @param keyID - ID of key
      */
     public Key(int x, int y, int keyID) {
         this.x = new SimpleIntegerProperty(x);
@@ -20,22 +20,24 @@ public class Key implements Pickup_item {
         this.keyID = keyID;
     }
     
+    /**
+     * return null if no key is swapped to the ground
+     * 
+     * return key if player is swapping keys
+     */
 	@Override
 	public Pickup_item pickup(Player p) {		
-		// if player has no key, put this key in inventory
+		// if player has no key, put this key in inventory - return null
 		if (p.key == null) {
 			p.key = this;
-		// if player has key, swap keys
+			return null;
+		// if player has key, swap keys - place players key on ground
 		} else {			
-			// create a new key on the ground that was in the players inventory
-			//TODO
-			Key temp = this;
-			p.key = temp;
-			return new Key(p.key.getX(), p.key.getY(), p.key.keyID);
-			
+			Key temp = p.key;
+			p.key = this;
+			return new Key(temp.getX(), temp.getY(), temp.keyID);			
 		}
-	}
-	
+	}	
 
     public IntegerProperty x() {
         return x;
