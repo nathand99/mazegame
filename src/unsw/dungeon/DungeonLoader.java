@@ -73,6 +73,12 @@ public abstract class DungeonLoader {
         	onLoad(fSwitch);
         	entity = fSwitch;
         	break;
+        case "portal":
+        	int id = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, id, new Interactable() );
+            onLoad(portal);
+            entity = portal;
+            break;
         }
         dungeon.addEntity(entity);
     }
@@ -85,4 +91,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Boulder boulder);
     
     public abstract void onLoad(FloorSwitch fSwitch);
+    
+    public abstract void onLoad(Portal portal);
 }
