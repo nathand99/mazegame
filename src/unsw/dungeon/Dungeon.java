@@ -58,12 +58,10 @@ public class Dungeon {
     		if (curr_e == null) continue;
     		if ((curr_e.getX() == x) && (curr_e.getY() == y)) {
     			particular_entity.add(curr_e);
-    			System.out.println(curr_e);
+    			//System.out.println(curr_e);
     		}
     	}
 		return particular_entity;
     }
-    
-
 
 }

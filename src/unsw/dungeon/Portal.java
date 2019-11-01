@@ -16,14 +16,46 @@ public class Portal extends Entity{
 		return id;
 	}
 
-	//find the other portal that is related to the one found 
-	public Portal getRelatedPortal() {	
-		for (Entity e : dungeon.getEntities()) {
+	public boolean bestTele(Player player) {
+		// TODO Auto-generated method stub
+		
+		for(Entity e : dungeon.getEntities()) {
 			if (e == null) continue;
 			if(e instanceof Portal && ((Portal) e).getId() == getId() && e != this) {
-				return new Portal(dungeon, e.getX(), e.getY(), getId(), null);
+				if(e.getY() > 0 && dungeon.getCurrentEntity(e.getX(), e.getY()-1).isEmpty()) {
+					//System.out.println("we can move up");
+					player.x().set(e.getX());
+					player.y().set(e.getY()-1);
+					return false;
+				}
+				else if (e.getY() < dungeon.getHeight() - 1 && dungeon.getCurrentEntity(e.getX(), e.getY()+1).isEmpty()) {
+					//System.out.println("we can move down");
+					player.x().set(e.getX());
+					player.y().set(e.getY()+1);
+					return false;
+				}
+				else if (e.getX() > 0 && dungeon.getCurrentEntity(e.getX()-1, e.getY()).isEmpty()) {
+					//System.out.println("we can move left");
+					player.x().set(e.getX()-1);
+					player.y().set(e.getY());
+					return false;
+				}
+				else if (e.getX() < dungeon.getWidth() - 1 && dungeon.getCurrentEntity(e.getX()+1, e.getY()).isEmpty()) {
+					//System.out.println("we can move right");
+					player.x().set(e.getX()+1);
+					player.y().set(e.getY());
+					return false;
+				}
+				else {
+					player.x().set(e.getX());
+					player.y().set(e.getY());
+				}
 			}
 		}
-		return null;
+		return false;
 	}
+	
+	
+	
+
 }
