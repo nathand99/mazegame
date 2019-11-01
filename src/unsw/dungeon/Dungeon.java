@@ -64,6 +64,10 @@ public class Dungeon {
     
     // from Alek's Code
 
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
+
     public List<Entity> getEntities () {
 		return this.entities;
     }

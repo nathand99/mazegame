@@ -79,10 +79,15 @@ public abstract class DungeonLoader {
         	entity = fSwitch;
         	break;
         case "portal":
-        	int id = json.getInt("id");
-            Portal portal = new Portal(dungeon, x, y, id, new Interactable() );
+        	int portalID = json.getInt("id");
+            Portal portal = new Portal(dungeon, x, y, portalID, new Interactable() );
             onLoad(portal);
             entity = portal;
+            break;
+        case "invincibility":
+        	Invincibility invincibility = new Invincibility(dungeon, x, y, new Interactable() );
+            onLoad(invincibility);
+            entity = invincibility;
             break;
         }
         dungeon.addEntity(entity); // where the entity is added.
@@ -100,4 +105,5 @@ public abstract class DungeonLoader {
     public abstract void onLoad(FloorSwitch fSwitch);
     
     public abstract void onLoad(Portal portal);
+    public abstract void onLoad(Invincibility invincibility);
 }
