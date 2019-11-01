@@ -29,6 +29,7 @@ public class Dungeon {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.pickup_items = new ArrayList<>();
         this.player = null;
     }
 
@@ -67,6 +68,9 @@ public class Dungeon {
      * @return Pickup item
      */
     public Pickup_item getCurrentPickup_item (int x, int y) {
+    	if (this.pickup_items.size() == 0) {
+    		return null;
+    	}
     	for (Pickup_item curr_p: this.pickup_items) {
     		if (curr_p == null) continue;
     		if ((curr_p.getX() == x) && (curr_p.getY() == y)) {

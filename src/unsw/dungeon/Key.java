@@ -42,7 +42,8 @@ public class Key implements Pickup_item {
 			Key temp = p.key;
 			d.removePickup_item(this);
 			p.key = this;
-			return new Key(dungeon, temp.getX(), temp.getY(), temp.keyID);			
+			// drop key where the player is with the ID of the key the player had
+			return new Key(dungeon, p.getX(), p.getY(), temp.keyID);			
 		}
 	}	
 
@@ -53,6 +54,10 @@ public class Key implements Pickup_item {
     public IntegerProperty y() {
         return y;
     }
+    
+    public int getkeyID() {
+        return keyID;
+    }
 
     public int getY() {
         return y().get();
@@ -61,6 +66,7 @@ public class Key implements Pickup_item {
     public int getX() {
         return x().get();
     }
+    
 
 
 }
