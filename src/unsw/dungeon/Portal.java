@@ -47,8 +47,8 @@ public class Portal extends Entity{
 					return false;
 				}
 				else {
-					player.x().set(e.getX());
-					player.y().set(e.getY());
+					//portal is blocked so don't do anything
+					return false;
 				}
 			}
 		}
