@@ -21,14 +21,16 @@ public class Sword implements Pickup_item {
     }
     
 	@Override
-	public Pickup_item pickup(Player p) {
+	public Pickup_item pickup(Player p, Dungeon d) {
 		// if player has no sword, put this sword in inventory - return null
 		if (p.sword == null) {
 			p.sword = this;
+			d.removePickup_item(this);
 			return null;
 		// if player has sword, swap sword - place players sword on ground
 		} else {			
 			Sword temp = p.sword;
+			d.removePickup_item(this);
 			p.sword = this;
 			return new Sword(temp.getX(), temp.getY(), temp.swordID);			
 		}

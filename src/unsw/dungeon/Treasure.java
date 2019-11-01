@@ -21,9 +21,11 @@ public class Treasure implements Pickup_item {
     }
     
 	@Override
-	public Pickup_item pickup(Player p) {	
+	public Pickup_item pickup(Player p, Dungeon d) {	
 		// add treasure to players treasure inventory
 		p.treasure.add(this);
+		// remove picked up treasure from the dungeon
+		d.removePickup_item(this);
 		// you can only pick up treasure - cannot drop it, so return null
 		return null;
 	}

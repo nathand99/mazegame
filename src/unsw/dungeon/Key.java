@@ -24,16 +24,20 @@ public class Key implements Pickup_item {
      * return null if no key is swapped to the ground
      * 
      * return key if player is swapping keys
+     * 
+     * also removes key being picked up from the dungeon
      */
 	@Override
-	public Pickup_item pickup(Player p) {		
+	public Pickup_item pickup(Player p, Dungeon d) {		
 		// if player has no key, put this key in inventory - return null
 		if (p.key == null) {
 			p.key = this;
+			d.removePickup_item(this);
 			return null;
 		// if player has key, swap keys - place players key on ground
 		} else {			
 			Key temp = p.key;
+			d.removePickup_item(this);
 			p.key = this;
 			return new Key(temp.getX(), temp.getY(), temp.keyID);			
 		}

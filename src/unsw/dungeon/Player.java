@@ -45,4 +45,17 @@ public class Player extends Entity {
         if (getX() < dungeon.getWidth() - 1)
             x().set(getX() + 1);
     }
+    
+    public void pickup() {
+    	Pickup_item item = dungeon.getCurrentPickup_item(getX(), getY());
+    	// if there is a Pickup_item on the players location
+    	if (item != null) {
+    		Pickup_item dropped = null;
+			dropped = item.pickup(this, dungeon);
+			// if player drops a Pickup_item, add it to the dungeon
+			if (dropped != null) {
+				dungeon.addPickup_item(dropped);
+			}
+    	}
+    }
 }
