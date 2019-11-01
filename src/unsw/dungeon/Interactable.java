@@ -10,13 +10,17 @@ public class Interactable implements Movement{
 				return successPush((Boulder) stationaryEntity, direction);
 			}
 			else if (stationaryEntity instanceof Portal) {
-				return teleport((Player) movingEntity,(Portal) stationaryEntity, direction);
+				return teleport((Player) movingEntity,(Portal) stationaryEntity);
+			}
+			else if (stationaryEntity instanceof Invincibility) {
+				return goInvincible((Player) movingEntity,(Invincibility) stationaryEntity);
 			}
 			return true; // not always true for exit, must remember when implementing goals
 		}
 		return false;
 	}
 	
+
 	public boolean successPush(Boulder boulder, String direction) {
 		switch(direction) {
 		case "UP":
@@ -31,9 +35,12 @@ public class Interactable implements Movement{
 		return false;
 	}
 
-	public boolean teleport(Player player, Portal portal, String direction) {
-		//System.out.println("teleporting");
+	public boolean teleport(Player player, Portal portal) {
 		return portal.bestTele(player);
+	}
+	
+	private boolean goInvincible(Player player, Invincibility invPotion) {
+		return invPotion.invincible(player);
 	}
 
 

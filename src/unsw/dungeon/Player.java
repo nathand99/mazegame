@@ -16,8 +16,13 @@ public class Player extends Entity {
     Sword sword = null;
     Key key = null;
     ArrayList<Treasure> treasure = new ArrayList<Treasure>(); 
+    //game starts on normal state being true 
+    //when normal state is true enemy can kill player
+    //when normal state is false enemy can't kill player
+    private boolean normalState = true;
+    private int numThreads = 0;
 
-    /**
+	/**
      * Create a player positioned in square (x,y)
      * @param x
      * @param y
@@ -96,4 +101,20 @@ public class Player extends Entity {
 			}
     	}
     }
+
+	public boolean isNormalState() {
+		return normalState;
+	}
+
+	public void setNormalState(boolean normalState) {
+		this.normalState = normalState;
+	}
+
+	public int getNumThreads() {
+		return numThreads;
+	}
+
+	public void setNumThreads(int numThreads) {
+		this.numThreads = numThreads;
+	}
 }

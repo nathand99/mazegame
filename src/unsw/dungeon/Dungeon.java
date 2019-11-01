@@ -51,6 +51,9 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
     public List<Entity> getEntities () {
 		return this.entities;
     }
