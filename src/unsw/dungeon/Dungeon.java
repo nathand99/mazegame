@@ -56,11 +56,15 @@ public class Dungeon {
     public void alert() {
     	// test code, should not actually be in final iteration.
     	for (Entity e : entities) {
-    		if (e instanceof Enemy) {
+    		if (e instanceof Enemy && player.isNormalState()) {
     			((Enemy) e).approach();
+    		}
+    		else if (e instanceof Enemy && !player.isNormalState()){
+    			((Enemy) e).escape();
     		}
     	}
     }
+    
     
     // from Alek's Code
 
@@ -110,6 +114,23 @@ public class Dungeon {
     		}
     	}
 		return particular_entity;
+    }
+    
+    public void exitLose() {
+    	for (Entity curr_e: this.entities) {
+    		if (curr_e == null) continue;
+    		entities.remove(curr_e);
+    		System.out.println("You lose");
+    		//System.exit(0);
+    	}
+    }
+    public void exitWin() {
+    	for (Entity curr_e: this.entities) {
+    		if (curr_e == null) continue;
+    		entities.remove(curr_e);
+    		System.out.println("You win");
+    		
+    	}
     }
 
 }

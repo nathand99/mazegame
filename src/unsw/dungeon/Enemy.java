@@ -1,7 +1,8 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javafx.application.Platform;
 
 public class Enemy extends Entity{
 	
@@ -27,15 +28,12 @@ public class Enemy extends Entity{
 		Player player = dungeon.getPlayer();
 		int[] playerXY = player.getXY();
 		int[] currentXY = this.getXY();
-		if (kill(playerXY)) {
-			return;
-		}
 		
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();
 		String firstMove = bestPath.get(0);
 		enemyMove(firstMove);
-		kill(playerXY);
+		killPlayer(player);
 	}
 	
 	public void escape() {
@@ -68,10 +66,21 @@ public class Enemy extends Entity{
 			return;
 		}
 	}
-	
-	public boolean kill(int[] playerXY) {
-		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
+		
+	public boolean killPlayer(Player p) {
+		if (p.getX() == this.getX() && p.getY() == this.getY() && p.isNormalState()) {
 			System.out.println("You were killed");
+			//dungeon.exitLose();
+			Platform.exit();
+			return true;
+		}
+	
+		return false;
+	}
+	
+	public boolean killEnemy(Player p) {
+		if (p.getX() == this.getX() && p.getY() == this.getY() && !p.isNormalState()) {
+			System.out.println("You killed the enemy");
 			return true;
 		}
 		return false;
@@ -126,3 +135,4 @@ public class Enemy extends Entity{
 
 
 }
+

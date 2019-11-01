@@ -89,6 +89,18 @@ public abstract class DungeonLoader {
             onLoad(invincibility);
             entity = invincibility;
             break;
+        case "treasure":
+        	int treasureID = json.getInt("id"); 
+        	Treasure treasure = new Treasure(dungeon, x, y, treasureID ,new Interactable() );
+            onLoad(treasure);
+            entity = treasure;
+            break;
+        case "key":
+        	int keyID = json.getInt("id"); 
+        	Key key = new Key(dungeon, x, y, keyID ,new Interactable() );
+            onLoad(key);
+            entity = key;
+            break;
         }
         dungeon.addEntity(entity); // where the entity is added.
     }
@@ -106,4 +118,6 @@ public abstract class DungeonLoader {
     
     public abstract void onLoad(Portal portal);
     public abstract void onLoad(Invincibility invincibility);
+    public abstract void onLoad(Treasure treasure);
+    public abstract void onLoad(Key key);
 }

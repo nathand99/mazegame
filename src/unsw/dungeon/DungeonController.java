@@ -54,15 +54,23 @@ public class DungeonController {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
+            player.printInventory();
+            System.out.println("player state normal: " + player.isNormalState());
             break;
         case DOWN:
             player.moveDown();
+            player.printInventory();
+            System.out.println("player state normal: " + player.isNormalState());
             break;
         case LEFT:
             player.moveLeft();
+            player.printInventory();
+            System.out.println("player state normal: " + player.isNormalState());
             break;
         case RIGHT:
             player.moveRight();
+            player.printInventory();
+            System.out.println("player state normal: " + player.isNormalState());
             break;
         default:
             break;

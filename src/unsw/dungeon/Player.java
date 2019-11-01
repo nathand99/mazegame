@@ -13,10 +13,12 @@ public class Player extends Entity {
     private Dungeon dungeon;
     
     // inventory
-    Sword sword = null;
-    Key key = null;
-    ArrayList<Treasure> treasure = new ArrayList<Treasure>(); 
-    //game starts on normal state being true 
+     Sword sword = null;
+    private Key key = null;
+
+	private ArrayList<Treasure> treasure = new ArrayList<Treasure>(); 
+
+	//game starts on normal state being true 
     //when normal state is true enemy can kill player
     //when normal state is false enemy can't kill player
     private boolean normalState = true;
@@ -121,4 +123,33 @@ public class Player extends Entity {
 	public void setNumThreads(int numThreads) {
 		this.numThreads = numThreads;
 	}
+	
+    public Key getKey() {
+		return key;
+	}
+    
+    public void setKey(Key key) {
+		// TODO Auto-generated method stub
+		this.key = key;	
+	}
+    
+    public ArrayList<Treasure> getTreasure() {
+		return treasure;
+	}
+
+	public void addTreasure(Treasure t) {
+		this.treasure.add(t);
+	}
+	
+	//just to see what ive picked up 
+	public void printInventory() {
+    	System.out.println("my inventory: ");
+    	for(Pickup_item curr_p :this.treasure) {
+    		System.out.println(curr_p);
+    	}
+    	if (key != null) System.out.println(key);
+    	if (sword != null)System.out.println(sword);
+    }
+
+	
 }

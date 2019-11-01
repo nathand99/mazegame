@@ -11,7 +11,7 @@ public class TestSword {
 		Sword sword2 = new Sword(dungeon, 0, 2, 2);
 		dungeon.addPickup_item(sword2);
 		player.moveDown();
-		if (player.key == null) {
+		if (player.sword == null) {
 			System.out.println("i have no sword");
 		}
 		player.pickup();
