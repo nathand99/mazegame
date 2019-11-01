@@ -7,14 +7,17 @@ public class Key implements Pickup_item {
 	
 	private IntegerProperty x, y;
 	int keyID;	
+	Dungeon dungeon;
 	
     /**
      * Create a keypositioned in square (x,y) with keyID
+     * @param dungeon
      * @param x
      * @param y
      * @param keyID - ID of key
      */
-    public Key(int x, int y, int keyID) {
+    public Key(Dungeon dungeon, int x, int y, int keyID) {
+    	this.dungeon = dungeon;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.keyID = keyID;
@@ -39,7 +42,7 @@ public class Key implements Pickup_item {
 			Key temp = p.key;
 			d.removePickup_item(this);
 			p.key = this;
-			return new Key(temp.getX(), temp.getY(), temp.keyID);			
+			return new Key(dungeon, temp.getX(), temp.getY(), temp.keyID);			
 		}
 	}	
 

@@ -7,15 +7,18 @@ public class Treasure implements Pickup_item {
 	
 	private IntegerProperty x, y;
 	int treasureID;
+	Dungeon dungeon;
 
     /**
      * Create a treasure positioned in square (x,y)
+     * @param dungeon
      * @param x
      * @param y
      * @param treasureID - ID of treasure
      */
-    public Treasure(int x, int y, int treasureID) {
-        this.x = new SimpleIntegerProperty(x);
+    public Treasure(Dungeon dungeon, int x, int y, int treasureID) {
+    	this.dungeon = dungeon;
+    	this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.treasureID = treasureID;
     }

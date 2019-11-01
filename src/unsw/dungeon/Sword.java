@@ -7,15 +7,18 @@ public class Sword implements Pickup_item {
 	
 	private IntegerProperty x, y;
 	int swordID;
+	Dungeon dungeon;
 	
     /**
      * Create a sword positioned in square (x,y)
+     * @param dungeon
      * @param x
      * @param y
      * @param swordID - ID of sword
      */
-    public Sword(int x, int y, int swordID) {
-        this.x = new SimpleIntegerProperty(x);
+    public Sword(Dungeon dungeon, int x, int y, int swordID) {
+		this.dungeon = dungeon;
+		this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.swordID = swordID;
     }
@@ -32,7 +35,7 @@ public class Sword implements Pickup_item {
 			Sword temp = p.sword;
 			d.removePickup_item(this);
 			p.sword = this;
-			return new Sword(temp.getX(), temp.getY(), temp.swordID);			
+			return new Sword(dungeon, temp.getX(), temp.getY(), temp.swordID);			
 		}
 	}
 
