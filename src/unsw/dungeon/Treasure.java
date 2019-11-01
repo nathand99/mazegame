@@ -42,7 +42,11 @@ public class Treasure implements Pickup_item {
     public IntegerProperty y() {
         return y;
     }
-
+    
+    public int gettreasureID() {
+        return treasureID;
+    }
+    
     public int getY() {
         return y().get();
     }

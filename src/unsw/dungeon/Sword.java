@@ -35,7 +35,8 @@ public class Sword implements Pickup_item {
 			Sword temp = p.sword;
 			d.removePickup_item(this);
 			p.sword = this;
-			return new Sword(dungeon, temp.getX(), temp.getY(), temp.swordID);			
+			// drop key where the player is with the ID of the key the player had
+			return new Sword(dungeon, p.getX(), p.getY(), temp.swordID);			
 		}
 	}
 
@@ -45,6 +46,10 @@ public class Sword implements Pickup_item {
 
     public IntegerProperty y() {
         return y;
+    }
+    
+    public int getswordID() {
+        return swordID;
     }
 
     public int getY() {
