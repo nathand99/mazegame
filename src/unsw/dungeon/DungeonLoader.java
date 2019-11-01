@@ -48,19 +48,31 @@ public abstract class DungeonLoader {
         int y = json.getInt("y");
 
         Entity entity = null;
+        
+        
         switch (type) {
         case "player":
-            Player player = new Player(dungeon, x, y);
+            Player player = new Player(dungeon, x, y, new Moveable());
             dungeon.setPlayer(player);
             onLoad(player);
             entity = player;
             break;
         case "wall":
-            Wall wall = new Wall(x, y);
+            Wall wall = new Wall(x, y, new Immovable());
             onLoad(wall);
             entity = wall;
             break;
         // TODO Handle other possible entities
+        case "boulder":
+        	Boulder boulder = new Boulder(dungeon, x, y, new Interactable());
+        	onLoad(boulder);
+        	entity = boulder;
+        	break;
+        case "switch":
+        	FloorSwitch fSwitch = new FloorSwitch(dungeon, x, y, new Moveable());
+        	onLoad(fSwitch);
+        	entity = fSwitch;
+        	break;
         }
         dungeon.addEntity(entity);
     }
@@ -70,5 +82,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
 
     // TODO Create additional abstract methods for the other entities
-
+    public abstract void onLoad(Boulder boulder);
+    
+    public abstract void onLoad(FloorSwitch fSwitch);
 }
