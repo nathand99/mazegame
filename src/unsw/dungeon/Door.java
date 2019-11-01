@@ -1,9 +1,12 @@
 package unsw.dungeon;
 
 public class Door extends Entity {
-
-	public Door(int x, int y, Movement movement) {
+	
+	Dungeon dungeon;
+	
+	public Door(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
+		this.dungeon = dungeon;
 	}
 
 }
