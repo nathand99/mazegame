@@ -22,6 +22,10 @@ public class Portal extends Entity{
 		for(Entity e : dungeon.getEntities()) {
 			if (e == null) continue;
 			if(e instanceof Portal && ((Portal) e).getId() == getId() && e != this) {
+				// this code can be used to just set the player x-y to the portal.
+				//player.x().set(e.getX());
+				//player.y().set(e.getY());
+				
 				if(e.getY() > 0 && dungeon.getCurrentEntity(e.getX(), e.getY()-1).isEmpty()) {
 					//System.out.println("we can move up");
 					player.x().set(e.getX());

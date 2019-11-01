@@ -7,9 +7,9 @@ public class TestKey {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		
-		Key key = new Key(dungeon, 0, 1, 1);
+		Key key = new Key(dungeon, 0, 1, 1, new Moveable());
 		dungeon.addPickup_item(key);
-		Key key2 = new Key(dungeon, 0, 2, 2);
+		Key key2 = new Key(dungeon, 0, 2, 2, new Moveable());
 		dungeon.addPickup_item(key2);
 		player.moveDown();
 		if (player.key == null) {

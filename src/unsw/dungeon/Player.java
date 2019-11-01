@@ -3,6 +3,8 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -96,4 +98,5 @@ public class Player extends Entity {
 			}
     	}
     }
+    
 }
