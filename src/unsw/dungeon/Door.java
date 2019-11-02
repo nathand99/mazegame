@@ -16,7 +16,14 @@ public class Door extends Entity {
 	 */
 	public boolean openDoor(Player player) {
 		if (player.key != null) {
-			if (player.key.getkeyID() == doorID) {
+			if (player.key.getkeyID() == doorID) {				
+				// remove the locked door
+				dungeon.removeEntity(this);
+				// add in an unlocked door where the locked one was
+				Door new_door = new Door(this.dungeon, this.getX(), this.getY(), this.getdoorID(), new Moveable());
+				dungeon.addEntity(new_door);
+				// remove key from players inventory
+				player.key = null; // should make that private -> player.setKey(null);
 				return true;
 			}
 		}
