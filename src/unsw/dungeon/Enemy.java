@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Enemy extends Entity implements EnemyObserver {
 	
@@ -19,8 +21,26 @@ public class Enemy extends Entity implements EnemyObserver {
 		this.dungeon = dungeon;
 		this.player = dungeon.getPlayer();
 		player.registerObserver(this); // when enemy dies, must remove the observer from.
+		startMove();
 	}
 	
+	private void startMove() {
+		// TODO Auto-generated method stub
+		Timer t = new Timer();
+		t.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+            	if (player.isNormalState()) {
+        			approach();
+        		} else {
+        			escape();
+        		}
+
+            }
+        }, 2000, 2000);
+	}
+
 	// while the game goes on, check for player state, and if not invincible run aggressive code.
 	// if invincible, run passive code.
 	
@@ -72,6 +92,7 @@ public class Enemy extends Entity implements EnemyObserver {
 	public boolean kill(int[] playerXY) {
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
+			dungeon.removeEntity(player);
 			return true;
 		}
 		return false;
@@ -130,10 +151,10 @@ public class Enemy extends Entity implements EnemyObserver {
 			if (kill(playerXY)) {
 				return;
 			}
-			approach();
+			//approach();
 		} else {
 			// if isKilled by player, run that.
-			escape();
+			//escape();
 		}
 		
 		
