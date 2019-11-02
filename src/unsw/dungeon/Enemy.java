@@ -42,7 +42,6 @@ public class Enemy extends Entity{
 		Player player = dungeon.getPlayer();
 		int[] playerXY = player.getXY();
 		int distance = Math.abs(playerXY[0] - this.getX()) + Math.abs(playerXY[1] - this.getY());
-		
 		// can probs be its own func, currently just testing functionality.
 		int[] enemyUp = this.getXY();
 		enemyUp[1] = enemyUp[1] - 1;
@@ -96,7 +95,7 @@ public class Enemy extends Entity{
 	}
 	
 	public boolean moveValid(int distance, int[] newXY, int[] playerXY, String direction) {
-		if (!collision(newXY) && isFurther(distance, newXY, playerXY)) {
+		if (collision(newXY) && isFurther(distance, newXY, playerXY)) {
 			enemyMove(direction);
 			return true;
 		}
