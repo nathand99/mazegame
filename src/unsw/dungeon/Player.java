@@ -15,10 +15,9 @@ public class Player extends Entity {
     private Dungeon dungeon;
     
     // inventory
-    Sword sword = null;
-    Key key = null;
-
-    int treasure = 0; 
+    private Sword sword = null;
+    private Key key = null;
+    private int treasure = 0; 
     //game starts on normal state being true 
     //when normal state is true enemy can kill player
     //when normal state is false enemy can't kill player
@@ -133,7 +132,33 @@ public class Player extends Entity {
 		this.numThreads = numThreads;
 	}
 
-    public void addTreasure() {
-    	this.treasure++;
+
+	public Sword getSword() {
+		return sword;
+	}
+
+	public void setSword(Sword sword) {
+		this.sword = sword;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
+	public int getTreasure() {
+		return treasure;
+	}
+
+	public void setTreasure(int treasure) {
+		this.treasure = treasure;
+	}
+	
+	public void addTreasure() {
+    	this.setTreasure(this.getTreasure() + 1);
     }
+	 
 }

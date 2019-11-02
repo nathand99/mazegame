@@ -1,12 +1,9 @@
 package unsw.dungeon;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class Key extends Entity implements Pickup_item {
 	
-	int keyID;	
-	Dungeon dungeon;
+	private int keyID;	
+	private Dungeon dungeon;
 	
     /**
      * Create a keypositioned in square (x,y) with keyID
@@ -31,15 +28,15 @@ public class Key extends Entity implements Pickup_item {
 	@Override
 	public Entity pickup(Player p, Dungeon d) {		
 		// if player has no key, put this key in inventory - return null
-		if (p.key == null) {
-			p.key = this;
+		if (p.getKey() == null) {
+			p.setKey(this);
 			d.removeEntity(this);
 			return null;
 		// if player has key, swap keys - place players key on ground
 		} else {			
-			Key temp = p.key;
+			Key temp = p.getKey();
 			d.removeEntity(this);
-			p.key = this;
+			p.setKey(this);
 			// drop key where the player is with the ID of the key the player had
 			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new Moveable());			
 		}
@@ -48,15 +45,5 @@ public class Key extends Entity implements Pickup_item {
     public int getkeyID() {
         return keyID;
     }
-
-    public int getY() {
-        return y().get();
-    }
-
-    public int getX() {
-        return x().get();
-    }
-    
-
 
 }

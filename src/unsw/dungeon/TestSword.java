@@ -13,18 +13,18 @@ public class TestSword {
 		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Moveable());
 		dungeon.addEntity(sword2);
 		player.moveDown();
-		if (player.key == null) {
+		if (player.getKey() == null) {
 			System.out.println("i have no sword");
 		}
 		player.pickup();
-		if (player.sword != null) {
-			System.out.println("got sword with ID:" + player.sword.getswordID());
+		if (player.getSword() != null) {
+			System.out.println("got sword with ID:" + player.getSword().getswordID());
 		}
 		player.moveDown();
 		System.out.println("move down");
 		player.pickup();
-		if (player.sword != null) {
-			System.out.println("got sword with ID:" + player.sword.getswordID());
+		if (player.getSword() != null) {
+			System.out.println("got sword with ID:" + player.getSword().getswordID());
 		}
 		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());
     	Sword i = null;

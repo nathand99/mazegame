@@ -14,18 +14,18 @@ public class TestKey {
 		Key key2 = new Key(dungeon, 0, 2, 2, new Moveable());
 		dungeon.addEntity(key2);
 		player.moveDown();
-		if (player.key == null) {
+		if (player.getKey() == null) {
 			System.out.println("i have no key");
 		}
 		player.pickup();
-		if (player.key != null) {
-			System.out.println("got key with ID:" + player.key.getkeyID());
+		if (player.getKey() != null) {
+			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
 		player.moveDown();
 		System.out.println("move down");
 		player.pickup();
-		if (player.key != null) {
-			System.out.println("got key with ID:" + player.key.getkeyID());
+		if (player.getKey() != null) {
+			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
 		
 		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());
@@ -41,6 +41,15 @@ public class TestKey {
 			System.out.println("why");
 		}
 		System.out.println("dropped key with ID:" + i.getkeyID());
+		
+		//test drop key1 pick key2 then pick key1 again 
+		player.moveUp();
+		player.moveDown();
+		System.out.println("move up and back down");
+		player.pickup();
+		if (player.getKey() != null) {
+			System.out.println("got key with ID:" + player.getKey().getkeyID());
+		}
 		
 	}
 	
