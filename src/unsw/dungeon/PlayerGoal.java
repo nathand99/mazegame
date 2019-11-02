@@ -52,6 +52,18 @@ public class PlayerGoal {
 		this.goals = goals;
 	}
 	
+	public void addComplete(String obj) {
+		for (Goal goal : goals) {
+			goal.addComplete(obj);
+		}
+	}
+	
+	public void removeComplete(String obj) {
+		for (Goal goal : goals) {
+			goal.removeComplete(obj);
+		}
+	}
+	
 	public void printGoals() {
 		for (int i = 0; i < goals.size(); i++) {
 			Goal goal = goals.get(i);

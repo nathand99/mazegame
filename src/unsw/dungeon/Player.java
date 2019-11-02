@@ -15,7 +15,10 @@ public class Player extends Entity implements Subject {
 	static final int minClickDelay = 400;
 	
     private Dungeon dungeon;
+    
     private List<EnemyObserver> enemyObservers;
+    private List<GoalObserver> goalObservers;
+    
     private int lastClickTime = 0;
     
     // goals
@@ -40,6 +43,7 @@ public class Player extends Entity implements Subject {
         super(x, y, movement);
         this.dungeon = dungeon;
         enemyObservers = new ArrayList<EnemyObserver>();
+        goalObservers = new ArrayList<GoalObserver>();
         this.setGoals(new PlayerGoal(this));
     }
 
@@ -51,7 +55,7 @@ public class Player extends Entity implements Subject {
         if (getY() > 0 && moveTo.size() == 0) {
             y().set(getY() - 1); 
             lastClickTime = now;
-            notifyObservers();
+            notifyEnemyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		//System.out.println(entity.checkMovement(this));
@@ -60,9 +64,10 @@ public class Player extends Entity implements Subject {
         		}
         	}
         	y().set(getY() - 1); 
+        	notifyGoalObservers();
         	pickup();
         	lastClickTime = now;
-        	notifyObservers();
+        	notifyEnemyObservers();
         }
     }
 
@@ -74,7 +79,7 @@ public class Player extends Entity implements Subject {
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
             y().set(getY() + 1);
             lastClickTime = now;
-            notifyObservers();
+            notifyEnemyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "DOWN") == false) {
@@ -82,9 +87,10 @@ public class Player extends Entity implements Subject {
         		}
         	}
         	y().set(getY() + 1);  
+        	notifyGoalObservers();
         	pickup();
         	lastClickTime = now;
-        	notifyObservers();
+        	notifyEnemyObservers();
         } 
     }
 
@@ -96,7 +102,7 @@ public class Player extends Entity implements Subject {
         if (getX() > 0 && moveTo.size() == 0) {
             x().set(getX() - 1);
             lastClickTime = now;
-            notifyObservers();
+            notifyEnemyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "LEFT") == false) {
@@ -104,9 +110,10 @@ public class Player extends Entity implements Subject {
         		}
         	}
         	x().set(getX() - 1);
+        	notifyGoalObservers();
         	pickup();
         	lastClickTime = now;
-        	notifyObservers();
+        	notifyEnemyObservers();
         } 
     }
 
@@ -118,7 +125,7 @@ public class Player extends Entity implements Subject {
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {
             x().set(getX() + 1);
             lastClickTime = now;
-            notifyObservers();
+            notifyEnemyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "RIGHT") == false) {
@@ -126,9 +133,10 @@ public class Player extends Entity implements Subject {
         		}
         	}
         	x().set(getX() + 1); 
+        	notifyGoalObservers();
         	pickup();
         	lastClickTime = now;
-        	notifyObservers();
+        	notifyEnemyObservers();
         } 
     }
     
@@ -138,6 +146,7 @@ public class Player extends Entity implements Subject {
     	// check if there is a Pickup_item on players location
     	for (Entity e : entities) {
     		if (e instanceof PickupItem) {
+    			System.out.println("There is an item here!");
     			item = (PickupItem) e;
     			break;
     		}
@@ -151,6 +160,10 @@ public class Player extends Entity implements Subject {
 				dungeon.addEntity(dropped);
 			}
     	}
+    }
+    
+    public boolean canExit() {
+    	return goals.onlyExit();
     }
 
 	public boolean isNormalState() {
@@ -212,13 +225,11 @@ public class Player extends Entity implements Subject {
 
 	@Override
 	public void registerObserver(EnemyObserver o) {
-		// TODO Auto-generated method stub
 		enemyObservers.add(o);
 	}
 
 	@Override
 	public void removeObserver(EnemyObserver o) {
-		// TODO Auto-generated method stub
 		int i = enemyObservers.indexOf(o);
 		if (i >= 0) {
 			enemyObservers.remove(i);
@@ -226,10 +237,33 @@ public class Player extends Entity implements Subject {
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyEnemyObservers() {
 		// TODO Auto-generated method stub
 		for (EnemyObserver obs : enemyObservers) {
 			obs.update(this.getXY());
+		}
+	}
+
+	@Override
+	public void registerObserver(GoalObserver o) {
+		// TODO Auto-generated method stub
+		goalObservers.add(o);
+	}
+
+	@Override
+	public void removeObserver(GoalObserver o) {
+		// TODO Auto-generated method stub
+		int i = goalObservers.indexOf(o);
+		if (i >= 0) {
+			goalObservers.remove(i);
+		}
+	}
+
+	@Override
+	public void notifyGoalObservers() {
+		// TODO Auto-generated method stub
+		for (GoalObserver obs : goalObservers) {
+			obs.update(this.getGoals(), this.getXY());
 		}
 	}
 	 

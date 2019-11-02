@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Enemy extends Entity implements EnemyObserver {
+public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 	
 	private Dungeon dungeon;
 	private Player player;
@@ -26,7 +26,8 @@ public class Enemy extends Entity implements EnemyObserver {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.player = dungeon.getPlayer();
-		player.registerObserver(this); // when enemy dies, must remove the observer from.
+		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
+		player.registerObserver((GoalObserver) this); // when enemy dies, must remove the observer from.
 		startMove();
 	}
 	
@@ -156,7 +157,8 @@ public class Enemy extends Entity implements EnemyObserver {
             break;
         }
 	}
-
+	
+	// from EnemyObserver
 	@Override
 	public void update(int[] playerXY) {
 		// TODO Auto-generated method stub
@@ -172,6 +174,16 @@ public class Enemy extends Entity implements EnemyObserver {
 		
 		
 		
+	}
+
+	// from GoalObserver
+	@Override
+	public void update(PlayerGoal goals, int[] playerXY) {
+		// TODO Auto-generated method stub
+		if (this.getX() == playerXY[0] && this.getY() == playerXY[1]) {
+			goals.addComplete("enemy");
+			player.removeObserver((GoalObserver) this);
+		}
 	}
 
 

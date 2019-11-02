@@ -15,11 +15,13 @@ public class Interactable implements Movement{
 			else if (stationaryEntity instanceof Door) {
 				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
 			}
-			return true; // not always true for exit, must remember when implementing goals
+			else if (stationaryEntity instanceof Exit) {
+				return tryExit((Player) movingEntity);
+			}
+			return true; 
 		}
 		return false;
 	}
-	
 
 	public boolean successPush(Boulder boulder, String direction) {
 		switch(direction) {
@@ -43,5 +45,8 @@ public class Interactable implements Movement{
 		return door.openDoor(player);
 	}
 
-
+	private boolean tryExit(Player player) {
+		return player.canExit();
+	}
+	
 }

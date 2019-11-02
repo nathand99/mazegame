@@ -22,6 +22,14 @@ public class TestDoor {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
 		
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveDown();
 		System.out.println("move down");
 		
@@ -45,6 +53,14 @@ public class TestDoor {
 		
 		System.out.println("player starting at: " + player.getX() + "," + player.getY());
 		
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveDown();
 		System.out.println("move down");
 		if (player.getKey()  == null) {
@@ -56,6 +72,14 @@ public class TestDoor {
 			System.out.println("i still have no key");
 		}
 		
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveDown();
 		System.out.println("move down");
 		
@@ -70,6 +94,14 @@ public class TestDoor {
 			System.out.println("i still have my key");
 		}
 		
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveUp();
 		
 		System.out.println("door is at: " + door.getX() + "," + door.getY());

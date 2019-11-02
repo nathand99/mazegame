@@ -20,6 +20,15 @@ public class TestKey {
 		if (player.getKey() != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
+		
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveDown();
 		System.out.println("move down");
 		if (player.getKey() != null) {
@@ -41,7 +50,23 @@ public class TestKey {
 		System.out.println("dropped key with ID:" + i.getkeyID());
 		
 		//test drop key1 pick key2 then pick key1 again 
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveUp();
+		try
+		{
+		    Thread.sleep(800);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveDown();
 		System.out.println("move up and back down");
 		if (player.getKey() != null) {

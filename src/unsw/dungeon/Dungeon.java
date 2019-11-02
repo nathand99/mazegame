@@ -20,9 +20,7 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
-    private List<Entity> initialEntities;
     private Player player;
-    private Player initialPlayer;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -59,6 +57,12 @@ public class Dungeon {
     public List<Entity> getEntities () {
 		return this.entities;
     }
+    
+    public void printEntities() {
+    	for (Entity entity : entities) {
+    		System.out.println(entity.getX() + ", " + entity.getY());
+    	}
+    }
 
     public List<Entity> getCurrentEntity (int x, int y) {
     	List<Entity> particular_entity = new ArrayList<Entity>();
@@ -71,18 +75,4 @@ public class Dungeon {
     	}
 		return particular_entity;
     }
-    
-    /*public void copyInitialEntities() {
-    	this.initialEntities = new ArrayList<Entity>(entities);
-    }
-    
-    public void copyInitialPlayer() {
-    	this.initialPlayer = this.player;
-    }
-    
-    public void loadInitial() {
-    	this.entities = new ArrayList<Entity>(initialEntities);
-    	this.player = this.initialPlayer;
-    }*/
-
 }
