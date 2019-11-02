@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 
 public class Key extends Entity implements PickupItem {
 	
-	private IntegerProperty x, y;
 	private int keyID;	
 	private Dungeon dungeon;
 	

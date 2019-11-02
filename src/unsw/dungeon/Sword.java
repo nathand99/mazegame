@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Sword extends Entity implements PickupItem {
 	
-	private IntegerProperty x, y;
 	int swordID;
 	Dungeon dungeon;
 	

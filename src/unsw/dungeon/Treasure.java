@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Treasure extends Entity implements PickupItem, GoalObserver {
 	
-	IntegerProperty x, y;
 	Dungeon dungeon;
 	Player player;
 
