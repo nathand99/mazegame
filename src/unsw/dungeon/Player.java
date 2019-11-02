@@ -11,9 +11,12 @@ import javafx.beans.value.ChangeListener;
  *
  */
 public class Player extends Entity implements Subject {
-
+	
+	static final int minClickDelay = 150;
+	
     private Dungeon dungeon;
     private List<EnemyObserver> enemyObservers;
+    private int lastClickTime = 0;
     
     // inventory
     private Sword sword = null;
@@ -37,9 +40,13 @@ public class Player extends Entity implements Subject {
     }
 
     public void moveUp() {
+    	int now = (int) System.currentTimeMillis();
+    	if (now - lastClickTime < minClickDelay) return;
+    	
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() - 1);
         if (getY() > 0 && moveTo.size() == 0) {
-            y().set(getY() - 1);  
+            y().set(getY() - 1); 
+            lastClickTime = now;
             notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
@@ -50,14 +57,19 @@ public class Player extends Entity implements Subject {
         	}
         	y().set(getY() - 1); 
         	pickup();
+        	lastClickTime = now;
         	notifyObservers();
         }
     }
 
     public void moveDown() {
+    	int now = (int) System.currentTimeMillis();
+    	if (now - lastClickTime < minClickDelay) return;
+    	
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
             y().set(getY() + 1);
+            lastClickTime = now;
             notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
@@ -67,14 +79,19 @@ public class Player extends Entity implements Subject {
         	}
         	y().set(getY() + 1);  
         	pickup();
+        	lastClickTime = now;
         	notifyObservers();
         } 
     }
 
     public void moveLeft() {
+    	int now = (int) System.currentTimeMillis();
+    	if (now - lastClickTime < minClickDelay) return;
+    	
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() - 1, this.getY());
         if (getX() > 0 && moveTo.size() == 0) {
             x().set(getX() - 1);
+            lastClickTime = now;
             notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
@@ -84,14 +101,19 @@ public class Player extends Entity implements Subject {
         	}
         	x().set(getX() - 1);
         	pickup();
+        	lastClickTime = now;
         	notifyObservers();
         } 
     }
 
     public void moveRight() {
+    	int now = (int) System.currentTimeMillis();
+    	if (now - lastClickTime < minClickDelay) return;
+    	
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() + 1, this.getY());
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {
             x().set(getX() + 1);
+            lastClickTime = now;
             notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
@@ -101,6 +123,7 @@ public class Player extends Entity implements Subject {
         	}
         	x().set(getX() + 1); 
         	pickup();
+        	lastClickTime = now;
         	notifyObservers();
         } 
     }
