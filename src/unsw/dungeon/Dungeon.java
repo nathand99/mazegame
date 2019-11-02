@@ -63,6 +63,14 @@ public class Dungeon {
     		System.out.println(entity.getX() + ", " + entity.getY());
     	}
     }
+    
+    public void registerAll() {
+    	for (Entity entity : entities) {
+    		if (entity instanceof GoalObserver) {
+    			((GoalObserver) entity).register();
+    		}
+    	}
+    }
 
     public List<Entity> getCurrentEntity (int x, int y) {
     	List<Entity> particular_entity = new ArrayList<Entity>();

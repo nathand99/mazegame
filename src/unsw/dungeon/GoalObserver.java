@@ -7,5 +7,6 @@ package unsw.dungeon;
  * 
  */
 public interface GoalObserver {
+	public void register();
 	public void update(PlayerGoal goals, int[] playerXY); // TODO: add what is passed.
 }

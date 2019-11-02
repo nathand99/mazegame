@@ -39,6 +39,8 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        // something here to load.
+        dungeon.registerAll();
         return dungeon;
     }
 

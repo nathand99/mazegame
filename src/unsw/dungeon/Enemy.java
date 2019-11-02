@@ -25,6 +25,13 @@ public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 	public Enemy(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
+		this.player = null;
+		
+		
+	}
+	
+	@Override
+	public void register() {
 		this.player = dungeon.getPlayer();
 		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
 		player.registerObserver((GoalObserver) this); // when enemy dies, must remove the observer from.

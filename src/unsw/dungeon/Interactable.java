@@ -15,10 +15,14 @@ public class Interactable implements Movement{
 			else if (stationaryEntity instanceof Door) {
 				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
 			}
-			else if (stationaryEntity instanceof Exit) {
-				return tryExit((Player) movingEntity);
+			return true; // for exit, always true. However, does not always win.
+		} else if (movingEntity instanceof Enemy) {
+			if (stationaryEntity instanceof Exit) {
+				return true;
+			} else if (stationaryEntity instanceof Portal) {
+				return true;
 			}
-			return true; 
+			return false;
 		}
 		return false;
 	}
@@ -44,9 +48,4 @@ public class Interactable implements Movement{
 	public boolean openDoor(Player player, Door door, String direction) {
 		return door.openDoor(player);
 	}
-
-	private boolean tryExit(Player player) {
-		return player.canExit();
-	}
-	
 }

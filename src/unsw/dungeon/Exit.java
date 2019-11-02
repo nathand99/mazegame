@@ -8,8 +8,8 @@ public class Exit extends Entity implements GoalObserver {
 	public Exit(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
-		this.player = dungeon.getPlayer();
-		player.registerObserver(this);
+		this.player = null;
+		
 	}
 
 	@Override
@@ -19,6 +19,14 @@ public class Exit extends Entity implements GoalObserver {
 				goals.addComplete("exit");
 			}
 		}
+	}
+
+	@Override
+	public void register() {
+		// TODO Auto-generated method stub
+		this.player = dungeon.getPlayer();
+		player.registerObserver(this);
+		
 	}
 	
 }

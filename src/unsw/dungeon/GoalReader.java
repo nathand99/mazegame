@@ -8,7 +8,7 @@ import java.io.IOException;
 /*
  * public class Goal
  * 
- * reads from a .txt file, and assigns the goals from it.
+ * Goals are in the json object, no need?
  * 
  */
 public class GoalReader {
