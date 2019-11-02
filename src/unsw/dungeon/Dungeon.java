@@ -12,8 +12,6 @@ import java.util.List;
  * A dungeon can contain many entities, each occupy a square. More than one
  * entity can occupy the same square.
  * 
- * A dungeon can contain many Pickup_items, each occupy a square. Only one
- * pickup_item can occupy the same square.
  *
  * @author Robert Clifton-Everest
  *

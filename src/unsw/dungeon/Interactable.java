@@ -15,6 +15,9 @@ public class Interactable implements Movement{
 			else if (stationaryEntity instanceof Invincibility) {
 				return goInvincible((Player) movingEntity,(Invincibility) stationaryEntity);
 			}
+			else if (stationaryEntity instanceof Door) {
+				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
+			}
 			return true; // not always true for exit, must remember when implementing goals
 		}
 		return false;
@@ -41,6 +44,10 @@ public class Interactable implements Movement{
 	
 	private boolean goInvincible(Player player, Invincibility invPotion) {
 		return invPotion.invincible(player);
+	}
+	
+	public boolean openDoor(Player player, Door door, String direction) {
+		return door.openDoor(player);
 	}
 
 
