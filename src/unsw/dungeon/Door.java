@@ -15,11 +15,12 @@ public class Door extends Entity {
 	 * if player has key with same ID as door, open door
 	 */
 	public boolean openDoor(Player player) {
-		if (player.key.getkeyID() == doorID) {
-			return true;
-		} else {
-			return false;
+		if (player.key != null) {
+			if (player.key.getkeyID() == doorID) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	public int getdoorID() {
