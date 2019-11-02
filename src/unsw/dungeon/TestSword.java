@@ -1,15 +1,17 @@
 package unsw.dungeon;
 
+import java.util.List;
+
 public class TestSword {
 
 	public static void main(String[] args) {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		
-		Sword sword = new Sword(dungeon, 0, 1, 1);
-		dungeon.addPickup_item(sword);
-		Sword sword2 = new Sword(dungeon, 0, 2, 2);
-		dungeon.addPickup_item(sword2);
+		Sword sword = new Sword(dungeon, 0, 1, 1, new Moveable());
+		dungeon.addEntity(sword);
+		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Moveable());
+		dungeon.addEntity(sword2);
 		player.moveDown();
 		if (player.key == null) {
 			System.out.println("i have no sword");
@@ -24,7 +26,15 @@ public class TestSword {
 		if (player.sword != null) {
 			System.out.println("got sword with ID:" + player.sword.getswordID());
 		}
-		Sword i = (Sword) dungeon.getCurrentPickup_item(player.getX(), player.getY());
+		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());
+    	Sword i = null;
+    	// check if there is a Pickup_item on players location
+    	for (Entity e : entities) {
+    		if (e instanceof Sword) {
+    			i = (Sword) e;
+    			break;
+    		}
+    	}
 		if (i == null) {
 			System.out.println("why");
 		}

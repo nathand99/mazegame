@@ -28,6 +28,7 @@ public class Entity {
         this.y = new SimpleIntegerProperty(y);
         this.movement = movement;
     }
+    // note to self: make keys, etc an entity.
 
     public IntegerProperty x() {
         return x;

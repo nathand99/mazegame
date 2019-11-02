@@ -3,6 +3,8 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -15,7 +17,8 @@ public class Player extends Entity {
     // inventory
     Sword sword = null;
     Key key = null;
-    ArrayList<Treasure> treasure = new ArrayList<Treasure>(); 
+
+    int treasure = 0; 
     //game starts on normal state being true 
     //when normal state is true enemy can kill player
     //when normal state is false enemy can't kill player
@@ -94,14 +97,22 @@ public class Player extends Entity {
     }
     
     public void pickup() {
-    	Pickup_item item = dungeon.getCurrentPickup_item(getX(), getY());
-    	// if there is a Pickup_item on the players location
+    	List<Entity> entities = dungeon.getCurrentEntity(getX(), getY());
+    	Pickup_item item = null;
+    	// check if there is a Pickup_item on players location
+    	for (Entity e : entities) {
+    		if (e instanceof Pickup_item) {
+    			item = (Pickup_item) e;
+    			break;
+    		}
+    	}
+    	// there is a Pickup_item on the players location
     	if (item != null) {
-    		Pickup_item dropped = null;
+    		Entity dropped = null;
 			dropped = item.pickup(this, dungeon);
 			// if player drops a Pickup_item, add it to the dungeon
 			if (dropped != null) {
-				dungeon.addPickup_item(dropped);
+				dungeon.addEntity(dropped);
 			}
     	}
     }
@@ -121,4 +132,8 @@ public class Player extends Entity {
 	public void setNumThreads(int numThreads) {
 		this.numThreads = numThreads;
 	}
+
+    public void addTreasure() {
+    	this.treasure++;
+    }
 }
