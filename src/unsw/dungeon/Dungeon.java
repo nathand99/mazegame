@@ -52,6 +52,9 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    public List<Entity> getEntities () {
+		return this.entities;
+    }
     
     public void addPickup_item(Pickup_item pickup_item) {
         pickup_items.add(pickup_item);
@@ -87,6 +90,7 @@ public class Dungeon {
     		if (curr_e == null) continue;
     		if ((curr_e.getX() == x) && (curr_e.getY() == y)) {
     			particular_entity.add(curr_e);
+    			//System.out.println(curr_e);
     		}
     	}
 		return particular_entity;

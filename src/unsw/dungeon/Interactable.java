@@ -9,6 +9,9 @@ public class Interactable implements Movement{
 			if (stationaryEntity instanceof Boulder) {
 				return successPush((Boulder) stationaryEntity, direction);
 			}
+			else if (stationaryEntity instanceof Portal) {
+				return teleport((Player) movingEntity,(Portal) stationaryEntity, direction);
+			}
 			return true; // not always true for exit, must remember when implementing goals
 		}
 		return false;
@@ -27,5 +30,11 @@ public class Interactable implements Movement{
 		}
 		return false;
 	}
+
+	public boolean teleport(Player player, Portal portal, String direction) {
+		//System.out.println("teleporting");
+		return portal.bestTele(player);
+	}
+
 
 }
