@@ -4,7 +4,7 @@ public class TestGoal {
 	public static void main(String[] args) {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
-		GoalState gS = new GoalState(player);
+		PlayerGoal gS = new PlayerGoal(player);
 		player.addGoals(gS);
 		MultipleGoal m1 = new MultipleGoal("and");
 		SingleGoal s1 = new SingleGoal("exit", 1);
@@ -29,7 +29,7 @@ public class TestGoal {
 		System.out.println(player.getGoals().onlyExit());
 		player.getGoals().printGoals();
 		
-		GoalState gS2 = new GoalState(player);
+		PlayerGoal gS2 = new PlayerGoal(player);
 		player.addGoals(gS2);
 		MultipleGoal m3 = new MultipleGoal("or");
 		gS2.addGoal(m3);

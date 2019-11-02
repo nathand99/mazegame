@@ -3,11 +3,11 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoalState {
+public class PlayerGoal {
 	private Player player;
 	private List<Goal> goals; // should do the tree leaf thing
 	
-	public GoalState(Player player) {
+	public PlayerGoal(Player player) {
 		this.setPlayer(player);
 		this.goals = new ArrayList<Goal>();
 	}

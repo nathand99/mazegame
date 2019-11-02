@@ -105,7 +105,5 @@ public class MultipleGoal implements Goal {
 	public void setConjunction(String conjunction) {
 		this.conjunction = conjunction;
 	}
-
-	
 	
 }

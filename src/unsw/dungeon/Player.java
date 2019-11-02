@@ -19,7 +19,7 @@ public class Player extends Entity implements Subject {
     private int lastClickTime = 0;
     
     // goals
-    private GoalState goals;
+    private PlayerGoal goals;
     
     // inventory
     private Sword sword = null;
@@ -40,7 +40,7 @@ public class Player extends Entity implements Subject {
         super(x, y, movement);
         this.dungeon = dungeon;
         enemyObservers = new ArrayList<EnemyObserver>();
-        this.setGoals(new GoalState(this));
+        this.setGoals(new PlayerGoal(this));
     }
 
     public void moveUp() {
@@ -198,15 +198,15 @@ public class Player extends Entity implements Subject {
     	this.setTreasure(this.getTreasure() + 1);
     }
 	
-	public GoalState getGoals() {
+	public PlayerGoal getGoals() {
 		return goals;
 	}
 
-	public void setGoals(GoalState goals) {
+	public void setGoals(PlayerGoal goals) {
 		this.goals = goals;
 	}
 	
-	public void addGoals(GoalState goals) {
+	public void addGoals(PlayerGoal goals) {
 		this.setGoals(goals);
 	}
 
