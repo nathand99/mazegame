@@ -8,7 +8,7 @@ public class testDoor {
 		// test with key and door with same ID - door should unlock
 		System.out.println("--------------test 1----------------");
 		System.out.println("player starting at: " + player.getX() + "," + player.getY());
-		Key key = new Key(dungeon, 0, 1, 1, new Moveable());
+		Key key = new Key(dungeon, 0, 1, 1, new MoveablePickup());
 		dungeon.addEntity(key);
 		Door door = new Door(dungeon, 0, 2, 1, new Interactable());
 		dungeon.addEntity(door);
@@ -39,7 +39,7 @@ public class testDoor {
 		
 		//test 2 with key and door having DIFFERENT id (key has id 2, door has id 1)
 		System.out.println("--------------test 2----------------");
-		Key key2 = new Key(dungeon, 0, 3, 2, new Moveable());
+		Key key2 = new Key(dungeon, 0, 3, 2, new MoveablePickup());
 		dungeon.addEntity(key2);
 		Door door2 = new Door(dungeon, 0, 4, 1, new Interactable());
 		dungeon.addEntity(door2);
