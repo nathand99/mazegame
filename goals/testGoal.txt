@@ -1,4 +1,0 @@
-exit 1 and -
-kill 5 or [
-switch 3 and ]
-treasure 2 or -
