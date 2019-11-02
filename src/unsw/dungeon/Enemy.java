@@ -1,9 +1,15 @@
 package unsw.dungeon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Enemy extends Entity implements EnemyObserver {
 	
@@ -31,7 +37,9 @@ public class Enemy extends Entity implements EnemyObserver {
 
             @Override
             public void run() {
-            	if (player.isNormalState()) {
+            	if (player == null) {
+            		t.cancel();;
+            	} else if (player.isNormalState()) {
         			approach();
         		} else {
         			escape();
@@ -90,10 +98,15 @@ public class Enemy extends Entity implements EnemyObserver {
 	}
 	
 	public boolean kill(int[] playerXY) {
+		DungeonApplication dApp = new DungeonApplication();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
 			dungeon.removeEntity(player);
-			return true;
+			dungeon.setPlayer(null);
+			this.player = null;
+			
+				
+			
 		}
 		return false;
 	}
