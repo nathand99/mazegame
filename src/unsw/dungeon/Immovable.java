@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Immovable implements Movement{
+public class Immovable implements Movement {
 
 	@Override
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {

@@ -46,7 +46,7 @@ public class Enemy extends Entity implements EnemyObserver {
         		}
 
             }
-        }, 500, 500);
+        }, 800, 800);
 	}
 
 	// while the game goes on, check for player state, and if not invincible run aggressive code.

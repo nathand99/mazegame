@@ -12,11 +12,14 @@ import javafx.beans.value.ChangeListener;
  */
 public class Player extends Entity implements Subject {
 	
-	static final int minClickDelay = 150;
+	static final int minClickDelay = 400;
 	
     private Dungeon dungeon;
     private List<EnemyObserver> enemyObservers;
     private int lastClickTime = 0;
+    
+    // goals
+    private GoalState goals;
     
     // inventory
     private Sword sword = null;
@@ -37,6 +40,7 @@ public class Player extends Entity implements Subject {
         super(x, y, movement);
         this.dungeon = dungeon;
         enemyObservers = new ArrayList<EnemyObserver>();
+        this.setGoals(new GoalState(this));
     }
 
     public void moveUp() {
@@ -193,6 +197,18 @@ public class Player extends Entity implements Subject {
 	public void addTreasure() {
     	this.setTreasure(this.getTreasure() + 1);
     }
+	
+	public GoalState getGoals() {
+		return goals;
+	}
+
+	public void setGoals(GoalState goals) {
+		this.goals = goals;
+	}
+	
+	public void addGoals(GoalState goals) {
+		this.setGoals(goals);
+	}
 
 	@Override
 	public void registerObserver(EnemyObserver o) {
