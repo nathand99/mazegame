@@ -77,6 +77,7 @@
       "y": 3,
       "type": "wall"
     },
+    
     {
       "x": 5,
       "y": 3,
@@ -211,46 +212,47 @@
       "x": 7,
       "y": 8,
       "type": "wall"
+    },
+    
+    {
+      "x": 3,
+      "y": 2,
+      "type": "boulder"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "type": "boulder"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "type": "boulder"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "type": "boulder"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "type": "boulder"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "type": "boulder"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "type": "boulder"
     },
     {
       "x": 2,
       "y": 2,
       "type": "player"
-    },
-    {
-      "x": 3,
-      "y": 2,
-      "type": "boulder"
-    },
-    {
-      "x": 4,
-      "y": 3,
-      "type": "boulder"
-    },
-    {
-      "x": 4,
-      "y": 4,
-      "type": "boulder"
-    },
-    {
-      "x": 1,
-      "y": 6,
-      "type": "boulder"
-    },
-    {
-      "x": 3,
-      "y": 6,
-      "type": "boulder"
-    },
-    {
-      "x": 4,
-      "y": 6,
-      "type": "boulder"
-    },
-    {
-      "x": 5,
-      "y": 6,
-      "type": "boulder"
     }
   ],
   "goal-condition": {
