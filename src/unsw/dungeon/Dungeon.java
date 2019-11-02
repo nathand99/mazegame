@@ -56,11 +56,9 @@ public class Dungeon {
     public void alert() {
     	// test code, should not actually be in final iteration.
     	for (Entity e : entities) {
-    		if (e instanceof Enemy && player.isNormalState()) {
-    			((Enemy) e).approach();
-    		}
-    		else if (e instanceof Enemy && !player.isNormalState()){
-    			((Enemy) e).escape();
+    		if (e instanceof Enemy ) {
+    			if(player.isNormalState()) ((Enemy) e).approach();
+    			else ((Enemy) e).escape();
     		}
     	}
     }
