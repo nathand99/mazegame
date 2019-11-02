@@ -8,9 +8,9 @@ public class TestSword {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		
-		Sword sword = new Sword(dungeon, 0, 1, 1, new Moveable());
+		Sword sword = new Sword(dungeon, 0, 1, 1, new MoveablePickup());
 		dungeon.addEntity(sword);
-		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Moveable());
+		Sword sword2 = new Sword(dungeon, 0, 2, 2, new MoveablePickup());
 		dungeon.addEntity(sword2);
 		player.moveDown();
 		if (player.getKey() == null) {

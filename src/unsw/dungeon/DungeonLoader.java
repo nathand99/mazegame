@@ -80,12 +80,12 @@ public abstract class DungeonLoader {
         	break;
         case "portal":
         	int portalID = json.getInt("id");
-            Portal portal = new Portal(dungeon, x, y, portalID, new Interactable() );
+            Portal portal = new Portal(dungeon, x, y, portalID, new Interactable());
             onLoad(portal);
             entity = portal;
             break;
         case "invincibility":
-        	Invincibility invincibility = new Invincibility(dungeon, x, y, new Interactable() );
+        	Invincibility invincibility = new Invincibility(dungeon, x, y, new Interactable());
             onLoad(invincibility);
             entity = invincibility;
             break;
