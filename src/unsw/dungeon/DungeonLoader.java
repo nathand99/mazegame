@@ -85,7 +85,7 @@ public abstract class DungeonLoader {
             entity = portal;
             break;
         case "invincibility":
-        	Invincibility invincibility = new Invincibility(dungeon, x, y, new Interactable());
+        	Invincibility invincibility = new Invincibility(dungeon, x, y, new Collectable());
             onLoad(invincibility);
             entity = invincibility;
             break;

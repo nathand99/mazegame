@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class testDoor {
+public class TestDoor {
 	public static void main(String[] args) {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
@@ -18,7 +18,6 @@ public class testDoor {
 		if (player.getKey() == null) {
 			System.out.println("i have no key");
 		}
-		player.pickup();
 		if (player.getKey()  != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
@@ -51,7 +50,6 @@ public class testDoor {
 		if (player.getKey()  == null) {
 			System.out.println("i have no key");
 		}
-		player.pickup();
 		if (player.getKey()  != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		} else {

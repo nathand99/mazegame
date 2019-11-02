@@ -48,15 +48,6 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
-    
-    public void alert() {
-    	// test code, should not actually be in final iteration.
-    	for (Entity e : entities) {
-    		if (e instanceof Enemy) {
-    			((Enemy) e).approach();
-    		}
-    	}
-    }
     // from Alek's Code
 
     public void removeEntity(Entity entity) {

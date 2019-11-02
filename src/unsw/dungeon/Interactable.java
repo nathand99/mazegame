@@ -12,9 +12,6 @@ public class Interactable implements Movement{
 			else if (stationaryEntity instanceof Portal) {
 				return teleport((Player) movingEntity,(Portal) stationaryEntity);
 			}
-			else if (stationaryEntity instanceof Invincibility) {
-				return goInvincible((Player) movingEntity,(Invincibility) stationaryEntity);
-			}
 			else if (stationaryEntity instanceof Door) {
 				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
 			}
@@ -40,10 +37,6 @@ public class Interactable implements Movement{
 
 	public boolean teleport(Player player, Portal portal) {
 		return portal.bestTele(player);
-	}
-	
-	private boolean goInvincible(Player player, Invincibility invPotion) {
-		return invPotion.invincible(player);
 	}
 	
 	public boolean openDoor(Player player, Door door, String direction) {

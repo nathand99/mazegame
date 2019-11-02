@@ -17,13 +17,11 @@ public class TestKey {
 		if (player.getKey() == null) {
 			System.out.println("i have no key");
 		}
-		player.pickup();
 		if (player.getKey() != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
 		player.moveDown();
 		System.out.println("move down");
-		player.pickup();
 		if (player.getKey() != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}
@@ -46,7 +44,6 @@ public class TestKey {
 		player.moveUp();
 		player.moveDown();
 		System.out.println("move up and back down");
-		player.pickup();
 		if (player.getKey() != null) {
 			System.out.println("got key with ID:" + player.getKey().getkeyID());
 		}

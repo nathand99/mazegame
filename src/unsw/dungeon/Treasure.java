@@ -3,10 +3,9 @@ package unsw.dungeon;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Treasure extends Entity implements Pickup_item {
+public class Treasure extends Entity implements PickupItem {
 	
 	private IntegerProperty x, y;
-	int treasureID;
 	Dungeon dungeon;
 
     /**
@@ -14,12 +13,10 @@ public class Treasure extends Entity implements Pickup_item {
      * @param dungeon
      * @param x
      * @param y
-     * @param treasureID - ID of treasure
      */
-    public Treasure(Dungeon dungeon, int x, int y, int treasureID, Movement movement) {
+    public Treasure(Dungeon dungeon, int x, int y, Movement movement) {
     	super (x, y, movement);
     	this.dungeon = dungeon;
-        this.treasureID = treasureID;
     }
     
 	@Override
@@ -31,17 +28,5 @@ public class Treasure extends Entity implements Pickup_item {
 		// you can only pick up treasure - cannot drop it, so return null
 		return null;
 	}
-    
-    public int gettreasureID() {
-        return treasureID;
-    }
-    
-    public int getY() {
-        return y().get();
-    }
-
-    public int getX() {
-        return x().get();
-    }
 
 }

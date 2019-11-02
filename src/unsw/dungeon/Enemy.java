@@ -3,9 +3,10 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy extends Entity{
+public class Enemy extends Entity implements EnemyObserver {
 	
 	private Dungeon dungeon;
+	private Player player;
 	
 	/**
      * Create an enemy positioned in square (x,y)
@@ -16,7 +17,8 @@ public class Enemy extends Entity{
 	public Enemy(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
-		
+		this.player = dungeon.getPlayer();
+		player.registerObserver(this); // when enemy dies, must remove the observer from.
 	}
 	
 	// while the game goes on, check for player state, and if not invincible run aggressive code.
@@ -24,7 +26,6 @@ public class Enemy extends Entity{
 	
 	public void approach() {
 		// should loop every once in a while.
-		Player player = dungeon.getPlayer();
 		int[] playerXY = player.getXY();
 		int[] currentXY = this.getXY();
 		if (kill(playerXY)) {
@@ -120,6 +121,23 @@ public class Enemy extends Entity{
         default:
             break;
         }
+	}
+
+	@Override
+	public void update(int[] playerXY) {
+		// TODO Auto-generated method stub
+		if (player.isNormalState()) {
+			if (kill(playerXY)) {
+				return;
+			}
+			approach();
+		} else {
+			// if isKilled by player, run that.
+			escape();
+		}
+		
+		
+		
 	}
 
 

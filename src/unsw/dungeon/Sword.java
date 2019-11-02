@@ -3,7 +3,7 @@ package unsw.dungeon;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Sword extends Entity implements Pickup_item {
+public class Sword extends Entity implements PickupItem {
 	
 	private IntegerProperty x, y;
 	int swordID;
@@ -43,11 +43,4 @@ public class Sword extends Entity implements Pickup_item {
         return swordID;
     }
 
-    public int getY() {
-        return y().get();
-    }
-
-    public int getX() {
-        return x().get();
-    }
 }

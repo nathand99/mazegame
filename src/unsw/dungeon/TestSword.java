@@ -16,13 +16,11 @@ public class TestSword {
 		if (player.getKey() == null) {
 			System.out.println("i have no sword");
 		}
-		player.pickup();
 		if (player.getSword() != null) {
 			System.out.println("got sword with ID:" + player.getSword().getswordID());
 		}
 		player.moveDown();
 		System.out.println("move down");
-		player.pickup();
 		if (player.getSword() != null) {
 			System.out.println("got sword with ID:" + player.getSword().getswordID());
 		}

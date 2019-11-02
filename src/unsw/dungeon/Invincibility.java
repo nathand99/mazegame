@@ -3,7 +3,7 @@ package unsw.dungeon;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Invincibility extends Entity {
+public class Invincibility extends Entity implements PickupItem{
 	Timer timer = new Timer();
 	private int timeLimit = 10000;
 	Dungeon dungeon;
@@ -18,7 +18,6 @@ public class Invincibility extends Entity {
 		//.... need to remove potion picture ....
 		//.... need to change sprite of player ....
 		player.setNormalState(false);
-		dungeon.removeEntity(this);
 		player.setNumThreads(player.getNumThreads()+1);
 		timer.schedule(new TimerTask() {
 			@Override
@@ -39,8 +38,14 @@ public class Invincibility extends Entity {
 		}, timeLimit);
 		return true;
 	}
-	
-	
 
+	@Override
+	public Entity pickup(Player p, Dungeon d) {
+		this.invincible(p);
+		d.removeEntity(this);
+		return null;
+	}
+	
+	
 	
 }

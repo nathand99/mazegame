@@ -10,9 +10,10 @@ import javafx.beans.value.ChangeListener;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Entity {
+public class Player extends Entity implements Subject {
 
     private Dungeon dungeon;
+    private List<EnemyObserver> enemyObservers;
     
     // inventory
     private Sword sword = null;
@@ -32,12 +33,14 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y, Movement movement) {
         super(x, y, movement);
         this.dungeon = dungeon;
+        enemyObservers = new ArrayList<EnemyObserver>();
     }
 
     public void moveUp() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() - 1);
         if (getY() > 0 && moveTo.size() == 0) {
             y().set(getY() - 1);  
+            notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		//System.out.println(entity.checkMovement(this));
@@ -45,15 +48,17 @@ public class Player extends Entity {
         			return;
         		}
         	}
-        	y().set(getY() - 1);  
+        	y().set(getY() - 1); 
+        	pickup();
+        	notifyObservers();
         }
-        dungeon.alert(); // remove in final iteration
     }
 
     public void moveDown() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
             y().set(getY() + 1);
+            notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "DOWN") == false) {
@@ -61,47 +66,52 @@ public class Player extends Entity {
         		}
         	}
         	y().set(getY() + 1);  
+        	pickup();
+        	notifyObservers();
         } 
-        dungeon.alert(); // remove in final iteration
     }
 
     public void moveLeft() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() - 1, this.getY());
         if (getX() > 0 && moveTo.size() == 0) {
             x().set(getX() - 1);
+            notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "LEFT") == false) {
         			return;
         		}
         	}
-        	x().set(getX() - 1);  
+        	x().set(getX() - 1);
+        	pickup();
+        	notifyObservers();
         } 
-        dungeon.alert(); // remove in final iteration
     }
 
     public void moveRight() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() + 1, this.getY());
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {
             x().set(getX() + 1);
+            notifyObservers();
         } else if (moveTo.size() != 0) {
         	for (Entity entity : moveTo) {
         		if (entity.canMove(this, entity, "RIGHT") == false) {
         			return;
         		}
         	}
-        	x().set(getX() + 1);  
+        	x().set(getX() + 1); 
+        	pickup();
+        	notifyObservers();
         } 
-        dungeon.alert(); // remove in final iteration
     }
     
     public void pickup() {
     	List<Entity> entities = dungeon.getCurrentEntity(getX(), getY());
-    	Pickup_item item = null;
+    	PickupItem item = null;
     	// check if there is a Pickup_item on players location
     	for (Entity e : entities) {
-    		if (e instanceof Pickup_item) {
-    			item = (Pickup_item) e;
+    		if (e instanceof PickupItem) {
+    			item = (PickupItem) e;
     			break;
     		}
     	}
@@ -160,5 +170,28 @@ public class Player extends Entity {
 	public void addTreasure() {
     	this.setTreasure(this.getTreasure() + 1);
     }
+
+	@Override
+	public void registerObserver(EnemyObserver o) {
+		// TODO Auto-generated method stub
+		enemyObservers.add(o);
+	}
+
+	@Override
+	public void removeObserver(EnemyObserver o) {
+		// TODO Auto-generated method stub
+		int i = enemyObservers.indexOf(o);
+		if (i >= 0) {
+			enemyObservers.remove(i);
+		}
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		for (EnemyObserver obs : enemyObservers) {
+			obs.update(this.getXY());
+		}
+	}
 	 
 }

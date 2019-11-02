@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Key extends Entity implements Pickup_item {
+public class Key extends Entity implements PickupItem {
 	
 	private int keyID;	
 	private Dungeon dungeon;
