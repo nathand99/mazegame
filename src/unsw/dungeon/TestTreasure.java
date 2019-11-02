@@ -5,9 +5,9 @@ public class TestTreasure {
 	public static void main(String[] args) {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
-		Treasure treasure = new Treasure(dungeon, 0, 1, 1, new MoveablePickup());
+		Treasure treasure = new Treasure(dungeon, 0, 1, 1, new Collectable());
 		dungeon.addEntity(treasure);
-		Treasure treasure2 = new Treasure(dungeon, 0, 2, 2, new MoveablePickup());
+		Treasure treasure2 = new Treasure(dungeon, 0, 2, 2, new Collectable());
 		dungeon.addEntity(treasure2);
 		player.moveDown();
 		if (player.getTreasure() == 0) {

@@ -38,7 +38,7 @@ public class Key extends Entity implements Pickup_item {
 			d.removeEntity(this);
 			p.setKey(this);
 			// drop key where the player is with the ID of the key the player had
-			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new MoveablePickup());			
+			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new Collectable());			
 		}
 	}	
     

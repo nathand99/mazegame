@@ -9,9 +9,9 @@ public class TestKey {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		
-		Key key = new Key(dungeon, 0, 1, 1, new MoveablePickup());
+		Key key = new Key(dungeon, 0, 1, 1, new Collectable());
 		dungeon.addEntity(key);
-		Key key2 = new Key(dungeon, 0, 2, 2, new MoveablePickup());
+		Key key2 = new Key(dungeon, 0, 2, 2, new Collectable());
 		dungeon.addEntity(key2);
 		player.moveDown();
 		if (player.getKey() == null) {

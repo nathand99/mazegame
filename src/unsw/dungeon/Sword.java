@@ -35,7 +35,7 @@ public class Sword extends Entity implements Pickup_item {
 			d.removeEntity(this);
 			p.setSword(this);
 			// drop key where the player is with the ID of the key the player had
-			return new Sword(dungeon, p.getX(), p.getY(), temp.swordID, new MoveablePickup());			
+			return new Sword(dungeon, p.getX(), p.getY(), temp.swordID, new Collectable());			
 		}
 	}
     

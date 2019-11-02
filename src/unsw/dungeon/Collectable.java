@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class MoveablePickup implements Movement{
+public class Collectable implements Movement{
 
 	@Override
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {

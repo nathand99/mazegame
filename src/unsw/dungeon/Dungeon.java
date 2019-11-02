@@ -53,7 +53,7 @@ public class Dungeon {
     	// test code, should not actually be in final iteration.
     	for (Entity e : entities) {
     		if (e instanceof Enemy) {
-    			((Enemy) e).escape();
+    			((Enemy) e).approach();
     		}
     	}
     }
