@@ -52,6 +52,13 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    
+    // i had to make this again because this branch doesnt have it - delete this when merging
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
+    
+    
     public List<Entity> getEntities () {
 		return this.entities;
     }
