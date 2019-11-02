@@ -6,11 +6,16 @@ public class TestTreasure {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		dungeon.setPlayer(player);
+		PlayerGoal gS = new PlayerGoal(player);
+		SingleGoal s1 = new SingleGoal("treasure", 2);
+		gS.addGoal(s1);
+		player.addGoals(gS);
 		Treasure treasure = new Treasure(dungeon, 0, 1, new Collectable());
 		dungeon.addEntity(treasure);
 		Treasure treasure2 = new Treasure(dungeon, 0, 2, new Collectable());
 		dungeon.addEntity(treasure2);
-		// System.out.println(player.getGoals().toString());
+	
+		System.out.println(player);
 		player.moveDown();
 		if (player.getTreasure() == 0) {
 			System.out.println("i have no treasure");

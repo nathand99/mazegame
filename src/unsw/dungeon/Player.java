@@ -146,8 +146,8 @@ public class Player extends Entity implements Subject {
     	// check if there is a Pickup_item on players location
     	for (Entity e : entities) {
     		if (e instanceof PickupItem) {
-    			System.out.println("There is an item here!");
     			item = (PickupItem) e;
+    			
     			break;
     		}
     	}
@@ -159,6 +159,13 @@ public class Player extends Entity implements Subject {
 			if (dropped != null) {
 				dungeon.addEntity(dropped);
 			}
+    	}
+    }
+    
+    public void checkComplete() {
+    	if (goals.checkCompletion()) {
+    		// TODO: stub, should actually do stuff when front end is done.
+    		System.out.println("You win!");
     	}
     }
     
@@ -261,10 +268,15 @@ public class Player extends Entity implements Subject {
 
 	@Override
 	public void notifyGoalObservers() {
-		// TODO Auto-generated method stub
-		for (GoalObserver obs : goalObservers) {
+		for (int i = 0; i < goalObservers.size(); i++) {
+			int prevSize = goalObservers.size();
+			GoalObserver obs = goalObservers.get(i);
 			obs.update(this.getGoals(), this.getXY());
+			if (prevSize > goalObservers.size()) {
+				i--;
+			}
 		}
+		checkComplete();
 	}
 	 
 }

@@ -2,17 +2,23 @@ package unsw.dungeon;
 
 public class Exit extends Entity implements GoalObserver {
 	
+	private Dungeon dungeon;
+	private Player player;
 	
-	
-	public Exit(int x, int y, Movement movement) {
+	public Exit(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
-		// TODO Auto-generated constructor stub
+		this.dungeon = dungeon;
+		this.player = dungeon.getPlayer();
+		player.registerObserver(this);
 	}
 
 	@Override
 	public void update(PlayerGoal goals, int[] playerXY) {
-		// TODO Auto-generated method stub
-		
+		if (this.getX() == playerXY[0] && this.getY() == playerXY[1]) {
+			if (player.canExit()) {
+				goals.addComplete("exit");
+			}
+		}
 	}
 	
 }

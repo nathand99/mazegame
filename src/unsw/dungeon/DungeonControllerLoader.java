@@ -29,6 +29,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image switchImage;
     private Image portalImage;
     private Image invincibilityImage;
+    private Image exitImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -41,6 +42,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         switchImage = new Image("/pressure_plate.png");
         portalImage = new Image("/portal.png");
         invincibilityImage = new Image("/brilliant_blue_new.png");
+        exitImage = new Image("/exit.png");
     }
 
     @Override
@@ -55,6 +57,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         addEntity(wall, view);
     }
     
+    @Override
     public void onLoad(Enemy enemy) {
     	ImageView view = new ImageView(enemy1Image);
         addEntity(enemy, view);
@@ -82,11 +85,19 @@ public class DungeonControllerLoader extends DungeonLoader {
         ImageView view = new ImageView(invincibilityImage);
         addEntity(invincibility, view);
     }
+    
+    @Override
+    public void onLoad(Exit exit) {
+        ImageView view = new ImageView(exitImage);
+        addEntity(exit, view);
+    }
 
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
     }
+    
+    
 
     /**
      * Set a node in a GridPane to have its position track the position of an

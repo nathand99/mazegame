@@ -19,7 +19,7 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
     	super (x, y, movement);
     	this.dungeon = dungeon;
     	this.player = dungeon.getPlayer();
-    	//player.registerObserver(this);
+    	player.registerObserver(this);
     }
     
 	@Override
@@ -37,7 +37,7 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
 		// TODO Auto-generated method stub
 		if (this.getY() == playerXY[1] && this.getX() == playerXY[0]) {
 			goals.addComplete("treasure");
-			System.out.println("This is working");
+			player.removeObserver(this);
 		}
 	}
 

@@ -89,6 +89,11 @@ public abstract class DungeonLoader {
             onLoad(invincibility);
             entity = invincibility;
             break;
+        case "exit":
+        	Exit exit = new Exit(dungeon, x, y, new Interactable());
+        	onLoad(exit);
+        	entity = exit;
+        	break;
         }
         dungeon.addEntity(entity); // where the entity is added.
     }
@@ -105,5 +110,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(FloorSwitch fSwitch);
     
     public abstract void onLoad(Portal portal);
+    
     public abstract void onLoad(Invincibility invincibility);
+    
+    public abstract void onLoad(Exit exit);
 }
