@@ -44,7 +44,7 @@ public class Enemy extends Entity implements EnemyObserver {
 		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
 	}
 	
-	private void startMove() {
+	public void startMove() {
 		// TODO Auto-generated method stub
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
@@ -61,6 +61,17 @@ public class Enemy extends Entity implements EnemyObserver {
 
             }
         }, 800, 800);
+	}
+	
+	public void singleMove() {
+		// for testing, uses same logic as above.
+		if (player == null) {
+    		// do nothing.
+    	} else if (player.isNormalState()) {
+			approach();
+		} else {
+			escape();
+		}
 	}
 
 	// while the game goes on, check for player state, and if not invincible run aggressive code.
@@ -85,26 +96,32 @@ public class Enemy extends Entity implements EnemyObserver {
 		// can probs be its own func, currently just testing functionality.
 		int[] enemyUp = this.getXY();
 		enemyUp[1] = enemyUp[1] - 1;
-		if(moveValid(distance, enemyUp, playerXY, "UP")) {
-			return;
+		if (enemyUp[1] >= 0) {
+			if(moveValid(distance, enemyUp, playerXY, "UP")) {
+				return;
+			}
 		}
 		
 		int[] enemyDown = this.getXY();
 		enemyDown[1] = enemyDown[1] + 1;
-		if(moveValid(distance, enemyDown, playerXY, "DOWN")) {
-			return;
+		if (enemyDown[1] <= dungeon.getHeight() - 1) {
+			if(moveValid(distance, enemyDown, playerXY, "DOWN")) {
+				return;
+			}
 		}
-		
 		int[] enemyLeft = this.getXY();
 		enemyLeft[0] = enemyLeft[0] - 1;
-		if(moveValid(distance, enemyLeft, playerXY, "LEFT")) {
-			return;
+		if (enemyLeft[0] >= 0) {
+			if(moveValid(distance, enemyLeft, playerXY, "LEFT")) {
+				return;
+			}
 		}
-		
 		int[] enemyRight = this.getXY();
 		enemyRight[0] = enemyRight[0] + 1;
-		if(moveValid(distance, enemyRight, playerXY, "RIGHT")) {
-			return;
+		if (enemyRight[0] <= dungeon.getHeight() - 1) {
+			if(moveValid(distance, enemyRight, playerXY, "RIGHT")) {
+				return;
+			}
 		}
 	}
 	
@@ -178,6 +195,7 @@ public class Enemy extends Entity implements EnemyObserver {
 			}
 			//approach();
 		} else {
+			// System.out.println("this works");
 			die(playerXY[0], playerXY[1], goals);
 		}
 		
@@ -190,6 +208,7 @@ public class Enemy extends Entity implements EnemyObserver {
 			goals.addComplete("enemy");
 			player.removeObserver((EnemyObserver) this);
 			dungeon.removeEntity(this);
+			this.player = null;
 		}
 
 	}

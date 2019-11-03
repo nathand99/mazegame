@@ -21,8 +21,9 @@ public class Interactable implements Movement{
 				return true;
 			} else if (stationaryEntity instanceof Portal) {
 				return true;
+			} else {
+				return false;
 			}
-			return false;
 		}
 		return false;
 	}
