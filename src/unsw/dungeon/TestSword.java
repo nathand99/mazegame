@@ -24,7 +24,7 @@ public class TestSword {
 		//System.out.println(dungeon.getEntities().toString());
 		try
 		{
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		}
 		catch(InterruptedException ex)
 		{

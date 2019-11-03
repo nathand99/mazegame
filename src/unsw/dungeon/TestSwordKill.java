@@ -12,13 +12,13 @@ public class TestSwordKill {
 		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
 		dungeon.addEntity(sword);
 		
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Immovable() );
+		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Immovable());
+		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Immovable());
+		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Immovable());
+		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		
 		//player starts at 1,1
@@ -53,7 +53,7 @@ public class TestSwordKill {
 		
 		//attempt to kill the enemy with sword should fail as no sword is picked up 
 		//kill enemy2 swing left 
-		player.attackA();
+		/*player.attackA();
 	
 		if (dungeon.isEnemy(1, 0)) {
 			System.out.println("shouldnt kill enemy1");
@@ -105,10 +105,10 @@ public class TestSwordKill {
 		else System.out.println("FAIL");
 		if (dungeon.isEnemy(1, 3)) {
 			System.out.println("shouldnt kill enemy4");
-		}
-		else System.out.println("FAIL");
+		}*/
+		//else System.out.println("FAIL");
 		//pick up sword 
-		player.pickup();
+		//player.pickup();
 		if (player.getSword() != null) {
 			System.out.println("i have sword now");
 		}
@@ -177,6 +177,14 @@ public class TestSwordKill {
 		}
 		else System.out.println("FAIL");
 		//move up to 1,1
+		try
+		{
+		    Thread.sleep(400);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveUp();
 		//attempt to kill enemy1
 		player.attackW();
@@ -214,6 +222,14 @@ public class TestSwordKill {
 		}
 		else System.out.println("FAIL");
 		//move right
+		try
+		{
+		    Thread.sleep(400);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.moveRight();
 		player.attackD();
 		//get current entity in dun should help to see if entity exists
