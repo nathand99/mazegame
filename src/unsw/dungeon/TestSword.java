@@ -13,7 +13,7 @@ public class TestSword {
 		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Collectable());
 		dungeon.addEntity(sword2);
 		player.moveDown();
-		if (player.getKey() == null) {
+		if (player.getSword() == null) {
 			System.out.println("i have no sword");
 		}
 		player.pickup();

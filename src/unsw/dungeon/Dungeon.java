@@ -48,12 +48,19 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
-    
+
     public void alert() {
     	// test code, should not actually be in final iteration.
     	for (Entity e : entities) {
     		if (e instanceof Enemy) {
-    			((Enemy) e).approach();
+    			if(player.isNormalState()) {
+    				((Enemy) e).approach();
+    			}
+    			else if (!player.isNormalState()){
+    				//((Enemy) e).escape();
+    				((Enemy) e).killEnemy(player.getXY());
+    			}
+    			
     		}
     	}
     }
@@ -77,6 +84,16 @@ public class Dungeon {
     		}
     	}
 		return particular_entity;
+    }
+    
+    public boolean isEnemy (int x, int y) {
+    	for (Entity curr_e: this.entities) {
+    		if (curr_e == null) continue;
+    		if ((curr_e.getX() == x) && (curr_e.getY() == y) && curr_e instanceof Enemy) {
+    			return true;
+    		}
+    	}
+		return false;
     }
 
 }

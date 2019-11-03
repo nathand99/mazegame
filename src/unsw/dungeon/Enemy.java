@@ -27,15 +27,12 @@ public class Enemy extends Entity{
 		Player player = dungeon.getPlayer();
 		int[] playerXY = player.getXY();
 		int[] currentXY = this.getXY();
-		if (kill(playerXY)) {
-			return;
-		}
 		
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();
 		String firstMove = bestPath.get(0);
 		enemyMove(firstMove);
-		kill(playerXY);
+		killPlayer(playerXY);
 	}
 	
 	public void escape() {
@@ -68,9 +65,17 @@ public class Enemy extends Entity{
 		}
 	}
 	
-	public boolean kill(int[] playerXY) {
+	public boolean killPlayer(int[] playerXY) {
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
+			return true;
+		}
+		return false;
+	}
+	public boolean killEnemy(int[] playerXY) {
+		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
+			System.out.println("You killed Enemy");
+			//dungeon.removeEntity(this);
 			return true;
 		}
 		return false;

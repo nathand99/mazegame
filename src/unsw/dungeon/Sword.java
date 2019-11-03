@@ -6,8 +6,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Sword extends Entity implements Pickup_item {
 	
 	private IntegerProperty x, y;
-	int swordID;
-	Dungeon dungeon;
+	private int swordID;
+	private Dungeon dungeon;
+	private int hitsLeft = 5;
 	
     /**
      * Create a sword positioned in square (x,y)
@@ -40,7 +41,7 @@ public class Sword extends Entity implements Pickup_item {
 	}
     
     public int getswordID() {
-        return swordID;
+        return this.swordID;
     }
 
     public int getY() {
@@ -50,4 +51,12 @@ public class Sword extends Entity implements Pickup_item {
     public int getX() {
         return x().get();
     }
+
+	public int getHitsLeft() {
+		return hitsLeft;
+	}
+
+	public void setHitsLeft(int hitsLeft) {
+		this.hitsLeft = hitsLeft;
+	}
 }
