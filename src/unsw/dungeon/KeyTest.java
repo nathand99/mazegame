@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * 
- * testing ES6: Key Interaction, PS5: Using Keys (testDoorUnlock() only)
+ * testing ES6: Key Interaction, PS5: Using Keys (testDoorUnlock() only), ES5: Unlocked Door Interaction (testDoorUnlock() only)
  *
  */
 class KeyTest {
