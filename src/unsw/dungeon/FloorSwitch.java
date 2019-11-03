@@ -8,6 +8,13 @@ public class FloorSwitch extends Entity implements GoalObserver {
 	private Player player;
 	private boolean on;  // doesn't do anything yet.
 	
+	/**
+	 * 
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param movement
+	 */
 	public FloorSwitch(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
@@ -28,7 +35,10 @@ public class FloorSwitch extends Entity implements GoalObserver {
 			goals.addComplete("switch");
 		}
 	}
-
+	
+	/**
+	 * @return true if floor switch is triggered, false if not
+	 */
 	public boolean checkOnOff() {  
 		List<Entity> entities = dungeon.getCurrentEntity(this.getX(), this.getY());
 		for (Entity entity : entities) {

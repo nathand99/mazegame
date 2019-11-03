@@ -8,11 +8,21 @@ public class Invincibility extends Entity implements PickupItem{
 	private int timeLimit = 10000;
 	Dungeon dungeon;
 	
+	/**
+	 * 
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param movement
+	 */
 	public Invincibility(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 	}
-
+	
+	/**
+	 * @param player
+	 */
 	public boolean invincible(Player player) {
 		//removes potion entity 
 		//.... need to remove potion picture ....

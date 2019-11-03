@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 class DoorTest {
 	
 	/**
-	 * locked door blocks player without corresponding key
+	 * locked door blocks player without a key
 	 */
 	@Test
-	void testLockedDoorBlocksPlayer() {
+	void testLockedDoorBlocksPlayerWithNoKey() {
 		Dungeon dungeon = new Dungeon(10,10);							// initialise dungeon
 		Player player = new Player(dungeon, 0, 0, new Moveable());		// initialise player in the dungeon (at 0,0)		
 		Door door = new Door(dungeon, 0, 1, 1, new Interactable());		// create a new door (1 square below player)
@@ -30,6 +30,29 @@ class DoorTest {
 		}
 		
 		assertEquals(player.getX(), 0);	// player does not unlock the door (since they have no key)
+		assertEquals(player.getY(), 0);	// player does not move since the locked door blocks them (player is still at 0,0)
+	}
+	
+	/**
+	 * locked door blocks player without the corresponding key
+	 */
+	@Test
+	void testLockedDoorBlocksPlayerWithWrongKey() {
+		Dungeon dungeon = new Dungeon(10,10);							// initialise dungeon
+		Player player = new Player(dungeon, 0, 0, new Moveable());		// initialise player in the dungeon (at 0,0)		
+		Door door = new Door(dungeon, 0, 1, 1, new Interactable());		// create a new door (1 square below player)
+		dungeon.addEntity(door);										// add door to dungeon
+		
+		player.setKey(new Key(dungeon,0,0,8, new Collectable())); // player has key with wrong ID for door in front of them
+
+		player.moveDown();						// player attemps moves down 1 space
+		try {
+		    Thread.sleep(400);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		
+		assertEquals(player.getX(), 0);	// player does not unlock the door (since they have wrong key)
 		assertEquals(player.getY(), 0);	// player does not move since the locked door blocks them (player is still at 0,0)
 	}
 	

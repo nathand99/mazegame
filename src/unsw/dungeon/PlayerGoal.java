@@ -7,6 +7,7 @@ public class PlayerGoal {
 	private Player player;
 	private List<Goal> goals; // should do the tree leaf thing
 	
+
 	public PlayerGoal(Player player) {
 		this.setPlayer(player);
 		this.goals = new ArrayList<Goal>();

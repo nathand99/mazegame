@@ -5,6 +5,14 @@ public class Portal extends Entity{
 	private int id; 
 	private Dungeon dungeon;
 	
+	/**
+	 * Portal to teleport player
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param id
+	 * @param movement
+	 */
 	public Portal(Dungeon dungeon,int x, int y, int id, Movement movement) {
 		super(x, y, movement);
 		// TODO Auto-generated constructor stub

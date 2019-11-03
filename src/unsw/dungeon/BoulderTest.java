@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
  * Tests boulders and floor switches
  * 
  * testing: PS3: Pushing Boulders and ES7: Boulder Interaction
+ * 
+ * testing: ES8: Floor Switch Interaction
  *
  */
 class BoulderTest {
@@ -109,7 +111,7 @@ class BoulderTest {
 		
 		assertEquals(fs.checkOnOff(),true);		// floor switch has been triggered by the boulder
 		
-	player.moveDown();							// player moves down 1 space again
+		player.moveDown();						// player moves down 1 space again
 		try {	
 		    Thread.sleep(400);
 		} catch(InterruptedException ex) {
