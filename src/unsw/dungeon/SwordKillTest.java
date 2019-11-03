@@ -204,11 +204,11 @@ public class SwordKillTest {
 		System.out.print("Test should kill enemy5: ");
 		if (!dungeon.isEnemy(2, 1)) System.out.println("PASS");
 		else System.out.println("FAIL");
-		
+		assertEquals(dungeon.isEnemy(2, 1), false);
 		System.out.print("Test should NOT kill enemy6: ");
 		if (dungeon.isEnemy(3, 1)) System.out.println("PASS");
 		else System.out.println("FAIL");
-		
+		assertEquals(dungeon.isEnemy(3, 1), true);
 		//move right
 		try
 		{
@@ -318,5 +318,6 @@ public class SwordKillTest {
 		System.out.print("After Swing 5: ");
 		if (player.getSword() == null) System.out.println("I have NO sword");
 		if (player.getSword() != null) System.out.println("I have sword ");
+		assertEquals(player.getSword(), null);
 	}
 }
