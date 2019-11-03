@@ -8,7 +8,12 @@ import org.junit.jupiter.api.Test;
 
 /**
  * 
+<<<<<<< HEAD
+ * testing ES6: Key Interaction, PS5: Using Keys (testDoorUnlock() only)
+ * tesing ES5: Unlocked door interaction as well, and ES4: Locked Door interaction.
+=======
  * testing ES6: Key Interaction, PS5: Using Keys (testDoorUnlock() only), ES5: Unlocked Door Interaction (testDoorUnlock() only)
+>>>>>>> 2c185b660eb6f1ed56edc40ce3698e881aeba143
  *
  */
 class KeyTest {
@@ -112,18 +117,19 @@ class KeyTest {
 		assertEquals(player.getKey(), key);		// player picks up key from ground and puts it in inventory
 		
 		player.moveDown();						// player moves down 1 more space onto door
-		try
-		{
-		    Thread.sleep(400);
-		}
-		catch(InterruptedException ex)
-		{
-		    Thread.currentThread().interrupt();
-		}
+		try {Thread.sleep(400);}
+		catch(InterruptedException ex){Thread.currentThread().interrupt();}
+
 		
 		assertEquals(player.getX(), door.getX());	// player unlocks the door (since keyID and doorID match
 		assertEquals(player.getY(), door.getY());	// player is now standing in the unlocked door
 		
+		player.moveUp();
+		try {Thread.sleep(400);}
+		catch(InterruptedException ex){Thread.currentThread().interrupt();}
+		player.moveDown();
+		assertEquals(player.getX(), door.getX());	// asserts player can move back into the unlocked door.
+		assertEquals(player.getY(), door.getY());	
 	}
 
 }
