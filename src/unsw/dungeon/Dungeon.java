@@ -48,7 +48,6 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
-    // from Alek's Code
 
     public void removeEntity(Entity entity) {
         entities.remove(entity);
@@ -85,7 +84,13 @@ public class Dungeon {
     		}
     	}
     }
-
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return list of entities on X,Y co-ordinate
+     */
     public List<Entity> getCurrentEntity (int x, int y) {
     	List<Entity> particular_entity = new ArrayList<Entity>();
     	
@@ -98,6 +103,12 @@ public class Dungeon {
 		return particular_entity;
     }
     
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return true if enemy is on X,Y co-ordinate
+     */
     public boolean isEnemy (int x, int y) {
     	for (Entity curr_e: this.entities) {
     		if (curr_e == null) continue;

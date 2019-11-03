@@ -6,11 +6,22 @@ public class Boulder extends Entity{
 	
 	private Dungeon dungeon;
 	
+	/**
+	 * Constructor for Boulder
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param movement
+	 */
 	public Boulder(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 	}
 	
+	/**
+	 * Push boulder up
+	 * @return true if can push boulder up, false if cannot
+	 */
 	public boolean pushUp() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() - 1);
         if (getY() > 0 && moveTo.size() == 0) {
@@ -26,7 +37,11 @@ public class Boulder extends Entity{
         }
         return true;
     }
-
+	
+	/**
+	 *Push boulder up
+	 * @return true if can push boulder up, false if cannot
+	 */
     public boolean pushDown() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
@@ -42,6 +57,10 @@ public class Boulder extends Entity{
         return true;
     }
 
+	/**
+	 * Push boulder left
+	 * @return true if can push boulder left, false if cannot
+	 */
     public boolean pushLeft() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() - 1, this.getY());
         if (getX() > 0 && moveTo.size() == 0) {
@@ -56,7 +75,11 @@ public class Boulder extends Entity{
         } 
         return true;
     }
-
+    
+    /**
+     * Push boulder right
+	 * @return true if can push boulder right, false if cannot
+     */
     public boolean pushRight() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() + 1, this.getY());
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {

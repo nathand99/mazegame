@@ -26,7 +26,13 @@ public class Interactable implements Movement{
 		}
 		return false;
 	}
-
+	
+	/**
+	 * 
+	 * @param boulder
+	 * @param direction
+	 * @return true if boulder can successfully be pushed, false if not
+	 */
 	public boolean successPush(Boulder boulder, String direction) {
 		switch(direction) {
 		case "UP":

@@ -5,6 +5,14 @@ public class Door extends Entity {
 	Dungeon dungeon;
 	private int doorID;
 	
+	/**
+	 * 
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param doorID
+	 * @param movement
+	 */
 	public Door(Dungeon dungeon, int x, int y, int doorID, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
@@ -12,7 +20,9 @@ public class Door extends Entity {
 	}
 	
 	/**
-	 * if player has key with same ID as door, open door
+	 * if player's key's id = door id, then door is opened
+	 * @param player
+	 * @return true if player key ID = doorID, false if not
 	 */
 	public boolean openDoor(Player player) {
 		if (player.getKey() != null) {

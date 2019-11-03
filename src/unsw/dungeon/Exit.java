@@ -5,13 +5,23 @@ public class Exit extends Entity implements GoalObserver {
 	private Dungeon dungeon;
 	private Player player;
 	
+	/**
+	 * 
+	 * @param dungeon
+	 * @param x
+	 * @param y
+	 * @param movement
+	 */
 	public Exit(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.player = null;
 		
 	}
-
+	
+	/**
+	 * update goals
+	 */
 	@Override
 	public void update(PlayerGoal goals, int[] playerXY) {
 		if (this.getX() == playerXY[0] && this.getY() == playerXY[1]) {
