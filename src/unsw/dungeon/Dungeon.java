@@ -77,7 +77,10 @@ public class Dungeon {
     
     public void registerNoMove() {
     	for (Entity entity : entities) {
-    		if (entity instanceof EnemyObserver) {
+    		if (entity instanceof GoalObserver) {
+    			((GoalObserver) entity).register();
+    		}
+    		else if (entity instanceof EnemyObserver) {
     			((EnemyObserver) entity).registerNoMove();
     		}
     	}
