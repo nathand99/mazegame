@@ -49,7 +49,7 @@ class DoorTest {
 		assertEquals(boulder.getX(), 0);	
 		assertEquals(boulder.getY(), 1);	// boulder does not move since the locked door blocks it (boulder is still at 0,1)
 		assertEquals(player.getX(), 0);	
-		assertEquals(player.getY(), 0);		// player does not move since the locked door blocks it (player is still at 0,0)
+		assertEquals(player.getY(), 0);		// player does not move since the locked door blocked the boulder (player is still at 0,0)
 	}
 
 }
