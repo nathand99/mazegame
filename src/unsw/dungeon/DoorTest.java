@@ -59,7 +59,7 @@ class DoorTest {
 	}
 	
 	/**
-	 * unlocked door does not block player
+	 * unlocked door does not block boulder
 	 */
 	@Test
 	void testBoulderOnUnlockedDoor() {
