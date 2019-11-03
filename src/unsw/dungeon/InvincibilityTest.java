@@ -13,7 +13,7 @@ public class InvincibilityTest {
 	 * Test to determine potion pickup, invincibility
 	 */
 	@Test
-	void testSingleGoal() {
+	void testInvincibility() {
 		Dungeon dungeon = new Dungeon(10,10);						// initialise dungeon
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.setPlayer(player); 									// set the player in the dungeon
@@ -22,7 +22,7 @@ public class InvincibilityTest {
 		assertEquals(player.isNormalState(), true); // normal state
 		player.moveDown();
 		assertEquals(player.isNormalState(), false); // potion act
-		try {Thread.sleep(10000);}
+		try {Thread.sleep(11000);}
 		catch(InterruptedException ex) { Thread.currentThread().interrupt();}
 		assertEquals(player.isNormalState(), true); // timed out potion.
 	}
