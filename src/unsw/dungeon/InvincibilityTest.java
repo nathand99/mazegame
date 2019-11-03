@@ -22,7 +22,7 @@ public class InvincibilityTest {
 		assertEquals(player.isNormalState(), true); // normal state
 		player.moveDown();
 		assertEquals(player.isNormalState(), false); // potion act
-		try {Thread.sleep(11000);}					// potion times out now.
+		try {Thread.sleep(11000);}					// potion times out.
 		catch(InterruptedException ex) { Thread.currentThread().interrupt();}
 		assertEquals(player.isNormalState(), true); // timed out potion.
 	}
