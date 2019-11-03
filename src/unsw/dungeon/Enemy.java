@@ -64,9 +64,6 @@ public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 		// should loop every once in a while.
 		int[] playerXY = player.getXY();
 		int[] currentXY = this.getXY();
-		if (kill(playerXY)) {
-			return;
-		}
 		
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();

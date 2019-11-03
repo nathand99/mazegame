@@ -278,5 +278,71 @@ public class Player extends Entity implements Subject {
 		}
 		checkComplete();
 	}
+
+	public void attackW() {
+		if (this.sword != null) {
+			if(dungeon.isEnemy(getX(), getY()-1)) {
+				for(Entity e : dungeon.getCurrentEntity(getX(), getY()-1)) {
+					if(e instanceof Enemy) {
+						dungeon.removeEntity(e);
+					}
+				}
+			}
+			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
+			if (this.sword.getHitsLeft() == 0) {
+				this.sword = null;
+			}
+		}
+	}
+
+	public void attackS() {
+		if (this.sword != null) {
+			if(dungeon.isEnemy(getX(), getY()+1)) {
+				for(Entity e : dungeon.getCurrentEntity(getX(), getY()+1)) {
+					if(e instanceof Enemy) {
+						dungeon.removeEntity(e);
+					}
+				}
+			}
+			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
+			if (this.sword.getHitsLeft() == 0) {
+				this.sword = null;
+			}
+		}
+		
+	}
+
+	public void attackD() {
+		if (this.sword != null) {
+			if(dungeon.isEnemy(getX()+1, getY())) {
+				for(Entity e : dungeon.getCurrentEntity(getX()+1, getY())) {
+					if(e instanceof Enemy) {
+						dungeon.removeEntity(e);
+					}
+				}
+			}
+			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
+			if (this.sword.getHitsLeft() == 0) {
+				this.sword = null;
+			}
+		}
+		
+	}
+
+	public void attackA() {
+		if (this.sword != null) {
+			if(dungeon.isEnemy(getX()-1, getY())) {
+				for(Entity e : dungeon.getCurrentEntity(getX()-1, getY())) {
+					if(e instanceof Enemy) {
+						dungeon.removeEntity(e);
+					}
+				}
+			}
+			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
+			if (this.sword.getHitsLeft() == 0) {
+				this.sword = null;
+			}
+		}
+	}
 	 
 }

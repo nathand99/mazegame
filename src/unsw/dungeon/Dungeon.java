@@ -83,4 +83,16 @@ public class Dungeon {
     	}
 		return particular_entity;
     }
+    
+    public boolean isEnemy (int x, int y) {
+    	for (Entity curr_e: this.entities) {
+    		if (curr_e == null) continue;
+    		if ((curr_e.getX() == x) && (curr_e.getY() == y) && curr_e instanceof Enemy) {
+    			return true;
+    		}
+    	}
+		return false;
+    }
+
+
 }

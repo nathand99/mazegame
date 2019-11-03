@@ -15,7 +15,7 @@ public class TestSword {
 		//System.out.println(dungeon.getEntities().toString());
 		// dungeon.printEntities();
 		player.moveDown();
-		if (player.getKey() == null) {
+		if (player.getSword() == null) {
 			System.out.println("i have no sword");
 		}
 		if (player.getSword() != null) {

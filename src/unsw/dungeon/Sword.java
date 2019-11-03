@@ -1,12 +1,13 @@
 package unsw.dungeon;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class Sword extends Entity implements PickupItem {
 	
-	int swordID;
-	Dungeon dungeon;
+
+	private int swordID;
+	private Dungeon dungeon;
+	private int hitsLeft = 5;
+
 	
     /**
      * Create a sword positioned in square (x,y)
@@ -39,7 +40,15 @@ public class Sword extends Entity implements PickupItem {
 	}
     
     public int getswordID() {
-        return swordID;
+        return this.swordID;
     }
+
+	public int getHitsLeft() {
+		return hitsLeft;
+	}
+
+	public void setHitsLeft(int hitsLeft) {
+		this.hitsLeft = hitsLeft;
+	}
 
 }
