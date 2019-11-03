@@ -79,12 +79,55 @@ public class EnemyTest {
 		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		FloorSwitch s = new FloorSwitch(dungeon, 1, 0, new Moveable()); 		// unlocked door
+		dungeon.addEntity(s);
 		assertEquals(e.getX(), 1);
 		assertEquals(e.getY(), 1);
 		dungeon.registerNoMove();
 		e.singleMove();
 		assertEquals(e.getX(), 1);
 		assertEquals(e.getY(), 0);									// will move into door.
+	}
+	
+	/*
+	 * Tests that enemy can move through exits
+	 */
+	@Test
+	void TestEnemyExit() {
+		Dungeon dungeon = new Dungeon(10,10);						// initialise dungeon
+		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
+		dungeon.addEntity(player);
+		dungeon.setPlayer(player); 									// set the player in the dungeon
+		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		dungeon.addEntity(e);
+		Exit ex = new Exit(dungeon, 1, 0, new Interactable()); 		// exit
+		dungeon.addEntity(ex);
+		assertEquals(e.getX(), 1);
+		assertEquals(e.getY(), 1);
+		dungeon.registerNoMove();
+		e.singleMove();
+		assertEquals(e.getX(), 1);
+		assertEquals(e.getY(), 0);									// will move into door.
+	}
+	
+	/*
+	 * Tests that enemy can move through portals, but don't use
+	 */
+	@Test
+	void TestEnemyPortal() {
+		Dungeon dungeon = new Dungeon(10,10);						// initialise dungeon
+		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
+		dungeon.addEntity(player);
+		dungeon.setPlayer(player); 									// set the player in the dungeon
+		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		dungeon.addEntity(e);
+		Portal ex = new Portal(dungeon, 1, 0, 0, new Interactable()); 		// portal
+		dungeon.addEntity(ex);
+		assertEquals(e.getX(), 1);
+		assertEquals(e.getY(), 1);
+		dungeon.registerNoMove();
+		e.singleMove();
+		assertEquals(e.getX(), 1);
+		assertEquals(e.getY(), 0);									// will move into portal
 	}
 	
 	/*
