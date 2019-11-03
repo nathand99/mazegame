@@ -21,7 +21,7 @@ class DoorTest {
 		assertEquals(player.getKey(), null);	// player has no key in inventory
 		player.moveDown();						// player attemps moves down 1 space
 		try {
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
@@ -41,7 +41,7 @@ class DoorTest {
 		
 		player.moveDown();						// player attemps moves down 1 space to push the boulder
 		try {
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}

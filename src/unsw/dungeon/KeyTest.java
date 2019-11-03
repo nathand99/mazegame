@@ -22,12 +22,9 @@ class KeyTest {
 		
 		assertEquals(player.getKey(), null);	// player initally has no key in inventory
 		player.moveDown();						// player moves down 1 space
-		try
-		{
-		    Thread.sleep(800);
-		}
-		catch(InterruptedException ex)
-		{
+		try {
+		    Thread.sleep(400);
+		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
 		
@@ -57,7 +54,7 @@ class KeyTest {
 		assertEquals(player.getKey(), null);	// player initally has no key in inventory
 		player.moveDown();						// player moves down 1 space
 		try {
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
@@ -77,7 +74,7 @@ class KeyTest {
     	
     	player.moveDown();		// player moves down 1 more space onto key 2
     	try {
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
@@ -106,12 +103,9 @@ class KeyTest {
 		
 		assertEquals(player.getKey(), null);	// player initally has no key in inventory
 		player.moveDown();						// player moves down 1 space
-		try
-		{
-		    Thread.sleep(800);
-		}
-		catch(InterruptedException ex)
-		{
+		try {
+		    Thread.sleep(400);
+		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
 		
@@ -120,7 +114,7 @@ class KeyTest {
 		player.moveDown();						// player moves down 1 more space onto door
 		try
 		{
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		}
 		catch(InterruptedException ex)
 		{
