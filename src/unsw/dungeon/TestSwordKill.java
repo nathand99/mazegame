@@ -8,6 +8,11 @@ public class TestSwordKill {
 	public static void main(String[] args) {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 1, 1, new Moveable());
+		dungeon.setPlayer(player);
+		PlayerGoal gS = new PlayerGoal(player);
+		SingleGoal s1 = new SingleGoal("enemy", 5);
+		gS.addGoal(s1);
+		player.addGoals(gS);
 		
 		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
 		dungeon.addEntity(sword);
@@ -20,7 +25,7 @@ public class TestSwordKill {
 		dungeon.addEntity(enemy3);
 		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
-		
+		dungeon.registerNoMove();
 		//player starts at 1,1
 		//attempt to kill enemy1 so above player
 		player.attackW();
@@ -51,64 +56,7 @@ public class TestSwordKill {
 			System.out.println("i have no sword");
 		}
 		
-		//attempt to kill the enemy with sword should fail as no sword is picked up 
-		//kill enemy2 swing left 
-		/*player.attackA();
-	
-		if (dungeon.isEnemy(1, 0)) {
-			System.out.println("shouldnt kill enemy1");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(0, 2)) {
-			System.out.println("shouldnt kill enemy2");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(2, 2)) {
-			System.out.println("shouldnt kill enemy3");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(1, 3)) {
-			System.out.println("shouldnt kill enemy4");
-		}
-		else System.out.println("FAIL");
-		//kill enemy3 swing right
-		player.attackD();
-		if (dungeon.isEnemy(1, 0)) {
-			System.out.println("shouldnt kill enemy1");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(0, 2)) {
-			System.out.println("shouldnt kill enemy2");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(2, 2)) {
-			System.out.println("shouldnt kill enemy3");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(1, 3)) {
-			System.out.println("shouldnt kill enemy4");
-		}
-		else System.out.println("FAIL");
-		//kill enemy4 swing down
-		player.attackS();
-		if (dungeon.isEnemy(1, 0)) {
-			System.out.println("shouldnt kill enemy1");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(0, 2)) {
-			System.out.println("shouldnt kill enemy2");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(2, 2)) {
-			System.out.println("shouldnt kill enemy3");
-		}
-		else System.out.println("FAIL");
-		if (dungeon.isEnemy(1, 3)) {
-			System.out.println("shouldnt kill enemy4");
-		}*/
-		//else System.out.println("FAIL");
-		//pick up sword 
-		//player.pickup();
+
 		if (player.getSword() != null) {
 			System.out.println("i have sword now");
 		}
@@ -141,6 +89,14 @@ public class TestSwordKill {
 		}
 		else System.out.println("FAIL");
 		//kill enemy3 swing right
+		try
+		{
+		    Thread.sleep(400);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.attackD();
 		if (dungeon.isEnemy(1, 0)) {
 			System.out.println("shouldnt kill enemy1");
@@ -159,6 +115,14 @@ public class TestSwordKill {
 		}
 		else System.out.println("FAIL");
 		//kill enemy4 swing down
+		try
+		{
+		    Thread.sleep(400);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.attackS();
 		if (dungeon.isEnemy(1, 0)) {
 			System.out.println("shouldnt kill enemy1");
@@ -211,7 +175,16 @@ public class TestSwordKill {
 		dungeon.addEntity(enemy5);
 		Enemy enemy6 = new Enemy(dungeon, 3, 1, new Immovable());
 		dungeon.addEntity(enemy6);
+		dungeon.registerNoMove();
 		// should kill enemy 5 but not enemy 6 as no sword.
+		try
+		{
+		    Thread.sleep(400);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
 		player.attackD();
 		if (!dungeon.isEnemy(2, 2)) {
 			System.out.println("should kill enemy5");
@@ -242,6 +215,6 @@ public class TestSwordKill {
 		}
 		else System.out.println("FAIL");
 			
-		
+		// player.getGoals().printGoals();
 	}
 }

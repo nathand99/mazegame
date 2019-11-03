@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Enemy extends Entity implements EnemyObserver, GoalObserver {
+public class Enemy extends Entity implements EnemyObserver {
 	
 	private Dungeon dungeon;
 	private Player player;
@@ -34,8 +34,14 @@ public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 	public void register() {
 		this.player = dungeon.getPlayer();
 		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
-		player.registerObserver((GoalObserver) this); // when enemy dies, must remove the observer from.
 		startMove();
+	}
+	
+	// for testing purposes only.
+	@Override
+	public void registerNoMove() {
+		this.player = dungeon.getPlayer();
+		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
 	}
 	
 	private void startMove() {
@@ -164,7 +170,7 @@ public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 	
 	// from EnemyObserver
 	@Override
-	public void update(int[] playerXY) {
+	public void update(int[] playerXY, PlayerGoal goals) {
 		// TODO Auto-generated method stub
 		if (player.isNormalState()) {
 			if (kill(playerXY)) {
@@ -172,22 +178,20 @@ public class Enemy extends Entity implements EnemyObserver, GoalObserver {
 			}
 			//approach();
 		} else {
-			// if isKilled by player, run that.
-			//escape();
+			die(playerXY[0], playerXY[1], goals);
 		}
-		
-		
 		
 	}
 
-	// from GoalObserver
 	@Override
-	public void update(PlayerGoal goals, int[] playerXY) {
+	public void die(int x, int y, PlayerGoal goals) {
 		// TODO Auto-generated method stub
-		if (this.getX() == playerXY[0] && this.getY() == playerXY[1]) {
+		if (this.getX() == x && this.getY() == y) {
 			goals.addComplete("enemy");
-			player.removeObserver((GoalObserver) this);
+			player.removeObserver((EnemyObserver) this);
+			dungeon.removeEntity(this);
 		}
+
 	}
 
 

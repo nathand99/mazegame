@@ -14,7 +14,7 @@ public class TestTreasure {
 		dungeon.addEntity(treasure);
 		Treasure treasure2 = new Treasure(dungeon, 0, 2, new Collectable());
 		dungeon.addEntity(treasure2);
-	
+		dungeon.registerAll();
 		System.out.println(player);
 		player.moveDown();
 		if (player.getTreasure() == 0) {
@@ -25,7 +25,7 @@ public class TestTreasure {
 		}
 		try
 		{
-		    Thread.sleep(800);
+		    Thread.sleep(400);
 		}
 		catch(InterruptedException ex)
 		{
@@ -36,5 +36,6 @@ public class TestTreasure {
 		if (player.getTreasure() == 2) {
 			System.out.println("got 2 treasure");
 		}
+		gS.printGoals();
 	}
 }

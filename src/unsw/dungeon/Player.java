@@ -20,6 +20,7 @@ public class Player extends Entity implements Subject {
     private List<GoalObserver> goalObservers;
     
     private int lastClickTime = 0;
+    private int lastSwordSwing = 0;
     
     // goals
     private PlayerGoal goals;
@@ -162,7 +163,7 @@ public class Player extends Entity implements Subject {
     	}
     }
     
-    public void checkComplete() {
+    public void win() {
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
     		System.out.println("You win!");
@@ -246,9 +247,29 @@ public class Player extends Entity implements Subject {
 	@Override
 	public void notifyEnemyObservers() {
 		// TODO Auto-generated method stub
-		for (EnemyObserver obs : enemyObservers) {
-			obs.update(this.getXY());
+		for (int i = 0; i < enemyObservers.size(); i++) {
+			int prevSize = enemyObservers.size();
+			EnemyObserver obs = enemyObservers.get(i);
+			obs.update(this.getXY(), this.goals);
+			if (prevSize > enemyObservers.size()) {
+				i--;
+			}
 		}
+		win();
+	}
+	
+	@Override
+	public void notifyEnemySword(int x, int y) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < enemyObservers.size(); i++) {
+			int prevSize = enemyObservers.size();
+			EnemyObserver obs = enemyObservers.get(i);
+			obs.die(x, y, this.goals);
+			if (prevSize > enemyObservers.size()) {
+				i--;
+			}
+		}
+		win();
 	}
 
 	@Override
@@ -276,72 +297,55 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		checkComplete();
+		win();
 	}
 
 	public void attackW() {
+		int now = (int) System.currentTimeMillis();
+    	if (now - lastSwordSwing < minClickDelay) return;
 		if (this.sword != null) {
-			if(dungeon.isEnemy(getX(), getY()-1)) {
-				for(Entity e : dungeon.getCurrentEntity(getX(), getY()-1)) {
-					if(e instanceof Enemy) {
-						dungeon.removeEntity(e);
-					}
-				}
-			}
-			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
-			if (this.sword.getHitsLeft() == 0) {
-				this.sword = null;
-			}
+			notifyEnemySword(getX(), getY()-1);
+			lastSwordSwing = now;
+			useHit();
 		}
 	}
 
 	public void attackS() {
+		int now = (int) System.currentTimeMillis();
+    	if (now - lastSwordSwing < minClickDelay) return;
 		if (this.sword != null) {
-			if(dungeon.isEnemy(getX(), getY()+1)) {
-				for(Entity e : dungeon.getCurrentEntity(getX(), getY()+1)) {
-					if(e instanceof Enemy) {
-						dungeon.removeEntity(e);
-					}
-				}
-			}
-			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
-			if (this.sword.getHitsLeft() == 0) {
-				this.sword = null;
-			}
+			notifyEnemySword(getX(), getY()+1);
+			lastSwordSwing = now;
+			useHit();
 		}
 		
 	}
 
 	public void attackD() {
+		int now = (int) System.currentTimeMillis();
+    	if (now - lastSwordSwing < minClickDelay) return;
 		if (this.sword != null) {
-			if(dungeon.isEnemy(getX()+1, getY())) {
-				for(Entity e : dungeon.getCurrentEntity(getX()+1, getY())) {
-					if(e instanceof Enemy) {
-						dungeon.removeEntity(e);
-					}
-				}
-			}
-			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
-			if (this.sword.getHitsLeft() == 0) {
-				this.sword = null;
-			}
+			notifyEnemySword(getX()+1, getY());
+			lastSwordSwing = now;
+			useHit();
 		}
 		
 	}
 
 	public void attackA() {
+		int now = (int) System.currentTimeMillis();
+    	if (now - lastSwordSwing < minClickDelay) return;
 		if (this.sword != null) {
-			if(dungeon.isEnemy(getX()-1, getY())) {
-				for(Entity e : dungeon.getCurrentEntity(getX()-1, getY())) {
-					if(e instanceof Enemy) {
-						dungeon.removeEntity(e);
-					}
-				}
-			}
-			this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
-			if (this.sword.getHitsLeft() == 0) {
-				this.sword = null;
-			}
+			notifyEnemySword(getX()-1, getY());
+			lastSwordSwing = now;
+			useHit();
+		}
+	}
+	
+	public void useHit() {
+		this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
+		if (this.sword.getHitsLeft() == 0) {
+			this.sword = null;
 		}
 	}
 	 
