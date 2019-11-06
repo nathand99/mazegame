@@ -28,11 +28,11 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
     }
     
 	@Override
-	public Entity pickup(Player p, Dungeon d) {	
+	public Entity pickup(Player p) {	
 		// increment players treasure counter
-		p.addTreasure();
+		addTreasure(p);
 		// remove picked up treasure from the dungeon
-		d.removeEntity(this);
+		dungeon.removeEntity(this);
 		// you can only pick up treasure - cannot drop it, so return null
 		return null;
 	}
@@ -45,5 +45,12 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
 			player.removeObserver(this);
 		}
 	}
+	
+	/**
+	 * adds 1 to the players treasure count.
+	 */
+	public void addTreasure(Player p) {
+    	p.setTreasure(p.getTreasure() + 1);
+    }
 
 }

@@ -30,18 +30,18 @@ public class Key extends Entity implements PickupItem {
      * also removes key being picked up from the dungeon
      */
 	@Override
-	public Entity pickup(Player p, Dungeon d) {		
+	public Entity pickup(Player p) {		
 		// if player has no key, put this key in inventory - return null
 		if (p.getKey() == null) {
 			p.setKey(this);
-			d.removeEntity(this);
+			dungeon.removeEntity(this);
 			return null;
-		// if player has key, swap keys - place players key on ground
+		// if player has key, swap keys - return players key - to be placed on ground
 		} else {			
 			Key temp = p.getKey();
-			d.removeEntity(this);
+			dungeon.removeEntity(this);
 			p.setKey(this);
-			// drop key where the player is with the ID of the key the player had
+			// drop key where the player is, with the ID of the key the player had
 			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new Collectable());			
 		}
 	}	

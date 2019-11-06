@@ -8,7 +8,7 @@ import java.util.TimerTask;
  * 
  *
  */
-public class Invincibility extends Entity implements PickupItem{
+public class Invincibility extends Entity implements PickupItem {
 	Timer timer = new Timer();
 	private int timeLimit = 10000;
 	Dungeon dungeon;
@@ -56,9 +56,11 @@ public class Invincibility extends Entity implements PickupItem{
 	}
 
 	@Override
-	public Entity pickup(Player p, Dungeon d) {
+	public Entity pickup(Player p) {
+		// once player picks up potion, go invincible
 		this.invincible(p);
-		d.removeEntity(this);
+		// remove potion from the dungeon
+		dungeon.removeEntity(this);
 		return null;
 	}
 	

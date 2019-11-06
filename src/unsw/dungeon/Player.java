@@ -170,7 +170,7 @@ public class Player extends Entity implements Subject {
     	// there is a Pickup_item on the players location
     	if (item != null) {
     		Entity dropped = null;
-			dropped = item.pickup(this, dungeon);
+			dropped = item.pickup(this);
 			// if player drops a Pickup_item, add it to the dungeon
 			if (dropped != null) {
 				dungeon.addEntity(dropped);
@@ -240,13 +240,6 @@ public class Player extends Entity implements Subject {
 	public void setTreasure(int treasure) {
 		this.treasure = treasure;
 	}
-	
-	/**
-	 * adds 1 to the treasure count.
-	 */
-	public void addTreasure() {
-    	this.setTreasure(this.getTreasure() + 1);
-    }
 	
 	public PlayerGoal getGoals() {
 		return goals;
