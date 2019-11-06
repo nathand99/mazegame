@@ -28,6 +28,27 @@ public class EnemyTest {
 	}
 	
 	/*
+	 * Test that enemy will approach every 800 millisecs (approx)
+	 */
+	@Test
+	void TestTimedEnemyApproach() {
+		Dungeon dungeon = new Dungeon(10,10);						// initialise dungeon
+		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
+		dungeon.addEntity(player);
+		dungeon.setPlayer(player); 									// set the player in the dungeon
+		Enemy e = new Enemy(dungeon, 0, 3, new Interactable());
+		dungeon.addEntity(e);
+		assertEquals(e.getX(), 0);
+		assertEquals(e.getY(), 3);
+		dungeon.registerAll();
+		try {Thread.sleep(850);}									// gives some leeway
+		catch(InterruptedException ex) { Thread.currentThread().interrupt();}
+		assertEquals(e.getX(), 0);
+		assertEquals(e.getY(), 2);
+		
+	}
+	
+	/*
 	 * Tests that the player will be approached by the enemy, but not diagonally
 	 */
 	@Test
@@ -122,6 +143,8 @@ public class EnemyTest {
 		dungeon.addEntity(e);
 		Portal ex = new Portal(dungeon, 1, 0, 0, new Interactable()); 		// portal
 		dungeon.addEntity(ex);
+		Portal ex2 = new Portal(dungeon, 5, 0, 0, new Interactable()); 		// portal
+		dungeon.addEntity(ex2);
 		assertEquals(e.getX(), 1);
 		assertEquals(e.getY(), 1);
 		dungeon.registerNoMove();
@@ -204,7 +227,7 @@ public class EnemyTest {
 	
 	/*
 	 * Tests enemy will run away while player is invincible, but not move if no move gets further away
-	 * also tests locked doors and boulders are unblockable
+	 * also tests locked doors and boulders are unmoveable
 	 */
 	@Test
 	void TestEnemyBlockedRun() {
@@ -246,7 +269,7 @@ public class EnemyTest {
 		assertEquals(e.getY(), 1);
 		dungeon.registerNoMove();
 		player.moveDown();		
-		assertEquals(dungeon.getEntities().size(), 1);				// assert dead.
+		assertEquals(dungeon.getEntities().size(), 1);				// assert only a player entity left.
 	}
 	
 }

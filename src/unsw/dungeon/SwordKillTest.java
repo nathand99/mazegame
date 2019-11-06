@@ -227,10 +227,12 @@ public class SwordKillTest {
 		System.out.print("Test enemy5 is still dead: ");
 		if (!dungeon.isEnemy(2, 1)) System.out.println("PASS");
 		else System.out.println("FAIL");
+		assertEquals(dungeon.isEnemy(2, 1), false);
 		
 		System.out.print("Test should NOT kill enemy6: ");
 		if (dungeon.isEnemy(3, 1)) System.out.println("PASS");
 		else System.out.println("FAIL");
+		assertEquals(dungeon.isEnemy(3, 1), true);
 		
 		System.out.println("\n--------------Test 7: MAX 5 swings of sword----------------");
 		Sword swordNew = new Sword(dungeon, 2, 2, 2, new Collectable());
