@@ -20,7 +20,7 @@ public class Exit extends Entity implements GoalObserver {
 	}
 	
 	/**
-	 * update goals
+	 * update - updates goals if possible.
 	 */
 	@Override
 	public void update(PlayerGoal goals, int[] playerXY) {

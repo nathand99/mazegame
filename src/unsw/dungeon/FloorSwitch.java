@@ -23,12 +23,20 @@ public class FloorSwitch extends Entity implements GoalObserver {
 		
 	}
 	
+	/**
+	 * register - registers the switch to an observer.
+	 */
 	public void register() {
 		this.player = dungeon.getPlayer();
     	player.registerObserver(this);
     	startingGoal(player.getGoals());
     }
 	
+	/**
+	 * startGoal - runs at the start of the dungeon, and reduces goal of switch activations
+	 * by 1 if a switch is already on.
+	 * @param goals - the player's goal.
+	 */
 	private void startingGoal(PlayerGoal goals) { 
 		// only run at the start, if the switch starts on, then it reduces goal by 1.
 		if (this.on == true) {

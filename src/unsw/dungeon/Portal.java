@@ -23,7 +23,12 @@ public class Portal extends Entity{
 	public int getId() {
 		return id;
 	}
-
+	
+	/**
+	 * bestTele - teleports the player onto the portal.
+	 * @param player
+	 * @return always returns false, just sets the player square or not.
+	 */
 	public boolean bestTele(Player player) {
 		// TODO Auto-generated method stub
 		

@@ -63,6 +63,9 @@ public class Dungeon {
     	}
     }
     
+    /**
+     * registerAll - registers all observables to observers.
+     */
     public void registerAll() {
     	for (Entity entity : entities) {
     		if (entity instanceof GoalObserver) {
@@ -74,6 +77,10 @@ public class Dungeon {
     	}
     }
     
+    /**
+     * registerNoMove - registers as above, but registers enemies to not move.
+     * For testing purposes.
+     */
     public void registerNoMove() {
     	for (Entity entity : entities) {
     		if (entity instanceof GoalObserver) {

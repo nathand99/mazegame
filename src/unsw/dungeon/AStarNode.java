@@ -3,6 +3,15 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creates an A* node to be used in the A* search
+ * @param x
+ * @param y
+ * @param distance - distance from starting node.
+ * @param heuristic - heuristic for the search.
+ * @param path - list of the directions (up, down, left, right) needed to get to the current 
+ * point.
+ */
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private static int infinite = 999999;
@@ -36,6 +45,10 @@ public class AStarNode implements Comparable<AStarNode> {
 		this.path = path;
 	}
 	
+	/**
+	 * Calculates the heuristic via straight line distance squared.
+	 * @param goal - the x y co-ordinates of a goal square.
+	 */
 	public void calcHeuristic(int[] goal) {
 		int xDiff = this.x - goal[0];
 		int yDiff = this.y - goal[1];

@@ -39,8 +39,8 @@ public class Boulder extends Entity{
     }
 	
 	/**
-	 *Push boulder up
-	 * @return true if can push boulder up, false if cannot
+	 *Push boulder down
+	 * @return true if can push boulder down, false if cannot
 	 */
     public boolean pushDown() {
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);

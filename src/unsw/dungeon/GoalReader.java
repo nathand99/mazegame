@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-/*
- * public class Goal
+/**
+ * public class GoalReader
  * 
  * Goals are in the json object, no need?
  * 

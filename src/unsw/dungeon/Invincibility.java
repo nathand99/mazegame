@@ -3,6 +3,11 @@ package unsw.dungeon;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Invincibility - the invincibility potion.
+ * 
+ *
+ */
 public class Invincibility extends Entity implements PickupItem{
 	Timer timer = new Timer();
 	private int timeLimit = 10000;
@@ -21,6 +26,7 @@ public class Invincibility extends Entity implements PickupItem{
 	}
 	
 	/**
+	 * invincible - starts a timer of 10 seconds for the player's invincibility.
 	 * @param player
 	 */
 	public boolean invincible(Player player) {

@@ -48,6 +48,9 @@ public class Player extends Entity implements Subject {
         this.setGoals(new PlayerGoal(this));
     }
 
+    /**
+     * moves up
+     */
     public void moveUp() {
     	int now = (int) System.currentTimeMillis();
     	if (now - lastClickTime < minClickDelay) return;
@@ -71,7 +74,10 @@ public class Player extends Entity implements Subject {
         	notifyEnemyObservers();
         }
     }
-
+    
+    /**
+     * moves down
+     */
     public void moveDown() {
     	int now = (int) System.currentTimeMillis();
     	if (now - lastClickTime < minClickDelay) return;
@@ -94,7 +100,10 @@ public class Player extends Entity implements Subject {
         	notifyEnemyObservers();
         } 
     }
-
+    
+    /**
+     * moves left
+     */
     public void moveLeft() {
     	int now = (int) System.currentTimeMillis();
     	if (now - lastClickTime < minClickDelay) return;
@@ -118,6 +127,9 @@ public class Player extends Entity implements Subject {
         } 
     }
 
+    /**
+     * moves right
+     */
     public void moveRight() {
     	int now = (int) System.currentTimeMillis();
     	if (now - lastClickTime < minClickDelay) return;
@@ -141,6 +153,9 @@ public class Player extends Entity implements Subject {
         } 
     }
     
+    /**
+     * pickups an item.
+     */
     public void pickup() {
     	List<Entity> entities = dungeon.getCurrentEntity(getX(), getY());
     	PickupItem item = null;
@@ -163,6 +178,9 @@ public class Player extends Entity implements Subject {
     	}
     }
     
+    /**
+     * checks if player has won.
+     */
     public void win() {
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
@@ -170,10 +188,18 @@ public class Player extends Entity implements Subject {
     	}
     }
     
+    /**
+     * checks if player can exit the Exit entity.
+     * @return true or false.
+     */
     public boolean canExit() {
     	return goals.onlyExit();
     }
-
+    
+    /**
+     * isNormalState - essentially a getter.
+     * @return normalState value.
+     */
 	public boolean isNormalState() {
 		return normalState;
 	}
@@ -215,6 +241,9 @@ public class Player extends Entity implements Subject {
 		this.treasure = treasure;
 	}
 	
+	/**
+	 * adds 1 to the treasure count.
+	 */
 	public void addTreasure() {
     	this.setTreasure(this.getTreasure() + 1);
     }
@@ -227,6 +256,10 @@ public class Player extends Entity implements Subject {
 		this.goals = goals;
 	}
 	
+	/**
+	 * adds a goal to the player's goals
+	 * @param goals - a goal.
+	 */
 	public void addGoals(PlayerGoal goals) {
 		this.setGoals(goals);
 	}
@@ -299,7 +332,10 @@ public class Player extends Entity implements Subject {
 		}
 		win();
 	}
-
+	
+	/**
+	 * attack up
+	 */
 	public void attackW() {
 		int now = (int) System.currentTimeMillis();
     	if (now - lastSwordSwing < minClickDelay) return;
@@ -309,7 +345,10 @@ public class Player extends Entity implements Subject {
 			useHit();
 		}
 	}
-
+	
+	/**
+	 * attack down
+	 */
 	public void attackS() {
 		int now = (int) System.currentTimeMillis();
     	if (now - lastSwordSwing < minClickDelay) return;
@@ -321,6 +360,9 @@ public class Player extends Entity implements Subject {
 		
 	}
 
+	/**
+	 * attack right
+	 */
 	public void attackD() {
 		int now = (int) System.currentTimeMillis();
     	if (now - lastSwordSwing < minClickDelay) return;
@@ -331,7 +373,10 @@ public class Player extends Entity implements Subject {
 		}
 		
 	}
-
+	
+	/**
+	 * attack left
+	 */
 	public void attackA() {
 		int now = (int) System.currentTimeMillis();
     	if (now - lastSwordSwing < minClickDelay) return;
@@ -342,6 +387,9 @@ public class Player extends Entity implements Subject {
 		}
 	}
 	
+	/**
+	 * -1 durability to sword.
+	 */
 	public void useHit() {
 		this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
 		if (this.sword.getHitsLeft() == 0) {

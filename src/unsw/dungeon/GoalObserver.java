@@ -1,10 +1,9 @@
 package unsw.dungeon;
 
-/*
- * GoalObserver should:
- * observe when a player moves (or tries to).
- * observe when a player attacks (for enemy kills).
- * 
+/**
+ * GoalObserver - observes when a goal is met, or could be met.
+ * register - registers.
+ * update - updates the observer of certain changes in state.
  */
 public interface GoalObserver {
 	public void register();

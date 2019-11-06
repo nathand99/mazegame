@@ -44,6 +44,9 @@ public class Enemy extends Entity implements EnemyObserver {
 		player.registerObserver((EnemyObserver) this); // when enemy dies, remove
 	}
 	
+	/**
+	 * startMove - starts the time for enemies to move.
+	 */
 	public void startMove() {
 		// TODO Auto-generated method stub
 		Timer t = new Timer();
@@ -63,6 +66,9 @@ public class Enemy extends Entity implements EnemyObserver {
         }, 800, 800);
 	}
 	
+	/**
+	 * singleMove - for testing, allows enemy to move a single square.
+	 */
 	public void singleMove() {
 		// for testing, uses same logic as above.
 		if (player == null) {
@@ -77,6 +83,9 @@ public class Enemy extends Entity implements EnemyObserver {
 	// while the game goes on, check for player state, and if not invincible run aggressive code.
 	// if invincible, run passive code.
 	
+	/**
+	 * approach - code to run A* to approach the player by the shortest path.
+	 */
 	public void approach() {
 		// should loop every once in a while.
 		int[] playerXY = player.getXY();
@@ -89,6 +98,9 @@ public class Enemy extends Entity implements EnemyObserver {
 		kill(playerXY);
 	}
 	
+	/**
+	 * escape - code to move away from player in a very simplistic movement.
+	 */
 	public void escape() {
 		Player player = dungeon.getPlayer();
 		int[] playerXY = player.getXY();
@@ -125,6 +137,11 @@ public class Enemy extends Entity implements EnemyObserver {
 		}
 	}
 	
+	/**
+	 * kill - code to check if the player is on the enemy, and kill them.
+	 * @param playerXY - the x y co-ordinates of the player.
+	 * @return true if the player is killed, and false otherwise.
+	 */
 	public boolean kill(int[] playerXY) {
 		DungeonApplication dApp = new DungeonApplication();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
@@ -133,12 +150,19 @@ public class Enemy extends Entity implements EnemyObserver {
 			dungeon.setPlayer(null);
 			this.player = null;
 			
-				
+			return true;	
 			
 		}
 		return false;
 	}
 	
+	/**
+	 * isFurther - code to check if the new square is further from the player than old square
+	 * @param distance - previous distance from player
+	 * @param enemyXY - enemy new x y co-ordinate
+	 * @param playerXY - player x y co-ordinate
+	 * @return true if further, false otherwise.
+	 */
 	public boolean isFurther(int distance, int[] enemyXY, int playerXY[]) {
 		int newDist = Math.abs(playerXY[0] - enemyXY[0]) + Math.abs(playerXY[1] - enemyXY[1]);
 		if (newDist > distance) {
@@ -147,16 +171,29 @@ public class Enemy extends Entity implements EnemyObserver {
 		return false;
 	}
 	
+	/**
+	 * collision - tests the collision of the enemy entity.
+	 * @param newXY - the x y co-ordinate the enemy is moving to
+	 * @return true if there is no collision (can move), false otherwise.
+	 */
 	public boolean collision(int[] newXY) {
 		List <Entity> entities = dungeon.getCurrentEntity(newXY[0], newXY[1]);
 		for (Entity entity : entities) {
-			if (!entity.canMove(this, entity, "")) {
+			if (!entity.canMove(this, entity, null)) {
 				return false;
 			}
 		}
 		return true;
 	}
 	
+	/**
+	 * moveValid -tests if a move is valid for escape, and actually escapes the player.
+	 * @param distance - the distance from enemy to player.
+	 * @param newXY - the new square enemy is moving to.
+	 * @param playerXY
+	 * @param direction - direction the enemy moves.
+	 * @return true if the new square satisfies requirements, false otherwise.
+	 */
 	public boolean moveValid(int distance, int[] newXY, int[] playerXY, String direction) {
 		if (collision(newXY) && isFurther(distance, newXY, playerXY)) {
 			enemyMove(direction);
@@ -165,6 +202,10 @@ public class Enemy extends Entity implements EnemyObserver {
 		return false;
 	}
 	
+	/**
+	 * enemyMove - switch statement to determine where the enemy moves.
+	 * @param move - the direction the enemy moves in (up, down, left, right).
+	 */
 	public void enemyMove(String move) {
 		
 		switch (move) {

@@ -1,11 +1,17 @@
 package unsw.dungeon;
 
-// the strategy pattern.
+/**
+ * Movement - a Strategy Pattern for movement
+ *
+ */
 
 public interface Movement {
-	// "entity" is the entity passed into it (eg. if a 
-	// player moves in, then the Entity is a instanceof
-	// player. We need this because some things can be
-	// exclusively interacted with the player.
+	/**
+	 * canMove - returns true/false depending on if an entity can move through it or not.
+	 * @param movingEntity - the entity that is moving.
+	 * @param stationaryEntity - the entity that is not.
+	 * @param direction - the direction the movingEntity is moving in.
+	 * @return
+	 */
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction);
 }

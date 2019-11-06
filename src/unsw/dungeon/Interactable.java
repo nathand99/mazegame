@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+/**
+ * Interactable - has some interactions with other entities.
+ * Interaction depends heavily on both entities.
+ *
+ */
 public class Interactable implements Movement{
 
 	@Override

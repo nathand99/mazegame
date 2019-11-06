@@ -3,6 +3,11 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MultipleGoal - stem and leaf of the Goal.
+ * Composite pattern.
+ *
+ */
 public class MultipleGoal implements Goal {
 	private List<Goal> goals;
 	private String conjunction;

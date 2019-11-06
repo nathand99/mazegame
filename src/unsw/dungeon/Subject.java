@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+/**
+ * The subject interface.
+ * To be used on player.
+ * notifies the observers necessary.
+ */
 public interface Subject {
 	public void registerObserver(EnemyObserver o);
 	public void registerObserver(GoalObserver o);

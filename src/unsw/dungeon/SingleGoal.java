@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+/**
+ * SingleGoal - a single goal, conferring to composite pattern.
+ *
+ */
 public class SingleGoal implements Goal {
 	private String goal;
 	private int remaining;

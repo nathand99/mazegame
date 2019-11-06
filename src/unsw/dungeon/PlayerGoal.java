@@ -3,6 +3,11 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PlayerGoal - the goals of the player.
+ * 
+ *
+ */
 public class PlayerGoal {
 	private Player player;
 	private List<Goal> goals; // should do the tree leaf thing
@@ -13,7 +18,10 @@ public class PlayerGoal {
 		this.goals = new ArrayList<Goal>();
 	}
 	
-	// it works like this: every MultipleGoal is an 'and', so every SingleGoal is an 'or'.
+	/**
+	 * Checks if all goals complete.
+	 * @return true or false.
+	 */
 	public boolean checkCompletion() {
 		for (Goal goal : goals) {
 			if (goal.checkComplete() == true) {
@@ -23,7 +31,10 @@ public class PlayerGoal {
 		return false;
 	}
 	
-	// only needs to exit.
+	/**
+	 * onlyExit - checks if the player only needs to exit to win.
+	 * @return true or false.
+	 */
 	public boolean onlyExit() {
 		for (Goal goal: goals) {
 			if (goal.onlyExit() == true) {
@@ -53,18 +64,29 @@ public class PlayerGoal {
 		this.goals = goals;
 	}
 	
+	/**
+	 * adds a complete goal
+	 * @param obj - the goal that is complete
+	 */
 	public void addComplete(String obj) {
 		for (Goal goal : goals) {
 			goal.addComplete(obj);
 		}
 	}
 	
+	/**
+	 * removes a complete goal, making it incomplete
+	 * @param obj - the goal to be removed.
+	 */
 	public void removeComplete(String obj) {
 		for (Goal goal : goals) {
 			goal.removeComplete(obj);
 		}
 	}
 	
+	/**
+	 * printing, for manual testing.
+	 */
 	public void printGoals() {
 		for (int i = 0; i < goals.size(); i++) {
 			Goal goal = goals.get(i);

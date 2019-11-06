@@ -21,9 +21,11 @@ public class Key extends Entity implements PickupItem {
     }
     
     /**
-     * return null if no key is swapped to the ground
+     * pickup - picks the key up.
      * 
-     * return key if player is swapping keys
+     * @return null if no key is swapped to the ground
+     * 
+     * @return key if player is swapping keys
      * 
      * also removes key being picked up from the dungeon
      */
