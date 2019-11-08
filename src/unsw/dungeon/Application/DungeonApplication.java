@@ -13,7 +13,7 @@ public class DungeonApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
-        String map = "test_map2";
+        String map = "LargeMaps/Random/1";
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map + ".json");
         DungeonController controller = dungeonLoader.loadController();
 
