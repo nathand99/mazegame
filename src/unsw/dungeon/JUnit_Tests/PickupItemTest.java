@@ -23,7 +23,7 @@ class PickupItemTest {
 		Dungeon dungeon = new Dungeon(10,10);							// initialise dungeon
 		Player player = new Player(dungeon, 0, 0, new Moveable());		// initialise player in the dungeon		
 		Key key = new Key(dungeon, 0, 1, 1, new Collectable());			// create a new key (at 0,1) with ID 1
-		Sword sword = new Sword(dungeon, 0, 2, 1, new Collectable());	// create a new sword (at 0,2) with ID 2	
+		Sword sword = new Sword(dungeon, 0, 2, new Collectable());	// create a new sword (at 0,2) with ID 2	
 		Treasure treasure1 = new Treasure(dungeon, 0, 3, new Collectable());
 		Treasure treasure2 = new Treasure(dungeon, 0, 4, new Collectable());
 		Treasure treasure3 = new Treasure(dungeon, 0, 5, new Collectable());

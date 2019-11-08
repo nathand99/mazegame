@@ -11,9 +11,9 @@ public class TestSword {
 		Dungeon dungeon = new Dungeon(10,10);
 		Player player = new Player(dungeon, 0, 0, new Moveable());
 		dungeon.setPlayer(player);
-		Sword sword = new Sword(dungeon, 0, 1, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 0, 1, new Collectable());
 		dungeon.addEntity(sword);
-		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Collectable());
+		Sword sword2 = new Sword(dungeon, 0, 2, new Collectable());
 		dungeon.addEntity(sword2);
 		//System.out.println(dungeon.getEntities().toString());
 		// dungeon.printEntities();

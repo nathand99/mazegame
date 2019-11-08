@@ -225,7 +225,7 @@ public class GoalTest {
 		
 		Treasure treasure = new Treasure(dungeon, 0, 1, new Collectable());
 		dungeon.addEntity(treasure);
-		Sword sword = new Sword(dungeon, 0, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 0, 2, new Collectable());
 		dungeon.addEntity(sword);
 		Enemy enemy1 = new Enemy(dungeon, 0, 3, new Interactable() );
 		dungeon.addEntity(enemy1);

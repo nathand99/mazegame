@@ -18,7 +18,7 @@ class SwordTest {
 	void testSwordPickup() {
 		Dungeon dungeon = new Dungeon(10,10);							// initialise dungeon
 		Player player = new Player(dungeon, 0, 0, new Moveable());		// initialise player in the dungeon		
-		Sword sword = new Sword(dungeon, 0, 1, 1, new Collectable());	// create a new sword (1 square below player)
+		Sword sword = new Sword(dungeon, 0, 1, new Collectable());	// create a new sword (1 square below player)
 		dungeon.addEntity(sword);										// add sword to dungeon
 		
 		assertEquals(player.getSword(), null);	// player initally has no sword in inventory
@@ -47,8 +47,8 @@ class SwordTest {
 	void testSwordSwap() {
 		Dungeon dungeon = new Dungeon(10,10);							// initialise dungeon
 		Player player = new Player(dungeon, 0, 0, new Moveable());		// initialise player in the dungeon		
-		Sword sword1 = new Sword(dungeon, 0, 1, 1, new Collectable());	// create a new sword (1 square below player)
-		Sword sword2 = new Sword(dungeon, 0, 2, 2, new Collectable());	// create another new sword (2 squares below player)
+		Sword sword1 = new Sword(dungeon, 0, 1, new Collectable());	// create a new sword (1 square below player)
+		Sword sword2 = new Sword(dungeon, 0, 2, new Collectable());	// create another new sword (2 squares below player)
 		dungeon.addEntity(sword1);
 		dungeon.addEntity(sword2);										// add swords to dungeon
 		

@@ -18,10 +18,9 @@ public class Sword extends Entity implements PickupItem {
      * @param y
      * @param swordID - ID of sword
      */
-    public Sword(Dungeon dungeon, int x, int y, int swordID, Movement movement) {
+    public Sword(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
     	this.dungeon = dungeon;
-        this.swordID = swordID;
     }
     
 	@Override
@@ -37,7 +36,7 @@ public class Sword extends Entity implements PickupItem {
 			dungeon.removeEntity(this);
 			p.setSword(this);
 			// drop sword where the player is with the ID of the sword the player had
-			return new Sword(dungeon, p.getX(), p.getY(), temp.swordID, new Collectable());			
+			return new Sword(dungeon, p.getX(), p.getY(), new Collectable());			
 		}
 	}
     

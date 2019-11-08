@@ -17,7 +17,7 @@ public class TestSwordKill {
 		gS.addGoal(s1);
 		player.addGoals(gS);
 		
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
@@ -228,7 +228,7 @@ public class TestSwordKill {
 		else System.out.println("FAIL");
 		
 		System.out.println("\n--------------Test 7: MAX 5 swings of sword----------------");
-		Sword swordNew = new Sword(dungeon, 2, 2, 2, new Collectable());
+		Sword swordNew = new Sword(dungeon, 2, 2, new Collectable());
 		dungeon.addEntity(swordNew);
 		
 		if (player.getSword() == null) System.out.println("I have NO sword");

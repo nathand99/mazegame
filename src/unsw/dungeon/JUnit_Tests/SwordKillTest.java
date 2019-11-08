@@ -283,7 +283,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
@@ -350,7 +350,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
@@ -412,7 +412,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
@@ -474,7 +474,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
@@ -535,7 +535,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
@@ -632,7 +632,7 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//sword
-		Sword sword = new Sword(dungeon, 1, 2, 1, new Collectable());
+		Sword sword = new Sword(dungeon, 1, 2, new Collectable());
 		dungeon.addEntity(sword);
 		
 		//enemies 
