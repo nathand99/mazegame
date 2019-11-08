@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,10 @@ public class DungeonController {
             squares.getChildren().add(entity);
 
     }
+    
+    public GoalReader readGoal(String map) throws FileNotFoundException {
+    	return new GoalReader(new PlayerGoal(), dungeon.getPlayer(), map);
+    } 
 
     @FXML
     public void handleKeyPress(KeyEvent event) {

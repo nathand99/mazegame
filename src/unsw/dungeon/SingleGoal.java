@@ -67,4 +67,7 @@ public class SingleGoal implements Goal {
 	public void setRemaining(int remaining) {
 		this.remaining = remaining;
 	}
+	
+	// TODO: need to add new method of grabbing the number of goal observers, then adding them to goal if
+	// it's a goal.
 }

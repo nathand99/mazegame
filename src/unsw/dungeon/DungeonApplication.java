@@ -13,9 +13,13 @@ public class DungeonApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
-        String map = "portal";
+        String map = "advanced";
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map + ".json");
         DungeonController controller = dungeonLoader.loadController();
+        
+        // new
+        GoalReader goal = controller.readGoal(map);
+        goal.loadGoal();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
         loader.setController(controller);

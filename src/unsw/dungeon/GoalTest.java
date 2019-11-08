@@ -217,7 +217,7 @@ public class GoalTest {
 		SingleGoal s1 = new SingleGoal("exit", 1);					// need to exit
 		SingleGoal s2 = new SingleGoal("enemy", 1);					// and kill 1.
 		SingleGoal s3 = new SingleGoal("treasure", 1);				// and 1 treasure
-		SingleGoal s4 = new SingleGoal("switch", 1);				// and 1 switch.
+		SingleGoal s4 = new SingleGoal("boulders", 1);				// and 1 switch.
 		m1.addGoal(s1);
 		m1.addGoal(s2);
 		m1.addGoal(s3);

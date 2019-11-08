@@ -40,7 +40,7 @@ public class FloorSwitch extends Entity implements GoalObserver {
 	private void startingGoal(PlayerGoal goals) { 
 		// only run at the start, if the switch starts on, then it reduces goal by 1.
 		if (this.on == true) {
-			goals.addComplete("switch");
+			goals.addComplete("boulders");
 		}
 	}
 	
@@ -64,9 +64,9 @@ public class FloorSwitch extends Entity implements GoalObserver {
 		boolean prevOn = this.on;
 		this.on = checkOnOff();
 		if (prevOn != on && on == true) {
-			goals.addComplete("switch");
+			goals.addComplete("boulders");
 		} else if (prevOn != on && on == false) {
-			goals.removeComplete("switch");
+			goals.removeComplete("boulders");
 		}
 		
 	}

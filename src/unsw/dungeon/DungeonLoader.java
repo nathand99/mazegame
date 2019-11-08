@@ -18,7 +18,7 @@ import org.json.JSONTokener;
  */
 public abstract class DungeonLoader {
 
-    private JSONObject json;
+	private JSONObject json;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -39,7 +39,7 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
-        // something here to load.
+        // old location for registering.
         dungeon.registerAll();
         return dungeon;
     }
@@ -58,6 +58,7 @@ public abstract class DungeonLoader {
             dungeon.setPlayer(player);
             onLoad(player);
             entity = player;
+            // doesn't load a goal here.
             break;
         case "wall":
             Wall wall = new Wall(x, y, new Immovable());
@@ -96,9 +97,18 @@ public abstract class DungeonLoader {
         	onLoad(exit);
         	entity = exit;
         	break;
+        case "treasure":
+        	Treasure treasure = new Treasure(dungeon, x, y, new Collectable());
+        	onLoad(treasure);
+        	entity = treasure;
+        	break;
         }
         dungeon.addEntity(entity); // where the entity is added.
     }
+    
+    public JSONObject getJson() {
+		return json;
+	}
 
     public abstract void onLoad(Entity player);
     
@@ -116,4 +126,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Invincibility invincibility);
     
     public abstract void onLoad(Exit exit);
+    
+    public abstract void onLoad(Treasure treasure);
 }
