@@ -8,6 +8,11 @@ public class SingleGoal implements Goal {
 	private String goal;
 	private int remaining;
 	
+	public SingleGoal() {
+		this.setGoal(null);
+		this.remaining = 0;
+	}
+	
 	public SingleGoal(String goal, int total) {
 		this.setGoal(goal);
 		this.remaining = total;

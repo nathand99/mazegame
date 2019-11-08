@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.Entities.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

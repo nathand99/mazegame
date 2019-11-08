@@ -1,4 +1,5 @@
 package unsw.dungeon;
+import unsw.dungeon.Entities.*;
 
 /**
  * Pickup_item - an item that can be picked up by player (Key, Treasure, Sword, Invincibility Potion)

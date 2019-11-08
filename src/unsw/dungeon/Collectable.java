@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.Entities.*;
+
 public class Collectable implements Movement {
 	
 	/**

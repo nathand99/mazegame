@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.Entities.*;
+
 /**
  * Interactable - has some interactions with other entities.
  * Interaction depends heavily on both entities.
