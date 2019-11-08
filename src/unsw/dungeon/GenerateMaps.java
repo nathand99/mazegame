@@ -422,7 +422,7 @@ public class GenerateMaps {
 		
 		//Random
 		createMap("MediumMaps/Random", 10, 20, 15, "treasure", "boulder_switch", "portal");
-		*/
+		
 		//LargeMaps
 		//AllEntities
 		createMap("LargeMaps/AllEntities", 10, 30, 20, "treasure", "boulder_switch", "door_key", "portal", "invincibility");
@@ -438,6 +438,7 @@ public class GenerateMaps {
 		
 		//Random
 		createMap("LargeMaps/Random", 10, 30, 20, "treasure", "boulder_switch", "portal");
+		*/
 	}
 	
 }
