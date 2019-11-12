@@ -15,8 +15,13 @@ public class DungeonApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         MenuScreen menuScreen = new MenuScreen(primaryStage);
         DungeonScreen dungeonScreen = new DungeonScreen(primaryStage);
+        TutorialScreen tutorialScreen = new TutorialScreen(primaryStage);
         
         menuScreen.setDungeonScreen(dungeonScreen);
+        menuScreen.setTutorialScreen(tutorialScreen);
+        
+        tutorialScreen.setMenuScreen(menuScreen);
+        
         
         menuScreen.start();
     }

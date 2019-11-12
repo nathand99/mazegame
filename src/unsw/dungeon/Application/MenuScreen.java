@@ -36,9 +36,14 @@ public class MenuScreen {
 	    //stage.show();
 	}
 	
+	/**
+	 * Starts the Menu Up
+	 */
 	public void start() {
+		controller.initalize();
 		stage.setTitle("Game Menu");
 		stage.setScene(scene);
+		
 		stage.show();
 		
 	}
@@ -47,8 +52,20 @@ public class MenuScreen {
 		return this.controller;
 	}
 	
+	/**
+	 * Sets the DungeonScreen for the Controller
+	 * @param dungeonScreen
+	 */
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
 		controller.setDungeonScreen(dungeonScreen);
+	}
+	
+	/**
+	 * Sets the TutorialScreen for the Controller
+	 * @param tutorialScreen
+	 */
+	public void setTutorialScreen(TutorialScreen tutorialScreen) {
+		controller.setTutorialScreen(tutorialScreen);
 	}
 
 }

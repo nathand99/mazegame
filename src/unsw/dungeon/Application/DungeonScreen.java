@@ -43,6 +43,9 @@ public class DungeonScreen {
     	stage.show();
     }
     
+    // most likely will need a stop method, so that you can't lose while you're in the menu.
+    // something like unload?
+    
     public DungeonControllerLoader getLoader() {
     	return loader;
     }
