@@ -24,7 +24,15 @@ public class MenuController {
 	
 	@FXML
 	public void initalize() {
-		
+		for (int i = 0; i < levelGrid.getRowCount(); i++) {
+			for (int j = 0; j < levelGrid.getColumnCount(); j++) {
+				Button levelButton = new Button("filler text");
+				
+				GridPane.setRowIndex(levelButton, i);
+                GridPane.setColumnIndex(levelButton, j);
+                levelGrid.getChildren().add(levelButton);
+			}
+		}
 	}
 	
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
