@@ -1,5 +1,7 @@
 package unsw.dungeon.Application;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -18,14 +20,20 @@ public class MenuController {
 	@FXML
 	private Button quitButton;
 	
+	private DungeonScreen dungeonScreen;
+	
 	@FXML
 	public void initalize() {
 		
 	}
 	
+	public void setDungeonScreen(DungeonScreen dungeonScreen) {
+		this.dungeonScreen = dungeonScreen;
+	}
+	
 	@FXML
-	public void tutorialPage() {
-		
+	public void tutorialPage() throws IOException {
+		dungeonScreen.start();
 	}
 	
 	public void quitGame() {

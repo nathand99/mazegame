@@ -10,27 +10,17 @@ import javafx.stage.Stage;
 import unsw.dungeon.GoalReader;
 
 public class DungeonApplication extends Application {
-
-    @Override
+	
+	@Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
-        String map = "dungeons/maze.json"; // need to add file string and the .json
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);
-        DungeonController controller = dungeonLoader.loadController();
+        MenuScreen menuScreen = new MenuScreen(primaryStage);
+        DungeonScreen dungeonScreen = new DungeonScreen(primaryStage);
         
-        // new
-        GoalReader goal = controller.readGoal(map);
-        goal.loadGoal();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        menuScreen.setDungeonScreen(dungeonScreen);
+        
+        menuScreen.start();
     }
+
 
     public static void main(String[] args) {
         launch(args);
