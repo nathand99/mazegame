@@ -270,6 +270,18 @@ public class Player extends Entity implements Subject {
 			enemyObservers.remove(i);
 		}
 	}
+	
+	/**
+	 * Removes all enemy Observers.
+	 */
+	public void removeAllEnemies() {
+		for (int i = 0; i < enemyObservers.size(); i++) {
+			EnemyObserver o = enemyObservers.get(i);
+			
+			removeObserver(o);
+			i--;
+		}
+	}
 
 	@Override
 	public void notifyEnemyObservers() {
