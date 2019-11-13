@@ -60,7 +60,7 @@ public class Enemy extends Entity implements EnemyObserver {
             @Override
             public void run() {
             	if (player == null) {
-            		t.cancel();;
+            		t.cancel();
             	} else if (player.isNormalState()) {
         			approach();
         		} else {
@@ -98,6 +98,9 @@ public class Enemy extends Entity implements EnemyObserver {
 		
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();
+		if (bestPath == null) {
+			return; // can't reach player, do nothing.
+		}
 		String firstMove = bestPath.get(0);
 		enemyMove(firstMove);
 		kill(playerXY);
@@ -151,6 +154,7 @@ public class Enemy extends Entity implements EnemyObserver {
 		DungeonApplication dApp = new DungeonApplication();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
+			player.removeAllEnemies();
 			dungeon.removeEntity(player);
 			dungeon.setPlayer(null);
 			this.player = null;
@@ -257,6 +261,13 @@ public class Enemy extends Entity implements EnemyObserver {
 			this.player = null;
 		}
 
+	}
+	
+	/**
+	 * @setter
+	 */
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 

@@ -24,6 +24,10 @@ public class DungeonScreen {
 
     }
     
+    /**
+     * Starts the dungeon
+     * @throws IOException
+     */
     public void start() throws IOException {
     	stage.setTitle("Dungeon");
     	String map = "dungeons/advanced.json"; // need to add file string and the .json
