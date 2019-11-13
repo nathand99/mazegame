@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane fx:id="squares" onKeyPressed="#handleKeyPress" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
@@ -11,4 +12,7 @@
    <rowConstraints>
       <RowConstraints />
    </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" />
+   </children>
 </GridPane>

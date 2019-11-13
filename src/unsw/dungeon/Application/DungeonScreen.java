@@ -34,7 +34,7 @@ public class DungeonScreen {
         GoalReader goal = controller.readGoal(map);
         goal.loadGoal();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView2.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
         scene = new Scene(root);
