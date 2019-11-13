@@ -74,5 +74,6 @@ public class Entity {
 	public void setEntityView(ImageView entityView) {
 		this.entityView = entityView;
 	}
+	
     
 }

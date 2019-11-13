@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PlayerGoal;
 import unsw.dungeon.Entities.*;
@@ -116,45 +117,6 @@ public class DungeonController {
             break;
         }
         
-        //sword
-        if(player.getSword()!= null && !player.getSword().isShow() && player.getX() == player.getSword().getX() && player.getY() == player.getSword().getY()) {
-      	  for (ImageView entity : initialEntities) {
-      		  if (entity.equals(player.getSword().getEntityView())) {
-      			  entity.setVisible(false);
-      		  }
-            }
-        }
-        
-        /*
-        //treasure
-        if(player.getSword()!= null && !player.getSword().isShow() && player.getX() == player.getSword().getX() && player.getY() == player.getSword().getY()) {
-        	  for (ImageView entity : initialEntities) {
-        		  if (entity.equals(player.getSword().getEntityView())) {
-        			  entity.setVisible(false);
-        		  }
-              }
-          }
-        */
-        //key
-        if(player.getKey()!= null && !player.getKey().isShow() && player.getX() == player.getKey().getX() && player.getY() == player.getKey().getY()) {
-        	  for (ImageView entity : initialEntities) {
-        		  if (entity.equals(player.getKey().getEntityView())) {
-        			  entity.setVisible(false);
-        		  }
-              }
-          }
-        
-       
-        /*
-        //potion 
-        if(player.getSword()!= null && !player.getSword().isShow() && player.getX() == player.getSword().getX() && player.getY() == player.getSword().getY()) {
-        	  for (ImageView entity : initialEntities) {
-        		  if (entity.equals(player.getSword().getEntityView())) {
-        			  entity.setVisible(false);
-        		  }
-              }
-          }
-          */
     }
 
 }

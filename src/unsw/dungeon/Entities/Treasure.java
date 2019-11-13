@@ -1,5 +1,8 @@
 package unsw.dungeon.Entities;
 
+import java.util.List;
+
+import javafx.scene.image.ImageView;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 
@@ -31,8 +34,10 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
 	public Entity pickup(Player p) {	
 		// increment players treasure counter
 		addTreasure(p);
+		this.getEntityView().setVisible(false);
 		// remove picked up treasure from the dungeon
 		dungeon.removeEntity(this);
+		
 		// you can only pick up treasure - cannot drop it, so return null
 		return null;
 	}
