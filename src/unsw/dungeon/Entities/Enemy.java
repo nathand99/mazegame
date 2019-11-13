@@ -257,6 +257,7 @@ public class Enemy extends Entity implements EnemyObserver {
 		if (this.getX() == x && this.getY() == y) {
 			goals.addComplete("enemy");
 			player.removeObserver((EnemyObserver) this);
+			this.getEntityView().setVisible(false);
 			dungeon.removeEntity(this);
 			this.player = null;
 		}

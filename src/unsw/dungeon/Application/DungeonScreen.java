@@ -30,7 +30,7 @@ public class DungeonScreen {
      */
     public void start() throws IOException {
     	stage.setTitle("Dungeon");
-    	String map = "dungeons/MediumMaps/AllEntities/1.json"; // need to add file string and the .json
+    	String map = "dungeons/LargeMaps/AllEntities/3.json"; // need to add file string and the .json
         loader = new DungeonControllerLoader(map);
         controller = loader.loadController();
          
