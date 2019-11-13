@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PlayerGoal;
 import unsw.dungeon.Entities.*;
@@ -26,6 +27,9 @@ public class DungeonController {
 	// this stuff comes first in the loading sequence.
     @FXML
     private GridPane squares;
+    
+    @FXML
+    private Pane pane;
 
     private List<ImageView> initialEntities;
 
@@ -45,15 +49,21 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
-        squares.setLayoutX(0);
-        //squares.setLayoutY(toolbar.getHeight()+1);
+        
+        
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-
+        
+        // set width of toolbar to width of dungeon
+        toolbar.setMinWidth(squares.getMinWidth()+640); // without 640 its too short for unknown reasons. Under 500 makes no difference. I dont get it
+        //toolbar.autosize();
+        // set pane size to size of 
+        pane.setPrefSize(squares.getMinWidth(), squares.getMinHeight());
+        pane.autosize();
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
     	
