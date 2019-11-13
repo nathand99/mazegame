@@ -5,6 +5,7 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.ImageView;
 
 /**
  * An entity in the dungeon.
@@ -17,6 +18,7 @@ public class Entity {
     // externally observed
     private IntegerProperty x, y;
     private Movement movement;
+    private ImageView entityView = null;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -63,6 +65,14 @@ public class Entity {
      */
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {
 		return movement.canMove(movingEntity, stationaryEntity, direction);
+	}
+
+	public ImageView getEntityView() {
+		return entityView;
+	}
+
+	public void setEntityView(ImageView entityView) {
+		this.entityView = entityView;
 	}
     
 }

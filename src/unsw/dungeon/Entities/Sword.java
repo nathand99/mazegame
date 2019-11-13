@@ -9,6 +9,7 @@ public class Sword extends Entity implements PickupItem {
 	private int swordID;
 	private Dungeon dungeon;
 	private int hitsLeft = 5;
+	private boolean show = true;
 
 	
     /**
@@ -21,6 +22,7 @@ public class Sword extends Entity implements PickupItem {
     public Sword(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
     	this.dungeon = dungeon;
+    	this.show = true;
     }
     
 	@Override
@@ -28,6 +30,7 @@ public class Sword extends Entity implements PickupItem {
 		// if player has no sword, put this sword in inventory - return null
 		if (p.getSword() == null) {
 			p.setSword(this);
+			p.getSword().setShow(false);
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
@@ -50,6 +53,14 @@ public class Sword extends Entity implements PickupItem {
 
 	public void setHitsLeft(int hitsLeft) {
 		this.hitsLeft = hitsLeft;
+	}
+
+	public boolean isShow() {
+		return show;
+	}
+
+	public void setShow(boolean show) {
+		this.show = show;
 	}
 
 }
