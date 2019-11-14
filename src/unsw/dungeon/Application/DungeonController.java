@@ -60,7 +60,7 @@ public class DungeonController {
         }
         
         // set width of toolbar to width of dungeon
-        toolbar.setMinWidth(squares.getMinWidth()+640); // without 640 its too short for unknown reasons. Under 500 makes no difference. I dont get it
+        toolbar.setMinWidth(squares.getMinWidth()); // without 640 its too short for unknown reasons. Under 500 makes no difference. I dont get it
         //toolbar.autosize();
         // set pane size to size of 
         pane.setPrefSize(squares.getMinWidth(), squares.getMinHeight());
