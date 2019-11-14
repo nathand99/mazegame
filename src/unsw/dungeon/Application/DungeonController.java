@@ -7,11 +7,13 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PlayerGoal;
@@ -40,6 +42,7 @@ public class DungeonController {
     
     @FXML 
     private ToolBar toolbar;
+    private boolean registered = false;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -95,15 +98,19 @@ public class DungeonController {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
+            register();
             break;
         case DOWN:
             player.moveDown();
+            register();
             break;
         case LEFT:
             player.moveLeft();
+            register();
             break;
         case RIGHT:
             player.moveRight();
+            register();
             break;
         case W:
         	player.attackW();
@@ -117,7 +124,24 @@ public class DungeonController {
             break;
         }
         
+        if(!player.isNormalState()) {
+        	DropShadow ds= new DropShadow();
+			ds.setRadius(17.0);
+			ds.setColor(Color.color(0, 0.3, 1));
+			player.getEntityView().setEffect(ds);
+        }else {
+        	player.getEntityView().setEffect(null);
+        }
+        
     }
+    
+    public void register() {
+    	if (registered == false) {
+    		dungeon.registerAll();
+    		registered = true;
+    	}
+    }
+
 
 }
 

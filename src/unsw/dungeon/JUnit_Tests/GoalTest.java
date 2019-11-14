@@ -227,7 +227,7 @@ public class GoalTest {
 		dungeon.addEntity(treasure);
 		Sword sword = new Sword(dungeon, 0, 2, new Collectable());
 		dungeon.addEntity(sword);
-		Enemy enemy1 = new Enemy(dungeon, 0, 3, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 0, 3, new Interactable() );
 		dungeon.addEntity(enemy1);
 		Boulder boulder = new Boulder(dungeon, 0, 4, new Interactable());
 		dungeon.addEntity(boulder);

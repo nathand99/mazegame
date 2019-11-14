@@ -75,5 +75,13 @@ public class Entity {
 		this.entityView = entityView;
 	}
 	
+	public Movement getMovement() {
+		return movement;
+	}
+	
+	public void setMovement(Movement movement) {
+		this.movement = movement;
+	}
+	
     
 }

@@ -43,7 +43,7 @@ public abstract class DungeonLoader {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
         // old location for registering.
-        dungeon.registerAll();
+        
         return dungeon;
     }
 
@@ -70,9 +70,9 @@ public abstract class DungeonLoader {
             break;
         // TODO Handle other possible entities
         case "enemy":
-        	Enemy enemy = new Enemy(dungeon, x, y, new Interactable());  // moveable or interactable?
-        	onLoad(enemy);
-        	entity = enemy;
+        	Henchman henchman = new Henchman(dungeon, x, y, new Interactable());  // moveable or interactable?
+        	onLoad(henchman);
+        	entity = henchman;
         	break;
         case "boulder":
         	Boulder boulder = new Boulder(dungeon, x, y, new Interactable());
@@ -125,6 +125,29 @@ public abstract class DungeonLoader {
             onLoad(key);
             entity = key;
             break;
+            
+	    case "hound":
+	    	String direction = json.getString("direction");
+	    	Hound hound = new Hound(dungeon, x, y, direction, new Interactable());
+	    	onLoad(hound);
+	    	entity = hound;
+	    	break;
+            
+	    case "fire_trap":
+	    	int timeGap = json.getInt("time_gap");
+        	FireTrap fireTrap = new FireTrap(dungeon, x, y, timeGap, new Moveable());
+        	onLoad(fireTrap);
+        	entity = fireTrap;
+        	
+        	// each fire_trap comes with its own fire.
+        	Fire fire = new Fire(dungeon, x, y, new Interactable());
+        	onLoad(fire);
+        	fireTrap.setFire(fire);
+        	Entity entity2 = fire;
+        	dungeon.addEntity(entity2);
+        	
+        	break;
+        	
     	}
         
         dungeon.addEntity(entity); // where the entity is added.
@@ -139,7 +162,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
 
     // TODO Create additional abstract methods for the other entities
-    public abstract void onLoad(Enemy enemy);
+    public abstract void onLoad(Henchman henchman);
     
     public abstract void onLoad(Boulder boulder);
     
@@ -158,4 +181,10 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Door door);
     
     public abstract void onLoad(Key key);
+    
+    public abstract void onLoad(FireTrap fireTrap);
+    
+    public abstract void onLoad(Fire fire);
+    
+    public abstract void onLoad(Hound hound);
 }
