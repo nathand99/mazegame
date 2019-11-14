@@ -76,6 +76,9 @@ public class Dungeon {
     		}
     		else if (entity instanceof EnemyObserver) {
     			((EnemyObserver) entity).register();
+    		} 
+    		else if (entity instanceof FireTrap) {
+    			((FireTrap) entity).start();
     		}
     	}
     }
