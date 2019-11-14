@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PlayerGoal;
@@ -40,8 +41,15 @@ public class DungeonController {
 
     private Dungeon dungeon;
     
+    @FXML
+    private Button quit_button;
+    @FXML
+    private Button restart_button;   
     @FXML 
-    private ToolBar toolbar;
+    private Pane header;
+    @FXML 
+    private Pane goals_pane;
+    
     private boolean registered = false;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
@@ -49,6 +57,17 @@ public class DungeonController {
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
     }
+    
+    public void quit_game() {
+		Stage stage = (Stage) quit_button.getScene().getWindow();
+	    stage.close();
+	}
+    
+    //TODO - right now it just quits
+    public void restart() {
+		Stage stage = (Stage) quit_button.getScene().getWindow();
+	    stage.close();
+	}
 
     @FXML
     public void initialize() {
@@ -62,24 +81,28 @@ public class DungeonController {
             }
         }
         
-        // set width of toolbar to width of dungeon
-        toolbar.setMinWidth(squares.getMinWidth()); // without 640 its too short for unknown reasons. Under 500 makes no difference. I dont get it
-        //toolbar.autosize();
-        // set pane size to size of 
-        pane.setPrefSize(squares.getMinWidth(), squares.getMinHeight());
-        pane.autosize();
+        // set the header, goal_pane and pane width as the width of the dungeon everytime it updates
+        // move the quit button 50 px from the right edge of the header (which has width = dungeon width)
+        squares.widthProperty().addListener((obs, oldVal, newVal) -> {
+        	header.setPrefWidth(newVal.doubleValue());
+            header.autosize();
+            goals_pane.setPrefWidth(newVal.doubleValue());
+            goals_pane.autosize();
+            pane.setPrefSize(newVal.doubleValue(), squares.getMinHeight());
+            pane.autosize();
+            // quit button is 45 px wide so im leaving 5px on the end
+            quit_button.setLayoutX(newVal.doubleValue() - 50);
+        });
+        
+        // move restart_button 65 px to the left of where quit button ends up
+        // restart button is 65px
+        quit_button.layoutXProperty().addListener((obs, oldVal, newVal) -> {
+        	restart_button.setLayoutX(newVal.doubleValue() - 67);
+        });        
+        
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
     	
-        //int y = dungeon.getHeight() + 1;
-        //toolbar.setMaxHeight(dungeon.getHeight());
-        //toolbar.setMaxWidth(dungeon.getWidth());
-		/*
-		 * ToolBar toolbar = new ToolBar(); squares.add(toolbar, 0, y); Button button1 =
-		 * new Button("Quit"); button1.setMaxWidth(0.5); button1.setMaxHeight(0.5);
-		 * 
-		 * toolbar.getItems().add(button1);
-		 */     
     }
     
     /**
