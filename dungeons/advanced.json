@@ -105,6 +105,13 @@
     	
     },
     {
+      "x": 11,
+      "y": 11,
+      "direction": "UP",
+      "type": "hound"
+    	
+    },
+    {
       "x": 1,
       "y": 1,
       "type": "player"

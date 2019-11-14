@@ -16,10 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Enemy extends Entity implements EnemyObserver {
+public abstract class Enemy extends Entity implements EnemyObserver {
 	
-	private Dungeon dungeon;
-	private Player player;
+	protected Dungeon dungeon;
+	protected Player player;
+	protected Timer t;
 	
 	/**
      * Create an enemy positioned in square (x,y)
@@ -52,97 +53,21 @@ public class Enemy extends Entity implements EnemyObserver {
 	/**
 	 * startMove - starts the time for enemies to move.
 	 */
-	public void startMove() {
-		// TODO Auto-generated method stub
-		Timer t = new Timer();
-		t.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-            	if (player == null) {
-            		t.cancel();
-            	} else if (player.isNormalState()) {
-        			approach();
-        		} else {
-        			escape();
-        		}
-
-            }
-        }, 800, 800);
-	}
+	public abstract void startMove();
 	
 	/**
 	 * singleMove - for testing, allows enemy to move a single square.
 	 */
-	public void singleMove() {
-		// for testing, uses same logic as above.
-		if (player == null) {
-    		// do nothing.
-    	} else if (player.isNormalState()) {
-			approach();
-		} else {
-			escape();
-		}
-	}
+	public abstract void singleMove();
 
 	// while the game goes on, check for player state, and if not invincible run aggressive code.
 	// if invincible, run passive code.
 	
 	/**
-	 * approach - code to run A* to approach the player by the shortest path.
+	 * Stops the timer.
 	 */
-	public void approach() {
-		// should loop every once in a while.
-		int[] playerXY = player.getXY();
-		int[] currentXY = this.getXY();
-		
-		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
-		List<String> bestPath = aStar.search();
-		if (bestPath == null) {
-			return; // can't reach player, do nothing.
-		}
-		String firstMove = bestPath.get(0);
-		enemyMove(firstMove);
-		kill(playerXY);
-	}
-	
-	/**
-	 * escape - code to move away from player in a very simplistic movement.
-	 */
-	public void escape() {
-		Player player = dungeon.getPlayer();
-		int[] playerXY = player.getXY();
-		int distance = Math.abs(playerXY[0] - this.getX()) + Math.abs(playerXY[1] - this.getY());
-		// can probs be its own func, currently just testing functionality.
-		int[] enemyUp = this.getXY();
-		enemyUp[1] = enemyUp[1] - 1;
-		if (enemyUp[1] >= 0) {
-			if(moveValid(distance, enemyUp, playerXY, "UP")) {
-				return;
-			}
-		}
-		
-		int[] enemyDown = this.getXY();
-		enemyDown[1] = enemyDown[1] + 1;
-		if (enemyDown[1] <= dungeon.getHeight() - 1) {
-			if(moveValid(distance, enemyDown, playerXY, "DOWN")) {
-				return;
-			}
-		}
-		int[] enemyLeft = this.getXY();
-		enemyLeft[0] = enemyLeft[0] - 1;
-		if (enemyLeft[0] >= 0) {
-			if(moveValid(distance, enemyLeft, playerXY, "LEFT")) {
-				return;
-			}
-		}
-		int[] enemyRight = this.getXY();
-		enemyRight[0] = enemyRight[0] + 1;
-		if (enemyRight[0] <= dungeon.getHeight() - 1) {
-			if(moveValid(distance, enemyRight, playerXY, "RIGHT")) {
-				return;
-			}
-		}
+	public void stopTimer() {
+		t.cancel();
 	}
 	
 	/**
@@ -150,8 +75,8 @@ public class Enemy extends Entity implements EnemyObserver {
 	 * @param playerXY - the x y co-ordinates of the player.
 	 * @return true if the player is killed, and false otherwise.
 	 */
-	public boolean kill(int[] playerXY) {
-		DungeonApplication dApp = new DungeonApplication();
+	public boolean kill() {
+		int[] playerXY = player.getXY();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
 			player.die();
@@ -237,7 +162,7 @@ public class Enemy extends Entity implements EnemyObserver {
 	public void update(int[] playerXY, PlayerGoal goals) {
 		// TODO Auto-generated method stub
 		if (player.isNormalState()) {
-			if (kill(playerXY)) {
+			if (kill()) {
 				return;
 			}
 			//approach();

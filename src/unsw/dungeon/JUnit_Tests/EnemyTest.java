@@ -20,7 +20,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 0, 3, new Interactable());
+		Henchman e = new Henchman(dungeon, 0, 3, new Interactable());
 		dungeon.addEntity(e);
 		assertEquals(e.getX(), 0);
 		assertEquals(e.getY(), 3);
@@ -39,7 +39,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 0, 3, new Interactable());
+		Henchman e = new Henchman(dungeon, 0, 3, new Interactable());
 		dungeon.addEntity(e);
 		assertEquals(e.getX(), 0);
 		assertEquals(e.getY(), 3);
@@ -60,7 +60,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		assertEquals(e.getX(), 1);
 		assertEquals(e.getY(), 1);
@@ -79,7 +79,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		Door d = new Door(dungeon, 1, 0, 1, new Moveable()); 		// unlocked door
 		dungeon.addEntity(d);
@@ -100,7 +100,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		FloorSwitch s = new FloorSwitch(dungeon, 1, 0, new Moveable()); 		// unlocked door
 		dungeon.addEntity(s);
@@ -121,7 +121,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		Exit ex = new Exit(dungeon, 1, 0, new Interactable()); 		// exit
 		dungeon.addEntity(ex);
@@ -142,7 +142,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 1, new Interactable());
 		dungeon.addEntity(e);
 		Portal ex = new Portal(dungeon, 1, 0, 0, new Interactable()); 		// portal
 		dungeon.addEntity(ex);
@@ -165,7 +165,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 1, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 3, 2, new Interactable());
+		Henchman e = new Henchman(dungeon, 3, 2, new Interactable());
 		dungeon.addEntity(e);
 		Wall w1 = new Wall(1, 1, new Immovable()); // wall at 1,1
 		dungeon.addEntity(w1);
@@ -194,7 +194,7 @@ public class EnemyTest {
 		Player player = new Player(dungeon, 0, 0, new Moveable());	// initialise player in the dungeon		
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 									// set the player in the dungeon
-		Enemy e = new Enemy(dungeon, 1, 0, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 0, new Interactable());
 		dungeon.addEntity(e);
 
 		assertEquals(e.getX(), 1);
@@ -217,7 +217,7 @@ public class EnemyTest {
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 	
 		player.setNormalState(false);								// set the player to invincible
-		Enemy e = new Enemy(dungeon, 1, 0, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 0, new Interactable());
 		dungeon.addEntity(e);
 
 		assertEquals(e.getX(), 1);
@@ -239,7 +239,7 @@ public class EnemyTest {
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 	
 		player.setNormalState(false);								// set the player to invincible
-		Enemy e = new Enemy(dungeon, 1, 0, new Interactable());
+		Henchman e = new Henchman(dungeon, 1, 0, new Interactable());
 		dungeon.addEntity(e);
 		Boulder b1 = new Boulder(dungeon, 1, 1, new Interactable()); // wall at 1,1
 		dungeon.addEntity(b1);
@@ -264,7 +264,7 @@ public class EnemyTest {
 		dungeon.addEntity(player);
 		dungeon.setPlayer(player); 	
 		player.setNormalState(false);								// set the player to invincible
-		Enemy e = new Enemy(dungeon, 0, 1, new Interactable());
+		Henchman e = new Henchman(dungeon, 0, 1, new Interactable());
 		dungeon.addEntity(e);
 		
 

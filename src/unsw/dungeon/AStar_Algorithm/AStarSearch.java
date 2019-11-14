@@ -127,7 +127,7 @@ public class AStarSearch {
 		// collision check
 		List <Entity> entities = dungeon.getCurrentEntity(child.getX(), child.getY());
 		for (Entity entity : entities) {
-			if (!entity.canMove(new Enemy(dungeon, child.getX(), child.getY(), new Interactable()), entity, null)) {
+			if (!entity.canMove(new Henchman(dungeon, child.getX(), child.getY(), new Interactable()), entity, null)) {
 				return;
 			}
 		}

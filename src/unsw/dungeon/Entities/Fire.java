@@ -47,6 +47,7 @@ public class Fire extends Entity {
 		// System.out.println(onSquare.size());
 		for (Entity entity : onSquare) {
 			if (entity instanceof Enemy) {
+				((Enemy) entity).stopTimer();
 				((Enemy) entity).death(player.getGoals());
 			} else if (entity instanceof Player) {
 				this.player.die();

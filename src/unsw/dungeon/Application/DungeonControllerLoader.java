@@ -38,6 +38,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image keyImage;
     private Image fireTrapImage;
     private Image fireImage;
+    private Image houndImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -57,6 +58,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         keyImage = new Image("/key.png");
         fireTrapImage = new Image("/fire_trap.png");
         fireImage = new Image("/fire.png");
+        houndImage = new Image("/hound.png");
     }
 
     @Override
@@ -72,9 +74,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
     
     @Override
-    public void onLoad(Enemy enemy) {
+    public void onLoad(Henchman henchman) {
     	ImageView view = new ImageView(enemy1Image);
-        addEntity(enemy, view);
+        addEntity(henchman, view);
     }
     
     @Override
@@ -140,6 +142,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Fire fire) {
     	ImageView view = new ImageView(fireImage);
     	addEntity(fire, view);
+    }
+    
+    @Override
+    public void onLoad(Hound hound) {
+    	ImageView view = new ImageView(houndImage);
+    	addEntity(hound, view);
     }
 
     private void addEntity(Entity entity, ImageView view) {

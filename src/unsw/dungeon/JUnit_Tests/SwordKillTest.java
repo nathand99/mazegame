@@ -30,13 +30,13 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -89,13 +89,13 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -155,13 +155,13 @@ public class SwordKillTest {
 		player.addGoals(gS);
 
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -219,13 +219,13 @@ public class SwordKillTest {
 		player.addGoals(gS);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -287,13 +287,13 @@ public class SwordKillTest {
 		dungeon.addEntity(sword);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -354,13 +354,13 @@ public class SwordKillTest {
 		dungeon.addEntity(sword);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -416,13 +416,13 @@ public class SwordKillTest {
 		dungeon.addEntity(sword);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -478,13 +478,13 @@ public class SwordKillTest {
 		dungeon.addEntity(sword);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -539,17 +539,17 @@ public class SwordKillTest {
 		dungeon.addEntity(sword);
 		
 		//enemies 
-		Enemy enemy1 = new Enemy(dungeon, 1, 0, new Interactable() );
+		Henchman enemy1 = new Henchman(dungeon, 1, 0, new Interactable() );
 		dungeon.addEntity(enemy1);
-		Enemy enemy2 = new Enemy(dungeon, 0, 2, new Interactable());
+		Henchman enemy2 = new Henchman(dungeon, 0, 2, new Interactable());
 		dungeon.addEntity(enemy2);
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
-		Enemy enemy4 = new Enemy(dungeon, 1, 3, new Interactable());
+		Henchman enemy4 = new Henchman(dungeon, 1, 3, new Interactable());
 		dungeon.addEntity(enemy4);
-		Enemy enemy5 = new Enemy(dungeon, 2, 1, new Immovable());
+		Henchman enemy5 = new Henchman(dungeon, 2, 1, new Immovable());
 		dungeon.addEntity(enemy5);
-		Enemy enemy6 = new Enemy(dungeon, 3, 1, new Immovable());
+		Henchman enemy6 = new Henchman(dungeon, 3, 1, new Immovable());
 		dungeon.addEntity(enemy6);
 		dungeon.registerNoMove();
 		//player starts at 1,1
@@ -637,7 +637,7 @@ public class SwordKillTest {
 		
 		//enemies 
 	
-		Enemy enemy3 = new Enemy(dungeon, 2, 2, new Interactable());
+		Henchman enemy3 = new Henchman(dungeon, 2, 2, new Interactable());
 		dungeon.addEntity(enemy3);
 		dungeon.registerNoMove();
 		//player starts at 1,1
