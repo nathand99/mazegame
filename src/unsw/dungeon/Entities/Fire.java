@@ -44,7 +44,7 @@ public class Fire extends Entity {
 	
 	public void checkKill() {
 		List<Entity> onSquare = dungeon.getCurrentEntity(getX(), getY());
-		System.out.println(onSquare.size());
+		// System.out.println(onSquare.size());
 		for (Entity entity : onSquare) {
 			if (entity instanceof Enemy) {
 				((Enemy) entity).death(player.getGoals());
