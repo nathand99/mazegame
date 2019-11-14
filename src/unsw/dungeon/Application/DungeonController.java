@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PlayerGoal;
@@ -98,6 +100,15 @@ public class DungeonController {
             break;
         }
         
+        if(!player.isNormalState()) {
+        	DropShadow ds= new DropShadow();
+			ds.setRadius(17.0);
+			ds.setColor(Color.color(0, 0.3, 1));
+			player.getEntityView().setEffect(ds);
+        }else {
+        	player.getEntityView().setEffect(null);
+        }
+        
     }
     
     public void register() {
@@ -106,6 +117,7 @@ public class DungeonController {
     		registered = true;
     	}
     }
+
 
 }
 
