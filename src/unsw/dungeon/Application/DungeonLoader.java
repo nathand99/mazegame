@@ -43,7 +43,7 @@ public abstract class DungeonLoader {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
         // old location for registering.
-        dungeon.registerAll();
+        
         return dungeon;
     }
 
@@ -125,6 +125,22 @@ public abstract class DungeonLoader {
             onLoad(key);
             entity = key;
             break;
+            
+	    case "fire_trap":
+	    	int timeGap = json.getInt("time_gap");
+        	FireTrap fireTrap = new FireTrap(dungeon, x, y, timeGap, new Moveable());
+        	onLoad(fireTrap);
+        	entity = fireTrap;
+        	
+        	// each fire_trap comes with its own fire.
+        	Fire fire = new Fire(dungeon, x, y, new Interactable());
+        	onLoad(fire);
+        	fireTrap.setFire(fire);
+        	Entity entity2 = fire;
+        	dungeon.addEntity(entity2);
+        	
+        	break;
+        	
     	}
         
         dungeon.addEntity(entity); // where the entity is added.
@@ -158,4 +174,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Door door);
     
     public abstract void onLoad(Key key);
+    
+    public abstract void onLoad(FireTrap fireTrap);
+    
+    public abstract void onLoad(Fire fire);
 }

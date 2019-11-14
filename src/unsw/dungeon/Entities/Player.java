@@ -277,7 +277,8 @@ public class Player extends Entity implements Subject {
 	public void removeAllEnemies() {
 		for (int i = 0; i < enemyObservers.size(); i++) {
 			EnemyObserver o = enemyObservers.get(i);
-			
+			Enemy enemy = (Enemy) o;
+			enemy.setPlayer(null);
 			removeObserver(o);
 			i--;
 		}
@@ -402,5 +403,14 @@ public class Player extends Entity implements Subject {
 			this.sword = null;
 		}
 	}
-	 
+	
+	/**
+	 * The player dies.
+	 */
+	 public void die() {
+		 System.out.println("Yep, he's dead");
+		 this.removeAllEnemies();
+		 dungeon.removeEntity(this);
+		 dungeon.setPlayer(null);
+	 }
 }

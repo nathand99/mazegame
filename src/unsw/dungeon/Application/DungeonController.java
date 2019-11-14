@@ -31,6 +31,8 @@ public class DungeonController {
     private Player player;
 
     private Dungeon dungeon;
+    
+    private boolean registered = false;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -70,15 +72,19 @@ public class DungeonController {
         switch (event.getCode()) {
         case UP:
             player.moveUp();
+            register();
             break;
         case DOWN:
             player.moveDown();
+            register();
             break;
         case LEFT:
             player.moveLeft();
+            register();
             break;
         case RIGHT:
             player.moveRight();
+            register();
             break;
         case W:
         	player.attackW();
@@ -92,6 +98,13 @@ public class DungeonController {
             break;
         }
         
+    }
+    
+    public void register() {
+    	if (registered == false) {
+    		dungeon.registerAll();
+    		registered = true;
+    	}
     }
 
 }

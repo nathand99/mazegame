@@ -154,10 +154,7 @@ public class Enemy extends Entity implements EnemyObserver {
 		DungeonApplication dApp = new DungeonApplication();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
 			System.out.println("You were killed");
-			player.removeAllEnemies();
-			dungeon.removeEntity(player);
-			dungeon.setPlayer(null);
-			this.player = null;
+			player.die();
 			
 			return true;	
 			
@@ -255,13 +252,20 @@ public class Enemy extends Entity implements EnemyObserver {
 	public void die(int x, int y, PlayerGoal goals) {
 		// TODO Auto-generated method stub
 		if (this.getX() == x && this.getY() == y) {
-			goals.addComplete("enemy");
-			player.removeObserver((EnemyObserver) this);
-			this.getEntityView().setVisible(false);
-			dungeon.removeEntity(this);
-			this.player = null;
+			death(goals);
 		}
 
+	}
+	
+	/**
+	 * Removes enemy from map, and dungeon.
+	 */
+	public void death(PlayerGoal goals) {
+		goals.addComplete("enemy");
+		player.removeObserver((EnemyObserver) this);
+		this.getEntityView().setVisible(false);
+		dungeon.removeEntity(this);
+		this.player = null;
 	}
 	
 	/**
