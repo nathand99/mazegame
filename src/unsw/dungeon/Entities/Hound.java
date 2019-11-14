@@ -1,14 +1,16 @@
 package unsw.dungeon.Entities;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import unsw.dungeon.Movement;
+import unsw.dungeon.AStar_Algorithm.AStarSearch;
 import unsw.dungeon.Application.Dungeon;
 
 /**
  * Hound - an enemy with a very erratic movement pattern, that does not pay attention
- * to where the player is.
+ * to where the player is, until it is within 5 squares of the player.
  *
  */
 public class Hound extends Enemy {
@@ -30,8 +32,10 @@ public class Hound extends Enemy {
             public void run() {
             	if (player == null) {
             		t.cancel();
-            	} else {
+            	} else if (calcDistance() <= 5) {
             		hunt();
+            	} else {
+            		randomMove();
             	}
 
             }
@@ -45,9 +49,27 @@ public class Hound extends Enemy {
 	}
 	
 	/**
-	 * Hunt - a very basic movement pattern for the hound.
+	 * A simple A* Search.
 	 */
 	public void hunt() {
+		// should loop every once in a while.
+		int[] playerXY = player.getXY();
+		int[] currentXY = this.getXY();
+		
+		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
+		List<String> bestPath = aStar.search();
+		if (bestPath == null) {
+			randomMove(); // can't reach player, move randomly.
+		}
+		String firstMove = bestPath.get(0);
+		enemyMove(firstMove);
+		kill();
+	}
+	
+	/**
+	 * randomMove - a very basic movement pattern for the hound.
+	 */
+	public void randomMove() {
 		int random = (int) Math.round(Math.random()*100) % 8;
 		// System.out.println(random);
 		int[] move = getXY();
@@ -61,7 +83,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "RIGHT";
 				}
-				hunt();
+				randomMove();
 			} else if (random == 0) {
 				direction = "RIGHT";
 			}
@@ -76,7 +98,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "LEFT";
 				}
-				hunt();
+				randomMove();
 			} else if (random == 0) {
 				direction = "LEFT";
 			}
@@ -90,7 +112,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "UP";
 				}
-				hunt();
+				randomMove();
 			} else if (random == 0) {
 				direction = "UP";
 			}
@@ -104,7 +126,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "DOWN";
 				}
-				hunt();
+				randomMove();
 			} else if (random == 0) {
 				direction = "DOWN";
 			}

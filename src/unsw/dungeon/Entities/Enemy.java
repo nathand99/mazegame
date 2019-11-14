@@ -78,6 +78,10 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 	public boolean kill() {
 		int[] playerXY = player.getXY();
 		if (playerXY[0] == this.getX() && playerXY[1] == this.getY()) {
+			if (player.isNormalState() == false) {
+				death(player.getGoals());
+				return false;
+			}
 			System.out.println("You were killed");
 			player.die();
 			
@@ -85,6 +89,11 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 			
 		}
 		return false;
+	}
+	
+	public int calcDistance() {
+		int[] playerXY = player.getXY();
+		return Math.abs(playerXY[0] - this.getX()) + Math.abs(playerXY[1] - this.getY());
 	}
 	
 	/**

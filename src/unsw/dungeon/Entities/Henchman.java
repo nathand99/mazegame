@@ -72,7 +72,7 @@ public class Henchman extends Enemy {
 	 */
 	public void escape() {
 		int[] playerXY = player.getXY();
-		int distance = Math.abs(playerXY[0] - this.getX()) + Math.abs(playerXY[1] - this.getY());
+		int distance = calcDistance();
 		// can probs be its own func, currently just testing functionality.
 		int[] enemyUp = this.getXY();
 		enemyUp[1] = enemyUp[1] - 1;
