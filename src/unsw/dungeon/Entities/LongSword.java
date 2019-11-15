@@ -3,12 +3,12 @@ package unsw.dungeon.Entities;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 
-public class Sword extends Entity implements PickupItem, Weapons {
+public class LongSword extends Entity implements PickupItem, Weapons {
 	
 
-	private int swordID;
+	private int longSwordID;
 	private Dungeon dungeon;
-	private int hitsLeft = 5;
+	private int hitsLeft = 3;
 
 	
     /**
@@ -18,7 +18,7 @@ public class Sword extends Entity implements PickupItem, Weapons {
      * @param y
      * @param swordID - ID of sword
      */
-    public Sword(Dungeon dungeon, int x, int y, Movement movement) {
+    public LongSword(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
     }
@@ -26,18 +26,18 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	@Override
 	public Entity pickup(Player p) {
 		// if player has no sword, put this sword in inventory - return null
-		if (p.getSword() == null) {
-			p.setSword(this);
+		if (p.getLongSword() == null) {
+			p.setLongSword(this);
 			this.getEntityView().setVisible(false);
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
 		} else {			
-			Sword temp = p.getSword();
+			LongSword temp = p.getLongSword();
 			dungeon.removeEntity(this);
-			p.setSword(this);
+			p.setLongSword(this);
 			// drop sword where the player is with the ID of the sword the player had
-			return new Sword(dungeon, p.getX(), p.getY(), new Collectable());			
+			return new LongSword(dungeon, p.getX(), p.getY(), new Collectable());			
 		}
 	}
     
@@ -46,8 +46,9 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	public void attackLeft(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getSword() != null) {
+		if (player.getLongSword() != null) {
 			player.notifyEnemyWeapon(player.getX()-1, player.getY());
+			player.notifyEnemyWeapon(player.getX()-2, player.getY());
 			player.setLastWeaponSwing(now);
 			useHit();
 		}
@@ -56,8 +57,9 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	public void attackRight(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getSword() != null) {
+		if (player.getLongSword() != null) {
 			player.notifyEnemyWeapon(player.getX()+1, player.getY());
+			player.notifyEnemyWeapon(player.getX()+2, player.getY());
 			player.setLastWeaponSwing(now);
 			useHit();
 		}
@@ -66,8 +68,9 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	public void attackAbove(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getSword() != null) {
+		if (player.getLongSword() != null) {
 			player.notifyEnemyWeapon(player.getX(), player.getY()-1);
+			player.notifyEnemyWeapon(player.getX(), player.getY()-2);
 			player.setLastWeaponSwing(now);
 			useHit();
 		}
@@ -76,8 +79,9 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	public void attackBelow(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getSword() != null) {
+		if (player.getLongSword() != null) {
 			player.notifyEnemyWeapon(player.getX(), player.getY()+1);
+			player.notifyEnemyWeapon(player.getX(), player.getY()+2);
 			player.setLastWeaponSwing(now);
 			useHit();
 		}
@@ -87,14 +91,13 @@ public class Sword extends Entity implements PickupItem, Weapons {
 	 * -1 durability to sword.
 	 */
 	public void useHit() {
-		dungeon.getPlayer().getSword().setHitsLeft(dungeon.getPlayer().getSword().getHitsLeft()-1);
-		if (dungeon.getPlayer().getSword().getHitsLeft() == 0) {
-			dungeon.getPlayer().setSword(null);
+		dungeon.getPlayer().getLongSword().setHitsLeft(dungeon.getPlayer().getLongSword().getHitsLeft()-1);
+		if (dungeon.getPlayer().getLongSword().getHitsLeft() == 0) {
+			dungeon.getPlayer().setLongSword(null);
 		}
 	}
-
-    public int getswordID() {
-        return this.swordID;
+    public int getLongSwordID() {
+        return this.longSwordID;
     }
 
 	public int getHitsLeft() {

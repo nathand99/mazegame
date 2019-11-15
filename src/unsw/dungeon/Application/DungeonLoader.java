@@ -105,6 +105,16 @@ public abstract class DungeonLoader {
 	    	onLoad(sword);
 	    	entity = sword;
 	    	break;
+	    case "long_sword":
+	    	LongSword longSword = new LongSword(dungeon, x, y, new Collectable());
+	    	onLoad(longSword);
+	    	entity = longSword;
+	    	break;
+	    case "mace":
+	    	Mace mace = new Mace(dungeon, x, y, new Collectable());
+	    	onLoad(mace);
+	    	entity = mace;
+	    	break;
 	    	
 	    case "treasure":
 	    	Treasure treasure = new Treasure(dungeon, x, y, new Collectable());
@@ -175,6 +185,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Exit exit);
     
     public abstract void onLoad(Sword sword);
+    public abstract void onLoad(LongSword longSword);
+    public abstract void onLoad(Mace mace);
     
     public abstract void onLoad(Treasure treasure);
     
