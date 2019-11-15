@@ -370,7 +370,8 @@ public class Player extends Entity implements Subject {
 	 */
 	public void attackW() {
 		if(weapon != null) {
-			weapon.attackAbove(this);	
+			weapon.attackAbove(this);
+			updateWeaponDurability();
 		}
 		
 		
@@ -382,6 +383,7 @@ public class Player extends Entity implements Subject {
 	public void attackS() {
 		if(weapon != null) {
 			weapon.attackBelow(this);
+			updateWeaponDurability();
 		}
 		
 	}
@@ -392,6 +394,7 @@ public class Player extends Entity implements Subject {
 	public void attackD() {
 		if(weapon != null) {
 			weapon.attackRight(this);
+			updateWeaponDurability();
 		}
 		
 	}
@@ -402,6 +405,7 @@ public class Player extends Entity implements Subject {
 	public void attackA() {
 		if(weapon != null) {
 			weapon.attackLeft(this);
+			updateWeaponDurability();
 		}
 	}
 	
@@ -451,6 +455,15 @@ public class Player extends Entity implements Subject {
 	public void checkKey() {
 		if (key == null && controller != null) {
 			controller.removeKey();
+		}
+	}
+	
+	/**
+	 * Updates the front end weapon durability.
+	 */
+	public void updateWeaponDurability() {
+		if (controller != null) {
+			controller.setWeaponDurability();
 		}
 	}
 	
