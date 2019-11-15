@@ -22,6 +22,8 @@ public class DungeonApplication extends Application {
         
         tutorialScreen.setMenuScreen(menuScreen);
         
+        dungeonScreen.setMenuScreen(menuScreen);
+        
         
         menuScreen.start();
     }

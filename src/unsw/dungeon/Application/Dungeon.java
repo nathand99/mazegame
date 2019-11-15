@@ -84,6 +84,20 @@ public class Dungeon {
     }
     
     /**
+     * Deregisters all moving entities.
+     */
+    public void deregisterAll() {
+    	if (player != null) {
+    		player.removeAllEnemies();
+    	}
+    	for (Entity entity : entities) {
+    		if (entity instanceof FireTrap) {
+    			((FireTrap) entity).stop();
+    		}
+    	}
+    }
+    
+    /**
      * registerNoMove - registers as above, but registers enemies to not move.
      * For testing purposes.
      */

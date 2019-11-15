@@ -105,4 +105,17 @@ public class PlayerGoal {
 			System.out.print("Or ");
 		}
 	}
+	
+	/**
+	 * returns a String of Goals.
+	 * @return
+	 */
+	public String returnStringGoals() {
+		String goalString = "";
+		for (int i = 0; i < goals.size(); i++) {
+			Goal goal = goals.get(i);
+			goalString += goal.toString();
+		}
+		return goalString;
+	}
 }
