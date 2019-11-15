@@ -8,5 +8,7 @@ public interface Weapons {
 	public void attackAbove(Player player);
 	public void attackBelow(Player player);
 	
-	
+	public int getHitsLeft();
+	public void setHitsLeft(int hitsLeft);
+	public int getWeaponID();
 }
