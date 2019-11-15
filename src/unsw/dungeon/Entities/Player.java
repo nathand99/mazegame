@@ -21,13 +21,17 @@ public class Player extends Entity implements Subject {
     private List<GoalObserver> goalObservers;
     
     private int lastClickTime = 0;
-    private int lastSwordSwing = 0;
+    private int lastWeaponSwing = 0;
     
     // goals
     private PlayerGoal goals;
     
     // inventory
+    // weapons
     private Sword sword = null;
+    private LongSword longSword = null;
+    private Mace mace = null;
+    
     private Key key = null;
     private int treasure = 0; 
     //game starts on normal state being true 
@@ -189,6 +193,11 @@ public class Player extends Entity implements Subject {
     	}
     }
     
+    
+    public int getMinClickDelay() {
+		return minClickDelay;
+	}
+    
     /**
      * checks if player can exit the Exit entity.
      * @return true or false.
@@ -299,7 +308,7 @@ public class Player extends Entity implements Subject {
 	}
 	
 	@Override
-	public void notifyEnemySword(int x, int y) {
+	public void notifyEnemyWeapon(int x, int y) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < enemyObservers.size(); i++) {
 			int prevSize = enemyObservers.size();
@@ -344,25 +353,31 @@ public class Player extends Entity implements Subject {
 	 * attack up
 	 */
 	public void attackW() {
-		int now = (int) System.currentTimeMillis();
-    	if (now - lastSwordSwing < minClickDelay) return;
-		if (this.sword != null) {
-			notifyEnemySword(getX(), getY()-1);
-			lastSwordSwing = now;
-			useHit();
+		if (sword != null) {
+			sword.attackAbove(this);
 		}
+		else if(longSword != null) {
+			longSword.attackAbove(this);
+		}
+		else if(mace != null) {
+			mace.attackAbove(this);
+		}
+		
+		
 	}
 	
 	/**
 	 * attack down
 	 */
 	public void attackS() {
-		int now = (int) System.currentTimeMillis();
-    	if (now - lastSwordSwing < minClickDelay) return;
-		if (this.sword != null) {
-			notifyEnemySword(getX(), getY()+1);
-			lastSwordSwing = now;
-			useHit();
+		if (sword != null) {
+			sword.attackBelow(this);
+		}
+		else if(longSword != null) {
+			longSword.attackBelow(this);
+		}
+		else if(mace != null) {
+			mace.attackBelow(this);
 		}
 		
 	}
@@ -371,38 +386,32 @@ public class Player extends Entity implements Subject {
 	 * attack right
 	 */
 	public void attackD() {
-		int now = (int) System.currentTimeMillis();
-    	if (now - lastSwordSwing < minClickDelay) return;
-		if (this.sword != null) {
-			notifyEnemySword(getX()+1, getY());
-			lastSwordSwing = now;
-			useHit();
+		if (sword != null) {
+			sword.attackRight(this);
 		}
-		
+		else if(longSword != null) {
+			longSword.attackRight(this);
+		}
+		else if(mace != null) {
+			mace.attackRight(this);
+		}
 	}
 	
 	/**
 	 * attack left
 	 */
 	public void attackA() {
-		int now = (int) System.currentTimeMillis();
-    	if (now - lastSwordSwing < minClickDelay) return;
-		if (this.sword != null) {
-			notifyEnemySword(getX()-1, getY());
-			lastSwordSwing = now;
-			useHit();
+		if (sword != null) {
+			sword.attackLeft(this);
+		}
+		else if(longSword != null) {
+			longSword.attackLeft(this);
+		}
+		else if(mace != null) {
+			mace.attackLeft(this);
 		}
 	}
 	
-	/**
-	 * -1 durability to sword.
-	 */
-	public void useHit() {
-		this.sword.setHitsLeft(this.sword.getHitsLeft()-1);
-		if (this.sword.getHitsLeft() == 0) {
-			this.sword = null;
-		}
-	}
 	
 	/**
 	 * The player dies.
@@ -413,4 +422,28 @@ public class Player extends Entity implements Subject {
 		 dungeon.removeEntity(this);
 		 dungeon.setPlayer(null);
 	 }
+
+	public int getLastWeaponSwing() {
+		return lastWeaponSwing;
+	}
+
+	public void setLastWeaponSwing(int lastWeaponSwing) {
+		this.lastWeaponSwing = lastWeaponSwing;
+	}
+
+	public LongSword getLongSword() {
+		return longSword;
+	}
+
+	public void setLongSword(LongSword longSword) {
+		this.longSword = longSword;
+	}
+
+	public Mace getMace() {
+		return mace;
+	}
+
+	public void setMace(Mace mace) {
+		this.mace = mace;
+	}
 }

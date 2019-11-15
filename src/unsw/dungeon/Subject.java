@@ -11,6 +11,6 @@ public interface Subject {
 	public void removeObserver(EnemyObserver o);
 	public void removeObserver(GoalObserver o);
 	public void notifyEnemyObservers();
-	public void notifyEnemySword(int x, int y);
+	public void notifyEnemyWeapon(int x, int y);
 	public void notifyGoalObservers();
 }
