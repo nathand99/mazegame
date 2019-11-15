@@ -5,6 +5,7 @@ import java.util.List;
 
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
+import unsw.dungeon.Application.DungeonController;
 
 /**
  * The player entity
@@ -19,6 +20,7 @@ public class Player extends Entity implements Subject {
     
     private List<EnemyObserver> enemyObservers;
     private List<GoalObserver> goalObservers;
+    private DungeonController controller;
     
     private int lastClickTime = 0;
     private int lastSwordSwing = 0;
@@ -73,6 +75,7 @@ public class Player extends Entity implements Subject {
         	pickup();
         	lastClickTime = now;
         	notifyEnemyObservers();
+        	checkKey();
         }
     }
     
@@ -99,6 +102,7 @@ public class Player extends Entity implements Subject {
         	pickup();
         	lastClickTime = now;
         	notifyEnemyObservers();
+        	checkKey();
         } 
     }
     
@@ -125,6 +129,7 @@ public class Player extends Entity implements Subject {
         	pickup();
         	lastClickTime = now;
         	notifyEnemyObservers();
+        	checkKey();
         } 
     }
 
@@ -151,6 +156,7 @@ public class Player extends Entity implements Subject {
         	pickup();
         	lastClickTime = now;
         	notifyEnemyObservers();
+        	checkKey();
         } 
     }
     
@@ -175,6 +181,10 @@ public class Player extends Entity implements Subject {
 			// if player drops a Pickup_item, add it to the dungeon
 			if (dropped != null) {
 				dungeon.addEntity(dropped);
+			}
+			// dungeonController bar editing.
+			if (controller != null) {
+				controller.invAdd(item);
 			}
     	}
     }
@@ -216,7 +226,17 @@ public class Player extends Entity implements Subject {
 	public void setNumThreads(int numThreads) {
 		this.numThreads = numThreads;
 	}
-
+	
+	/**
+	 * Returns the durability of Sword.
+	 * @return
+	 */
+	public int getSwordDurability() {
+		if (sword == null) {
+			return 0;
+		}
+		return sword.getHitsLeft();
+	}
 
 	public Sword getSword() {
 		return sword;
@@ -225,7 +245,15 @@ public class Player extends Entity implements Subject {
 	public void setSword(Sword sword) {
 		this.sword = sword;
 	}
-
+	
+	/**
+	 * Returns the keyID.
+	 * @return
+	 */
+	public int getKeyID() {
+		return key.getkeyID();
+	}
+	
 	public Key getKey() {
 		return key;
 	}
@@ -402,6 +430,9 @@ public class Player extends Entity implements Subject {
 		if (this.sword.getHitsLeft() == 0) {
 			this.sword = null;
 		}
+		if (controller != null) {
+			controller.setWeaponDurability();
+		}
 	}
 	
 	/**
@@ -413,4 +444,21 @@ public class Player extends Entity implements Subject {
 		 dungeon.removeEntity(this);
 		 dungeon.setPlayer(null);
 	 }
+
+	public DungeonController getController() {
+		return controller;
+	}
+
+	public void setController(DungeonController controller) {
+		this.controller = controller;
+	}
+	
+	/**
+	 * Checks if the key doesn't exist.
+	 */
+	public void checkKey() {
+		if (key == null) {
+			controller.removeKey();
+		}
+	}
 }

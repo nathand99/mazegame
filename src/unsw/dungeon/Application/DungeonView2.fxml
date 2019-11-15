@@ -27,24 +27,24 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="52.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="97.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Button fx:id="restartButton" layoutX="451.0" layoutY="12.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="treasureImage" fitHeight="30.0" fitWidth="30.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/gold_pile.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="53.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="keyImage" fitHeight="39.0" fitWidth="45.0" layoutX="53.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/key.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="102.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="weaponImage" fitHeight="30.0" fitWidth="30.0" layoutX="102.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/greatsword_1_new.png" />
                </image>
             </ImageView>
-            <Label fx:id="treasure_count" layoutX="38.0" layoutY="30.0" text="0" textFill="WHITE" />
-            <Label fx:id="key_count" layoutX="83.0" layoutY="30.0" text="0" textFill="WHITE" />
-            <Label fx:id="sword_count" layoutX="127.0" layoutY="30.0" text="0" textFill="WHITE" />
+            <Label fx:id="treasureCount" layoutX="38.0" layoutY="30.0" text="0" textFill="WHITE" />
+            <Label fx:id="keyID" layoutX="83.0" layoutY="30.0" text="0" textFill="WHITE" />
+            <Label fx:id="weaponDurability" layoutX="127.0" layoutY="30.0" text="0" textFill="WHITE" />
          </children>
       </Pane>
       <Pane fx:id="goals_pane" prefHeight="35.0" prefWidth="600.0" style="-fx-background-color: orange;">

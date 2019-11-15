@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
+import unsw.dungeon.PickupItem;
 import unsw.dungeon.PlayerGoal;
 import unsw.dungeon.Entities.*;
 
@@ -50,6 +52,18 @@ public class DungeonController {
     private Pane header;
     @FXML 
     private Pane goals_pane;
+    @FXML
+    private ImageView treasureImage;
+    @FXML
+    private ImageView keyImage;
+    @FXML
+    private ImageView weaponImage;
+    @FXML
+    private Label treasureCount;
+    @FXML
+    private Label keyID;
+    @FXML
+    private Label weaponDurability;
     
     private MenuScreen menuScreen;
     private DungeonScreen dungeonScreen;
@@ -59,6 +73,7 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        player.setController(this);
     }
     
     /**
@@ -104,7 +119,12 @@ public class DungeonController {
         // restart button is 65px
         menuButton.layoutXProperty().addListener((obs, oldVal, newVal) -> {
         	restartButton.setLayoutX(newVal.doubleValue() - 75);
-        });        
+        });  
+        
+        // sets the visibility of weapon, treasure and key to false in the inventory bar.
+        treasureImage.setVisible(false);
+        keyImage.setVisible(false);
+        weaponImage.setVisible(false);
         
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
@@ -181,6 +201,40 @@ public class DungeonController {
     public void setDungeonScreen(DungeonScreen dungeonScreen) {
     	this.dungeonScreen = dungeonScreen;
     }
-
+    
+    /**
+     * Adds an item to inventory, and frontend matches this.
+     * @param item
+     */
+    public void invAdd(PickupItem item) {
+    	// must update for weapon if extra weapons come out.
+    	if (item instanceof Key) {
+    		keyImage.setVisible(true);
+    		keyID.setText(String.valueOf(player.getKeyID()));
+    	} else if (item instanceof Treasure) {
+    		treasureImage.setVisible(true);
+    		treasureCount.setText(String.valueOf(player.getTreasure()));
+    	} else {
+    		// add new code for different weapons here.
+    		weaponImage.setVisible(true);
+    		weaponDurability.setText(String.valueOf(player.getSwordDurability()));
+    	}
+    }
+    
+    /**
+     * Sets the weapon durability again, to update. Removes image if durability hits 0.
+     */
+    public void setWeaponDurability() {
+    	int durability = player.getSwordDurability();
+    	if (durability <= 0) {
+    		weaponImage.setVisible(false);
+    	}
+    	weaponDurability.setText(String.valueOf(durability));
+    }
+    
+    public void removeKey() {
+    	keyImage.setVisible(false);
+    	keyID.setText("0");
+    }
 }
 
