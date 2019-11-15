@@ -457,7 +457,7 @@ public class Player extends Entity implements Subject {
 	 * Checks if the key doesn't exist.
 	 */
 	public void checkKey() {
-		if (key == null) {
+		if (key == null && controller != null) {
 			controller.removeKey();
 		}
 	}
