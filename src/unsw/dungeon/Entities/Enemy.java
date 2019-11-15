@@ -4,6 +4,7 @@ import unsw.dungeon.*;
 import unsw.dungeon.AStar_Algorithm.AStarSearch;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Application.DungeonApplication;
+import unsw.dungeon.Application.DungeonController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -196,9 +197,12 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 	 */
 	public void death(PlayerGoal goals) {
 		goals.addComplete("enemy");
+		// can't update goal here?
+		// player.updateGoal();
 		player.removeObserver((EnemyObserver) this);
 		this.getEntityView().setVisible(false);
 		dungeon.removeEntity(this);
+		
 		player.win(); // checks to see if player wins.
 		this.player = null;
 	}

@@ -3,6 +3,7 @@ package unsw.dungeon.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Application.DungeonController;
@@ -190,9 +191,14 @@ public class Player extends Entity implements Subject {
     }
     
     /**
-     * checks if player has won.
+     * checks if player has won, and updates the goal.
      */
     public void win() {
+    	Platform.runLater(new Runnable() {
+            @Override public void run() {
+                updateGoal();
+            }
+        });
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
     		System.out.println("You win!");
@@ -323,7 +329,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 	
@@ -338,7 +344,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 
@@ -367,7 +373,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 	
