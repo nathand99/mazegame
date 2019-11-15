@@ -19,6 +19,7 @@ public class FireTrap extends Entity {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.timeGap = timeGap;
+		t = new Timer();
 	}
 	
 	/**
@@ -29,7 +30,6 @@ public class FireTrap extends Entity {
 		this.player = dungeon.getPlayer();
 		fire.setPlayer(player);
 		fire.deactivate();
-		t = new Timer();
 		// System.out.println("Player X "+ player.getX());
 		t.schedule(new TimerTask() {
 

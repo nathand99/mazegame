@@ -22,11 +22,11 @@
       </GridPane>
       <Pane fx:id="header" layoutY="35.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: purple;">
          <children>
-            <Button fx:id="quit_button" layoutX="524.0" layoutY="12.0" mnemonicParsing="false" onAction="#quit_game" text="Quit" />
+            <Button fx:id="menuButton" layoutX="524.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="7.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="52.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="97.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Button fx:id="restart_button" layoutX="451.0" layoutY="12.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
+            <Button fx:id="restartButton" layoutX="451.0" layoutY="12.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/gold_pile.png" />

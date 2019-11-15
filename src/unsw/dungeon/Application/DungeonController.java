@@ -1,6 +1,7 @@
 package unsw.dungeon.Application;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,14 +43,16 @@ public class DungeonController {
     private Dungeon dungeon;
     
     @FXML
-    private Button quit_button;
+    private Button menuButton;
     @FXML
-    private Button restart_button;   
+    private Button restartButton;   
     @FXML 
     private Pane header;
     @FXML 
     private Pane goals_pane;
     
+    private MenuScreen menuScreen;
+    private DungeonScreen dungeonScreen;
     private boolean registered = false;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
@@ -58,15 +61,18 @@ public class DungeonController {
         this.initialEntities = new ArrayList<>(initialEntities);
     }
     
-    public void quit_game() {
-		Stage stage = (Stage) quit_button.getScene().getWindow();
-	    stage.close();
+    /**
+     * Takes user back to the main menu
+     */
+    public void goToMenu() {
+		dungeon.deregisterAll();
+		menuScreen.start();
 	}
     
     //TODO - right now it just quits
-    public void restart() {
-		Stage stage = (Stage) quit_button.getScene().getWindow();
-	    stage.close();
+    public void restart() throws IOException {
+    	dungeon.deregisterAll();
+		dungeonScreen.start();
 	}
 
     @FXML
@@ -82,7 +88,7 @@ public class DungeonController {
         }
         
         // set the header, goal_pane and pane width as the width of the dungeon everytime it updates
-        // move the quit button 50 px from the right edge of the header (which has width = dungeon width)
+        // move the quit button 63 px from the right edge of the header (which has width = dungeon width)
         squares.widthProperty().addListener((obs, oldVal, newVal) -> {
         	header.setPrefWidth(newVal.doubleValue());
             header.autosize();
@@ -90,14 +96,14 @@ public class DungeonController {
             goals_pane.autosize();
             pane.setPrefSize(newVal.doubleValue(), squares.getMinHeight());
             pane.autosize();
-            // quit button is 45 px wide so im leaving 5px on the end
-            quit_button.setLayoutX(newVal.doubleValue() - 50);
+            // tweaked some of the values.
+            menuButton.setLayoutX(newVal.doubleValue() - 63);
         });
         
-        // move restart_button 65 px to the left of where quit button ends up
+        // move restartButton 75 px to the left of where quit button ends up
         // restart button is 65px
-        quit_button.layoutXProperty().addListener((obs, oldVal, newVal) -> {
-        	restart_button.setLayoutX(newVal.doubleValue() - 67);
+        menuButton.layoutXProperty().addListener((obs, oldVal, newVal) -> {
+        	restartButton.setLayoutX(newVal.doubleValue() - 75);
         });        
         
         for (ImageView entity : initialEntities)
@@ -158,13 +164,23 @@ public class DungeonController {
         
     }
     
+    /**
+     * Registers the dungeon entities if it has not been registered.
+     */
     public void register() {
     	if (registered == false) {
     		dungeon.registerAll();
     		registered = true;
     	}
     }
-
+    
+    public void setMenuScreen(MenuScreen menuScreen) {
+    	this.menuScreen = menuScreen;
+    }
+    
+    public void setDungeonScreen(DungeonScreen dungeonScreen) {
+    	this.dungeonScreen = dungeonScreen;
+    }
 
 }
 

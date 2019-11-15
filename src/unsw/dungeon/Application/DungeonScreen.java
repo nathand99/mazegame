@@ -14,6 +14,7 @@ public class DungeonScreen {
 	private Scene scene;
 	private DungeonControllerLoader loader;
 	private DungeonController controller;
+	private MenuScreen menuScreen;
 
     public DungeonScreen(Stage primaryStage) throws IOException {
     	this.stage = primaryStage;
@@ -33,7 +34,8 @@ public class DungeonScreen {
     	String map = "dungeons/advanced_door.json"; // need to add file string and the .json
         loader = new DungeonControllerLoader(map);
         controller = loader.loadController();
-         
+        controller.setMenuScreen(menuScreen);
+        controller.setDungeonScreen(this);
         // new
         GoalReader goal = controller.readGoal(map);
         goal.loadGoal();
@@ -56,5 +58,13 @@ public class DungeonScreen {
     
     public DungeonController getController() {
     	return controller;
+    }
+    
+    /**
+     * Sets the MenuScreen
+     * @param menuScreen
+     */
+    public void setMenuScreen(MenuScreen menuScreen) {
+    	this.menuScreen = menuScreen;
     }
 }

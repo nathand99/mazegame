@@ -409,7 +409,7 @@ public class Player extends Entity implements Subject {
 	 */
 	 public void die() {
 		 System.out.println("Yep, he's dead");
-		 this.removeAllEnemies();
+		 dungeon.deregisterAll();
 		 dungeon.removeEntity(this);
 		 dungeon.setPlayer(null);
 	 }
