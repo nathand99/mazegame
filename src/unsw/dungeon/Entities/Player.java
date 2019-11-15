@@ -323,6 +323,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
+		updateGoal();
 		win();
 	}
 	
@@ -337,6 +338,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
+		updateGoal();
 		win();
 	}
 
@@ -365,6 +367,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
+		updateGoal();
 		win();
 	}
 	
@@ -459,6 +462,15 @@ public class Player extends Entity implements Subject {
 	public void checkKey() {
 		if (key == null && controller != null) {
 			controller.removeKey();
+		}
+	}
+	
+	/**
+	 * Updates the goal for frontend.
+	 */
+	public void updateGoal() {
+		if (controller != null) {
+			controller.updateGoal();
 		}
 	}
 }

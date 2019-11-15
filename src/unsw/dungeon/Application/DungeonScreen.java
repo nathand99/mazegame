@@ -43,6 +43,7 @@ public class DungeonScreen {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView2.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
+        controller.updateGoal();
         scene = new Scene(root);
         root.requestFocus();
     	stage.setScene(scene);

@@ -64,6 +64,8 @@ public class DungeonController {
     private Label keyID;
     @FXML
     private Label weaponDurability;
+    @FXML
+    private Label goalID;
     
     private MenuScreen menuScreen;
     private DungeonScreen dungeonScreen;
@@ -74,6 +76,7 @@ public class DungeonController {
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         player.setController(this);
+        
     }
     
     /**
@@ -232,9 +235,20 @@ public class DungeonController {
     	weaponDurability.setText(String.valueOf(durability));
     }
     
+    /**
+     * removes the Key from inventory to match backend.
+     */
     public void removeKey() {
     	keyImage.setVisible(false);
     	keyID.setText("0");
+    }
+    
+    /**
+     * Updates the current goal.
+     */
+    public void updateGoal() {
+    	PlayerGoal goal = player.getGoals();
+    	goalID.setText(goal.returnStringGoals());
     }
 }
 

@@ -49,7 +49,7 @@
       </Pane>
       <Pane fx:id="goals_pane" prefHeight="35.0" prefWidth="600.0" style="-fx-background-color: orange;">
          <children>
-            <Label layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="238.0" text="Goal of the level: win the level!" />
+            <Label fx:id="goalID" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="238.0" text="Goal of the level: win the level!" />
          </children>
       </Pane>
    </children>
