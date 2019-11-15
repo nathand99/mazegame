@@ -18,11 +18,11 @@ public class TestSword {
 		//System.out.println(dungeon.getEntities().toString());
 		// dungeon.printEntities();
 		player.moveDown();
-		if (player.getSword() == null) {
+		if (player.getWeapon() == null) {
 			System.out.println("i have no sword");
 		}
-		if (player.getSword() != null) {
-			System.out.println("got sword with ID:" + player.getSword().getswordID());
+		if (player.getWeapon() != null) {
+			System.out.println("got sword with ID:" + player.getWeapon().getWeaponID());
 		}
 		//System.out.println(dungeon.getEntities().toString());
 		try
@@ -36,8 +36,8 @@ public class TestSword {
 		player.moveDown();
 		System.out.println("move down");
 		System.out.println(player.getX() + ", " + player.getY()); // is not mogivn down?
-		if (player.getSword() != null) {
-			System.out.println("got sword with ID:" + player.getSword().getswordID());
+		if (player.getWeapon() != null) {
+			System.out.println("got sword with ID:" + player.getWeapon().getWeaponID());
 		}
 		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());
     	Sword i = null;
@@ -52,7 +52,7 @@ public class TestSword {
 		if (i == null) {
 			System.out.println("why");
 		}
-		System.out.println("dropped sword with ID:" + i.getswordID());
+		System.out.println("dropped sword with ID:" + i.getWeaponID());
 		
 	}
 

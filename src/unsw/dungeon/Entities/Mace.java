@@ -6,7 +6,7 @@ import unsw.dungeon.Application.Dungeon;
 public class Mace extends Entity implements PickupItem, Weapons {
 	
 
-	private int longSwordID;
+	private int maceID;
 	private Dungeon dungeon;
 	private int hitsLeft = 1;
 
@@ -26,16 +26,15 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	@Override
 	public Entity pickup(Player p) {
 		// if player has no sword, put this sword in inventory - return null
-		if (p.getMace() == null) {
-			p.setMace(this);
+		if (p.getWeapon() == null) {
+			p.setWeapon(this);
 			this.getEntityView().setVisible(false);
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
 		} else {			
-			Mace temp = p.getMace();
 			dungeon.removeEntity(this);
-			p.setMace(this);
+			p.setWeapon(this);
 			// drop sword where the player is with the ID of the sword the player had
 			return new Mace(dungeon, p.getX(), p.getY(), new Collectable());			
 		}
@@ -62,7 +61,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	public void MaceSwing(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getMace() != null) {
+		if (player.getWeapon() != null) {
 			player.notifyEnemyWeapon(player.getX()-1, player.getY());
 			player.notifyEnemyWeapon(player.getX()+1, player.getY());
 			player.notifyEnemyWeapon(player.getX(), player.getY()-1);
@@ -75,19 +74,21 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	 * -1 durability to sword.
 	 */
 	public void useHit() {
-		dungeon.getPlayer().getMace().setHitsLeft(dungeon.getPlayer().getMace().getHitsLeft()-1);
-		if (dungeon.getPlayer().getMace().getHitsLeft() == 0) {
-			dungeon.getPlayer().setMace(null);
+		dungeon.getPlayer().getWeapon().setHitsLeft(dungeon.getPlayer().getWeapon().getHitsLeft()-1);
+		if (dungeon.getPlayer().getWeapon().getHitsLeft() == 0) {
+			dungeon.getPlayer().setWeapon(null);
 		}
 	}
-    public int getLongSwordID() {
-        return this.longSwordID;
+	
+	@Override
+    public int getWeaponID() {
+        return this.maceID;
     }
-
+    @Override
 	public int getHitsLeft() {
 		return hitsLeft;
 	}
-
+    @Override
 	public void setHitsLeft(int hitsLeft) {
 		this.hitsLeft = hitsLeft;
 	}

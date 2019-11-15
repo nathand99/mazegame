@@ -220,7 +220,7 @@ public class DungeonController {
     	} else {
     		// add new code for different weapons here.
     		weaponImage.setVisible(true);
-    		weaponDurability.setText(String.valueOf(player.getSwordDurability()));
+    		weaponDurability.setText(String.valueOf(player.getWeaponDurability()));
     	}
     }
     
@@ -228,7 +228,7 @@ public class DungeonController {
      * Sets the weapon durability again, to update. Removes image if durability hits 0.
      */
     public void setWeaponDurability() {
-    	int durability = player.getSwordDurability();
+    	int durability = player.getWeaponDurability();
     	if (durability <= 0) {
     		weaponImage.setVisible(false);
     	}

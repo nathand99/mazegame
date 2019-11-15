@@ -35,8 +35,8 @@ public class TestSwordKill {
 		// Should not be able to kill player one 
 		// and other players shouldn't die as well
 		System.out.println("--------------Test 1: NO kill if NO Sword----------------");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		player.attackW();
 		//check if enemies are still there
 		System.out.print("Test should NOT kill enemy1: ");
@@ -63,8 +63,8 @@ public class TestSwordKill {
 		//attempt to kill the enemy with sword should pass
 		//kill enemy2 swing left 
 		System.out.println("\n--------------Test 2: Kill enemy to the left----------------");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		player.attackA();
 	
 		System.out.print("Test should NOT kill enemy1: ");
@@ -94,8 +94,8 @@ public class TestSwordKill {
 		}
 		System.out.println("\n--------------Test 3: Kill enemy to the right----------------");
 		player.attackD();
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		System.out.print("Test should NOT kill enemy1: ");
 		if (dungeon.isEnemy(1, 0)) System.out.println("PASS");
@@ -124,8 +124,8 @@ public class TestSwordKill {
 		
 		System.out.println("\n--------------Test 4: Kill enemy below----------------");
 		player.attackS();
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		System.out.print("Test should NOT kill enemy1: ");
 		if (dungeon.isEnemy(1, 0)) System.out.println("PASS");
@@ -157,8 +157,8 @@ public class TestSwordKill {
 		player.moveUp();
 		//attempt to kill enemy1
 		player.attackW();
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		//check if enemies are still there
 		System.out.print("Test should kill enemy1: ");
 		if (!dungeon.isEnemy(1, 0)) System.out.println("PASS");
@@ -193,8 +193,8 @@ public class TestSwordKill {
 		    Thread.currentThread().interrupt();
 		}
 		player.attackD();
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		System.out.print("Test should kill enemy5: ");
 		if (!dungeon.isEnemy(2, 1)) System.out.println("PASS");
@@ -215,8 +215,8 @@ public class TestSwordKill {
 		}
 		player.moveRight();
 		player.attackD();
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		//get current entity in dun should help to see if entity exists
 		
 		System.out.print("Test enemy5 is still dead: ");
@@ -231,8 +231,8 @@ public class TestSwordKill {
 		Sword swordNew = new Sword(dungeon, 2, 2, new Collectable());
 		dungeon.addEntity(swordNew);
 		
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		System.out.println("Pick up sword");
 		
 		try
@@ -245,8 +245,8 @@ public class TestSwordKill {
 		}
 		player.moveDown();
 		
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		
 		try
@@ -259,8 +259,8 @@ public class TestSwordKill {
 		}
 		player.attackD();
 		System.out.print("After Swing 1: ");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		try
 		{
@@ -272,8 +272,8 @@ public class TestSwordKill {
 		}
 		player.attackD();
 		System.out.print("After Swing 2: ");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		try
 		{
@@ -285,8 +285,8 @@ public class TestSwordKill {
 		}
 		player.attackD();
 		System.out.print("After Swing 3: ");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		try
 		{
@@ -298,8 +298,8 @@ public class TestSwordKill {
 		}
 		player.attackD();
 		System.out.print("After Swing 4: ");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 		try
 		{
@@ -311,8 +311,8 @@ public class TestSwordKill {
 		}
 		player.attackD();
 		System.out.print("After Swing 5: ");
-		if (player.getSword() == null) System.out.println("I have NO sword");
-		if (player.getSword() != null) System.out.println("I have sword ");
+		if (player.getWeapon() == null) System.out.println("I have NO sword");
+		if (player.getWeapon() != null) System.out.println("I have sword ");
 		
 	}
 }
