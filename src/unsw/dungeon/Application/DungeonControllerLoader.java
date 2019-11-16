@@ -207,12 +207,18 @@ public class DungeonControllerLoader extends DungeonLoader {
         		timeline.play(); 
             }
         });
+        // listener for y value of entity
         entity.y().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                     Number oldValue, Number newValue) {
+            	// old method: the nodes Y grid position is set to the new grid position
         		//GridPane.setRowIndex(node, newValue.intValue()); 
+            	
+            	// new method: make a timeline - over 0.5s, the node will move to: (y co ordinate in the gridpane * 32px)
+            	// works for player - doesnt work for anything else (enemies and swords when dropped)
         		Timeline timeline = new Timeline();
+        		System.out.println(newValue.intValue());
         		timeline.getKeyFrames().addAll(
         				new KeyFrame(Duration.seconds(0.5),
         				new KeyValue(node.translateYProperty(), (newValue.intValue() - 1) * 32)));
