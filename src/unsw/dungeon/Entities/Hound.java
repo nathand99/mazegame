@@ -53,14 +53,14 @@ public class Hound extends Enemy {
 	 */
 	public void hunt() {
 		// should loop every once in a while.
-		System.out.println("hunting");
+		// System.out.println("hunting");
 		int[] playerXY = player.getXY();
 		int[] currentXY = this.getXY();
 		
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();
 		if (bestPath == null) {
-			System.out.println("can't make it through wall");
+			// System.out.println("can't make it through wall");
 			randomMove(0); // can't reach player, move randomly.
 			return;
 		}
