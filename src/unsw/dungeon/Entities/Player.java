@@ -417,28 +417,23 @@ public class Player extends Entity implements Subject {
 	/**
 	 * The player dies.
 	 */
-	 public void die() {
-		 System.out.println("Yep, he's dead");
-		 dungeon.deregisterAll();
-		 dungeon.removeEntity(this);
-		 dungeon.setPlayer(null);
-		 if (controller != null) {
-			 Platform.runLater(new Runnable() {
-		            @Override public void run() {
-		            	try {
-							controller.restart();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-		            }
-		        });
-			 /*try {
-				controller.restart();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-		 }
-	 }
+	public void die() {
+		System.out.println("Yep, he's dead");
+		dungeon.deregisterAll();
+		dungeon.removeEntity(this);
+		dungeon.setPlayer(null);
+		if (controller != null) {
+		    Platform.runLater(new Runnable() {
+		        @Override public void run() {
+		            try {
+						controller.restart();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		        }
+		    });
+	    }
+    }
 
 	public int getLastWeaponSwing() {
 		return lastWeaponSwing;
