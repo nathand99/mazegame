@@ -50,7 +50,9 @@ public class Fire extends Entity {
 				((Enemy) entity).stopTimer();
 				((Enemy) entity).death(player.getGoals());
 			} else if (entity instanceof Player) {
-				this.player.die();
+				if (player.isNormalState() == true) {
+					this.player.die();
+				}
 			}
 		}
 		/*System.out.println("Player X " + player.getX());

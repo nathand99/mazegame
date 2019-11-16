@@ -21,6 +21,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PickupItem;
 import unsw.dungeon.PlayerGoal;
+import unsw.dungeon.Weapons;
 import unsw.dungeon.Entities.*;
 
 /**
@@ -217,7 +218,7 @@ public class DungeonController {
     	} else if (item instanceof Treasure) {
     		treasureImage.setVisible(true);
     		treasureCount.setText(String.valueOf(player.getTreasure()));
-    	} else {
+    	} else if (item instanceof Weapons){
     		// add new code for different weapons here.
     		weaponImage.setImage(player.getWeaponView().getImage());
     		weaponImage.setVisible(true);

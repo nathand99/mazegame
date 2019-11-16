@@ -35,7 +35,7 @@ public class Hound extends Enemy {
             	} else if (calcDistance() <= 5) {
             		hunt();
             	} else {
-            		randomMove();
+            		randomMove(0);
             	}
 
             }
@@ -59,7 +59,7 @@ public class Hound extends Enemy {
 		AStarSearch aStar = new AStarSearch(dungeon, playerXY, currentXY);
 		List<String> bestPath = aStar.search();
 		if (bestPath == null) {
-			randomMove(); // can't reach player, move randomly.
+			randomMove(0); // can't reach player, move randomly.
 		}
 		String firstMove = bestPath.get(0);
 		enemyMove(firstMove);
@@ -69,7 +69,10 @@ public class Hound extends Enemy {
 	/**
 	 * randomMove - a very basic movement pattern for the hound.
 	 */
-	public void randomMove() {
+	public void randomMove(int nest) {
+		if (nest >= 2) {
+			return;
+		}
 		int random = (int) Math.round(Math.random()*100) % 8;
 		// System.out.println(random);
 		int[] move = getXY();
@@ -83,7 +86,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "RIGHT";
 				}
-				randomMove();
+				randomMove(nest + 1);
 			} else if (random == 0) {
 				direction = "RIGHT";
 			}
@@ -98,7 +101,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "LEFT";
 				}
-				randomMove();
+				randomMove(nest + 1);
 			} else if (random == 0) {
 				direction = "LEFT";
 			}
@@ -112,7 +115,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "UP";
 				}
-				randomMove();
+				randomMove(nest + 1);
 			} else if (random == 0) {
 				direction = "UP";
 			}
@@ -126,7 +129,7 @@ public class Hound extends Enemy {
 				} else {
 					direction = "DOWN";
 				}
-				randomMove();
+				randomMove(nest + 1);
 			} else if (random == 0) {
 				direction = "DOWN";
 			}

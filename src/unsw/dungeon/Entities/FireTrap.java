@@ -31,6 +31,7 @@ public class FireTrap extends Entity {
 		fire.setPlayer(player);
 		fire.deactivate();
 		// System.out.println("Player X "+ player.getX());
+		
 		t.schedule(new TimerTask() {
 
             @Override

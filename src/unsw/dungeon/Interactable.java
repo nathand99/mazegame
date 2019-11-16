@@ -23,7 +23,9 @@ public class Interactable implements Movement{
 				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
 			}
 			else if (stationaryEntity instanceof Fire) {
-				((Player) movingEntity).die();
+				if (((Player) movingEntity).isNormalState() == true) {
+					((Player) movingEntity).die();
+				}
 				return true;
 			}
 			return true; // for exit, always true. However, does not always win.
