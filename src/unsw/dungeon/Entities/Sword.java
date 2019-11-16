@@ -52,11 +52,22 @@ public class Sword extends Entity implements PickupItem, Weapons {
 			return (Entity) prevWeapon;				
 		}
 	}
-    
+	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player swings sword 
+     */
 	public void swordSound() {
 		SoundEffects swordSound = new SoundEffects();
 		swordSound.playSound("./sound/sword.wav");
 	}
+	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player picks sword up
+     */
 	public void pickupSound() {
 		SoundEffects pickupSound = new SoundEffects();
 		pickupSound.playSound("./sound/key.wav");

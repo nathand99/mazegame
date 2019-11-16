@@ -41,40 +41,16 @@ public class Portal extends Entity{
 				teleSound();
 				player.x().set(e.getX());
 				player.y().set(e.getY());
-				
-				/*if(e.getY() > 0 && dungeon.getCurrentEntity(e.getX(), e.getY()-1).isEmpty()) {
-					//System.out.println("we can move up");
-					player.x().set(e.getX());
-					player.y().set(e.getY()-1);
-					return false;
-				}
-				else if (e.getY() < dungeon.getHeight() - 1 && dungeon.getCurrentEntity(e.getX(), e.getY()+1).isEmpty()) {
-					//System.out.println("we can move down");
-					player.x().set(e.getX());
-					player.y().set(e.getY()+1);
-					return false;
-				}
-				else if (e.getX() > 0 && dungeon.getCurrentEntity(e.getX()-1, e.getY()).isEmpty()) {
-					//System.out.println("we can move left");
-					player.x().set(e.getX()-1);
-					player.y().set(e.getY());
-					return false;
-				}
-				else if (e.getX() < dungeon.getWidth() - 1 && dungeon.getCurrentEntity(e.getX()+1, e.getY()).isEmpty()) {
-					//System.out.println("we can move right");
-					player.x().set(e.getX()+1);
-					player.y().set(e.getY());
-					return false;
-				}
-				else {
-					//portal is blocked so don't do anything
-					return false;
-				}*/
 			}
 		}
 		return false;
 	}
 	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player uses portal
+     */
 	public void teleSound() {
 		SoundEffects teleSound = new SoundEffects();
 		teleSound.playSound("./sound/teleport.wav");

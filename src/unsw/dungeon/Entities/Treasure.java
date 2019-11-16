@@ -30,6 +30,10 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
     	player.registerObserver(this);
     }
     
+    /**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     */
     public void treasureSound() {
 		SoundEffects treasureSound = new SoundEffects();
 		treasureSound.playSound("./sound/treasure.wav");

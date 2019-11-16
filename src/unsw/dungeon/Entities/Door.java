@@ -50,6 +50,11 @@ public class Door extends Entity {
 		return false;
 	}
 	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > when door is unlocked by key 
+     */
 	public void openDoorSound() {
 		SoundEffects openDoorSound = new SoundEffects();
 		openDoorSound.playSound("./sound/opendoor.wav");

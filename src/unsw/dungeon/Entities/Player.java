@@ -210,6 +210,11 @@ public class Player extends Entity implements Subject {
     	}
     }
     
+    /**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player wins the game
+     */
     public void winGameSound() {
 		SoundEffects winGameSound = new SoundEffects();
 		winGameSound.playSound("./sound/win.wav");

@@ -52,6 +52,11 @@ public class Key extends Entity implements PickupItem {
 		}
 	}	
     
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player uses key
+     */
 	public void keySound() {
 		SoundEffects keySound = new SoundEffects();
 		keySound.playSound("./sound/key.wav");

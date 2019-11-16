@@ -192,6 +192,12 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 		}
 
 	}
+	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player kills enemy
+     */
 	public void enemyDeathSound() {
 		SoundEffects enemyDeathSound = new SoundEffects();
 		enemyDeathSound.playSound("./sound/yell12.wav");

@@ -31,6 +31,11 @@ public class Fire extends Entity {
 		this.getEntityView().setVisible(false);
 	}
 	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > every time fire animation appears
+     */
 	public void fireSound() {
 		SoundEffects fireSound = new SoundEffects();
 		fireSound.playSound("./sound/fire1.wav");

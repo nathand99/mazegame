@@ -56,10 +56,21 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 		}
 	}
     
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player uses long sword
+     */
 	public void longSwordSound() {
 		SoundEffects longSwordSound = new SoundEffects();
 		longSwordSound.playSound("./sound/longsword.wav");
 	}
+	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player picks long sword up
+     */
 	public void pickupSound() {
 		SoundEffects pickupSound = new SoundEffects();
 		pickupSound.playSound("./sound/key.wav");

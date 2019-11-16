@@ -70,6 +70,11 @@ public class Invincibility extends Entity implements PickupItem {
 		return null;
 	}
 	
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player picks potion up
+     */
 	public void invincibleSound() {
 		SoundEffects invincibleSound = new SoundEffects();
 		invincibleSound.playSound("./sound/potion.wav");
