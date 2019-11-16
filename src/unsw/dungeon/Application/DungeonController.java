@@ -87,7 +87,6 @@ public class DungeonController {
 		menuScreen.start();
 	}
     
-    //TODO - right now it just quits
     public void restart() throws IOException {
     	dungeon.deregisterAll();
 		dungeonScreen.start();

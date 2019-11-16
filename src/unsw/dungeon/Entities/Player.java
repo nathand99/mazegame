@@ -1,5 +1,6 @@
 package unsw.dungeon.Entities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -421,6 +422,22 @@ public class Player extends Entity implements Subject {
 		 dungeon.deregisterAll();
 		 dungeon.removeEntity(this);
 		 dungeon.setPlayer(null);
+		 if (controller != null) {
+			 Platform.runLater(new Runnable() {
+		            @Override public void run() {
+		            	try {
+							controller.restart();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+		            }
+		        });
+			 /*try {
+				controller.restart();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}*/
+		 }
 	 }
 
 	public int getLastWeaponSwing() {
