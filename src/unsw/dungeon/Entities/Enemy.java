@@ -200,7 +200,9 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 		// can't update goal here?
 		// player.updateGoal();
 		player.removeObserver((EnemyObserver) this);
-		this.getEntityView().setVisible(false);
+		if (this.getEntityView() != null) {
+			this.getEntityView().setVisible(false);
+		}
 		dungeon.removeEntity(this);
 		
 		player.win(); // checks to see if player wins.

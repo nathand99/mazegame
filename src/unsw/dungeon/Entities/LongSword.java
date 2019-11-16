@@ -30,7 +30,9 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 		// if player has no sword, put this sword in inventory - return null
 		if (p.getWeapon() == null) {
 			p.setWeapon(this);
-			this.getEntityView().setVisible(false);
+			if (this.getEntityView() != null) {
+				this.getEntityView().setVisible(false);
+			}
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground

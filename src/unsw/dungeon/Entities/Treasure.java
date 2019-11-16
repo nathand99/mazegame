@@ -34,7 +34,9 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
 	public Entity pickup(Player p) {	
 		// increment players treasure counter
 		addTreasure(p);
-		this.getEntityView().setVisible(false);
+		if (this.getEntityView() != null) {
+			this.getEntityView().setVisible(false);
+		}
 		// remove picked up treasure from the dungeon
 		dungeon.removeEntity(this);
 		
