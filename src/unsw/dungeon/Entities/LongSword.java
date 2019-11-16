@@ -1,5 +1,6 @@
 package unsw.dungeon.Entities;
 
+import javafx.scene.image.ImageView;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 
@@ -13,6 +14,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	
     /**
      * Create a sword positioned in square (x,y)
+     * Longsword hit extended (2 squares) and has only 3 durability.
      * @param dungeon
      * @param x
      * @param y
@@ -32,11 +34,21 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
-		} else {			
+		} else {	
+			// requires a tempImage to swap the images.
+			Weapons prevWeapon = p.getWeapon();
+			((Entity) prevWeapon).x().set(this.getX());
+			((Entity) prevWeapon).y().set(this.getY());
+			
+			if (p.getController() != null) {
+				this.getEntityView().setVisible(false);
+				prevWeapon.getWeaponView().setVisible(true);
+			}
+			
 			dungeon.removeEntity(this);
 			p.setWeapon(this);
 			// drop sword where the player is with the ID of the sword the player had
-			return new LongSword(dungeon, p.getX(), p.getY(), new Collectable());			
+			return (Entity) prevWeapon;			
 		}
 	}
     
@@ -90,21 +102,29 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	 * -1 durability to sword.
 	 */
 	public void useHit() {
-		dungeon.getPlayer().getWeapon().setHitsLeft(dungeon.getPlayer().getWeapon().getHitsLeft()-1);
-		if (dungeon.getPlayer().getWeapon().getHitsLeft() == 0) {
+		this.setHitsLeft(hitsLeft - 1);
+		if (hitsLeft == 0) {
 			dungeon.getPlayer().setWeapon(null);
 		}
 	}
+	
 	@Override
     public int getWeaponID() {
         return this.longSwordID;
     }
+	
     @Override
 	public int getHitsLeft() {
 		return hitsLeft;
 	}
+    
     @Override
 	public void setHitsLeft(int hitsLeft) {
 		this.hitsLeft = hitsLeft;
+	}
+    
+    @Override
+	public ImageView getWeaponView() {
+		return this.getEntityView();
 	}
 }

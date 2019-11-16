@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.scene.image.ImageView;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Application.DungeonController;
@@ -484,5 +485,20 @@ public class Player extends Entity implements Subject {
 
 	public void setWeapon(Weapons weapon) {
 		this.weapon = weapon;
+	}
+	
+	/**
+	 * Returns the imageView of the weapon to frontend
+	 * @return
+	 */
+	public ImageView getWeaponView() {
+		return weapon.getWeaponView();
+	}
+	
+	/**
+	 * Sets the player at the front of the entities.
+	 */
+	public void toFront() {
+		getEntityView().toFront();
 	}
 }
