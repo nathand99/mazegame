@@ -150,7 +150,7 @@ public class DungeonController {
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
-        case UP:;
+        case UP:
         	player.moveUp();
         	/*
         	// create a transition

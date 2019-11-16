@@ -214,7 +214,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         		//GridPane.setRowIndex(node, newValue.intValue()); 
         		Timeline timeline = new Timeline();
         		timeline.getKeyFrames().addAll(
-        				new KeyFrame(Duration.seconds(0.4),
+        				new KeyFrame(Duration.seconds(0.5),
         				new KeyValue(node.translateYProperty(), (newValue.intValue() - 1) * 32)));
         		timeline.play(); 
             }
