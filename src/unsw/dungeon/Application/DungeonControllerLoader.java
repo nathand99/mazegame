@@ -200,11 +200,13 @@ public class DungeonControllerLoader extends DungeonLoader {
             public void changed(ObservableValue<? extends Number> observable,
                     Number oldValue, Number newValue) {
                 //GridPane.setColumnIndex(node, newValue.intValue());
+            	
                 Timeline timeline = new Timeline();
                 timeline.getKeyFrames().addAll(
         				new KeyFrame(Duration.seconds(0.5),
         				new KeyValue(node.translateXProperty(), (newValue.intValue() - 1) * 32)));
         		timeline.play(); 
+        		
             }
         });
         // listener for y value of entity
@@ -223,6 +225,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         				new KeyFrame(Duration.seconds(0.5),
         				new KeyValue(node.translateYProperty(), (newValue.intValue() - 1) * 32)));
         		timeline.play(); 
+        		
             }
         });
     }
