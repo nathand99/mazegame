@@ -205,9 +205,20 @@ public class Player extends Entity implements Subject {
     	}
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
+    		winGameSound();
     		System.out.println("You win!");
     	}
     }
+    
+    /**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player wins the game
+     */
+    public void winGameSound() {
+		SoundEffects winGameSound = new SoundEffects();
+		winGameSound.playSound("./sound/win.wav");
+	}
     
     
     public int getMinClickDelay() {
@@ -418,6 +429,7 @@ public class Player extends Entity implements Subject {
 	 * The player dies.
 	 */
 	public void die() {
+		loseGameSound();
 		System.out.println("Yep, he's dead");
 		dungeon.deregisterAll();
 		dungeon.removeEntity(this);
@@ -434,7 +446,12 @@ public class Player extends Entity implements Subject {
 		    });
 	    }
     }
-
+	
+	public void loseGameSound() {
+		SoundEffects loseGameSound = new SoundEffects();
+		loseGameSound.playSound("./sound/game_over.wav");
+	}
+	
 	public int getLastWeaponSwing() {
 		return lastWeaponSwing;
 	}
