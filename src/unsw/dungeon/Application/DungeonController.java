@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import unsw.dungeon.Entity;
 import unsw.dungeon.GoalReader;
 import unsw.dungeon.PickupItem;
@@ -148,12 +150,24 @@ public class DungeonController {
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
-        case UP:
-            player.moveUp();
+        case UP:;
+        	player.moveUp();
+        	/*
+        	// create a transition
+        	TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), player.getEntityView());   
+        	// finishing x 
+        	transition.setToX(player.getEntityView().getLayoutX());
+        	// finishing y - 10 spots up
+        	transition.setToY(player.getEntityView().getLayoutY() - 10);
+        	// attach the player image
+        	transition.setNode(player.getEntityView());
+        	// play transition
+        	transition.play();       
+        	*/    
             register();
             break;
-        case DOWN:
-            player.moveDown();
+        case DOWN:    
+        	player.moveDown();
             register();
             break;
         case LEFT:

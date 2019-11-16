@@ -4,12 +4,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import unsw.dungeon.*;
 import unsw.dungeon.Entities.*;
 
@@ -191,17 +199,28 @@ public class DungeonControllerLoader extends DungeonLoader {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                     Number oldValue, Number newValue) {
-                GridPane.setColumnIndex(node, newValue.intValue());
+                //GridPane.setColumnIndex(node, newValue.intValue());
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+        				new KeyFrame(Duration.seconds(0.5),
+        				new KeyValue(node.translateXProperty(), (newValue.intValue() - 1) * 32)));
+        		timeline.play(); 
             }
         });
         entity.y().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                     Number oldValue, Number newValue) {
-                GridPane.setRowIndex(node, newValue.intValue());
+        		//GridPane.setRowIndex(node, newValue.intValue()); 
+        		Timeline timeline = new Timeline();
+        		timeline.getKeyFrames().addAll(
+        				new KeyFrame(Duration.seconds(0.4),
+        				new KeyValue(node.translateYProperty(), (newValue.intValue() - 1) * 32)));
+        		timeline.play(); 
             }
         });
     }
+    
 
     /**
      * Create a controller that can be attached to the DungeonView with all the
