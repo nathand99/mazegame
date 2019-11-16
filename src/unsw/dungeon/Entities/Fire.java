@@ -9,6 +9,11 @@ import unsw.dungeon.Movement;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Entities.Player;
 
+/**
+ * Fire, for the fire on the trap.
+ * @author z5207990
+ *
+ */
 public class Fire extends Entity {
 	
 	private Dungeon dungeon;
@@ -25,12 +30,17 @@ public class Fire extends Entity {
 		this.player = player;
 	}
 	
+	/**
+	 * Deactivates the fire.
+	 */
 	public void deactivate() {
 		setMovement(new Moveable());
 		this.getEntityView().setVisible(false);
 	}
 	
-	
+	/**
+	 * Activates the fire, killing players.
+	 */
 	public void activate() {
 		checkKill();
 		
@@ -42,10 +52,18 @@ public class Fire extends Entity {
 		deactivate();
 	}
 	
+	/**
+	 * Checks if the player is killed.
+	 */
 	public void checkKill() {
-		List<Entity> onSquare = dungeon.getCurrentEntity(getX(), getY());
+		if (this.getX() == player.getX() && this.getY() == player.getY()) {
+			if (player.isNormalState() == true) {
+				player.die();
+			}
+		}
+		//List<Entity> onSquare = dungeon.getCurrentEntity(getX(), getY());
 		// System.out.println(onSquare.size());
-		for (Entity entity : onSquare) {
+		/*for (Entity entity : onSquare) {
 			if (entity instanceof Enemy) {
 				((Enemy) entity).stopTimer();
 				((Enemy) entity).death(player.getGoals());
@@ -54,7 +72,7 @@ public class Fire extends Entity {
 					this.player.die();
 				}
 			}
-		}
+		}*/
 		/*System.out.println("Player X " + player.getX());
 		if (player.getX() == this.getX() && player.getY() == this.getY()) {
 			player.die();

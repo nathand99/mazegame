@@ -145,7 +145,7 @@ public abstract class DungeonLoader {
             
 	    case "fire_trap":
 	    	int timeGap = json.getInt("time_gap");
-        	FireTrap fireTrap = new FireTrap(dungeon, x, y, timeGap, new Moveable());
+        	FireTrap fireTrap = new FireTrap(dungeon, x, y, timeGap, new Interactable());
         	onLoad(fireTrap);
         	entity = fireTrap;
         	
