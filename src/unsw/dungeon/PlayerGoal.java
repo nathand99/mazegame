@@ -116,6 +116,11 @@ public class PlayerGoal {
 			Goal goal = goals.get(i);
 			goalString += goal.toString();
 		}
+		if (goalString.charAt(0) == '(') {
+			goalString = goalString.substring(1, goalString.length() - 1);
+		}
+		goalString = goalString.substring(0, 1).toUpperCase() + goalString.substring(1);
+		goalString += ".";
 		return goalString;
 	}
 }

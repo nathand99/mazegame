@@ -194,11 +194,13 @@ public class Player extends Entity implements Subject {
      * checks if player has won, and updates the goal.
      */
     public void win() {
-    	Platform.runLater(new Runnable() {
-            @Override public void run() {
-                updateGoal();
-            }
-        });
+    	if (controller != null) {
+	    	Platform.runLater(new Runnable() {
+	            @Override public void run() {
+	                updateGoal();
+	            }
+	        });
+    	}
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
     		System.out.println("You win!");

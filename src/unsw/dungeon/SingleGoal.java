@@ -54,6 +54,15 @@ public class SingleGoal implements Goal {
 	
 	@Override
 	public String toString() {
+		if (goal.equals("enemy")) {
+			return("kill " + this.remaining + " enemies");
+		} else if (goal.equals("treasure")) {
+			return("get " + this.remaining + " treasure");
+		} else if (goal.equals("boulders")) {
+			return("activate " + this.remaining + " switches");
+		} else if (goal.equals("exit")) {
+			return("get to the exit");
+		}
 		return(this.goal + " " + this.remaining + " time");
 	}
 
