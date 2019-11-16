@@ -529,10 +529,10 @@ public class GenerateMaps {
 	// door_key, boulder_switch, treasure, portal, invincibility
 	public static void main(String[] args) {
 		// x, y1, y2
-		 addWallH(10,  18, 6, "wallH");
+		 //addWallH(10,  18, 6, "wallH");
 		// x1, x2, y
 		//addWallV(14, 4, 10, "wallV");
-		 //simpleCreate(21, 17, "4");
+		 // simpleCreate(13, 11, "5");
 		/*
 		//parameters: location, num_maps, x, y, entities...
 		

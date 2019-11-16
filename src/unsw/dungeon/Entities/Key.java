@@ -43,10 +43,16 @@ public class Key extends Entity implements PickupItem {
 		// if player has key, swap keys - return players key - to be placed on ground
 		} else {			
 			Key temp = p.getKey();
+			temp.x().setValue(this.getX());
+			temp.y().setValue(this.getY());
+			if (this.getEntityView() != null) {
+				temp.getEntityView().setVisible(true);
+				this.getEntityView().setVisible(false);
+			}
 			dungeon.removeEntity(this);
 			p.setKey(this);
 			// drop key where the player is, with the ID of the key the player had
-			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new Collectable());			
+			return temp;			
 		}
 	}	
     
