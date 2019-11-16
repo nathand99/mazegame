@@ -3,6 +3,8 @@ package unsw.dungeon.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
+import javafx.scene.image.ImageView;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Application.DungeonController;
@@ -29,11 +31,7 @@ public class Player extends Entity implements Subject {
     private PlayerGoal goals;
     
     // inventory
-    // weapons
-    private Sword sword = null;
-    private LongSword longSword = null;
-    private Mace mace = null;
-    
+    private Weapons weapon = null;
     private Key key = null;
     private int treasure = 0; 
     //game starts on normal state being true 
@@ -194,9 +192,16 @@ public class Player extends Entity implements Subject {
     }
     
     /**
-     * checks if player has won.
+     * checks if player has won, and updates the goal.
      */
     public void win() {
+    	if (controller != null) {
+	    	Platform.runLater(new Runnable() {
+	            @Override public void run() {
+	                updateGoal();
+	            }
+	        });
+    	}
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
     		System.out.println("You win!");
@@ -236,24 +241,7 @@ public class Player extends Entity implements Subject {
 		this.numThreads = numThreads;
 	}
 	
-	/**
-	 * Returns the durability of Sword.
-	 * @return
-	 */
-	public int getSwordDurability() {
-		if (sword == null) {
-			return 0;
-		}
-		return sword.getHitsLeft();
-	}
-
-	public Sword getSword() {
-		return sword;
-	}
-
-	public void setSword(Sword sword) {
-		this.sword = sword;
-	}
+	
 	
 	/**
 	 * Returns the keyID.
@@ -332,7 +320,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 	
@@ -347,7 +335,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 
@@ -376,7 +364,7 @@ public class Player extends Entity implements Subject {
 				i--;
 			}
 		}
-		updateGoal();
+		//updateGoal();
 		win();
 	}
 	
@@ -384,14 +372,9 @@ public class Player extends Entity implements Subject {
 	 * attack up
 	 */
 	public void attackW() {
-		if (sword != null) {
-			sword.attackAbove(this);
-		}
-		else if(longSword != null) {
-			longSword.attackAbove(this);
-		}
-		else if(mace != null) {
-			mace.attackAbove(this);
+		if(weapon != null) {
+			weapon.attackAbove(this);
+			updateWeaponDurability();
 		}
 		
 		
@@ -401,14 +384,9 @@ public class Player extends Entity implements Subject {
 	 * attack down
 	 */
 	public void attackS() {
-		if (sword != null) {
-			sword.attackBelow(this);
-		}
-		else if(longSword != null) {
-			longSword.attackBelow(this);
-		}
-		else if(mace != null) {
-			mace.attackBelow(this);
+		if(weapon != null) {
+			weapon.attackBelow(this);
+			updateWeaponDurability();
 		}
 		
 	}
@@ -417,32 +395,20 @@ public class Player extends Entity implements Subject {
 	 * attack right
 	 */
 	public void attackD() {
-		if (sword != null) {
-			sword.attackRight(this);
+		if(weapon != null) {
+			weapon.attackRight(this);
+			updateWeaponDurability();
 		}
-		else if(longSword != null) {
-			longSword.attackRight(this);
-		}
-		else if(mace != null) {
-			mace.attackRight(this);
-		}
+		
 	}
 	
 	/**
 	 * attack left
 	 */
 	public void attackA() {
-		if (sword != null) {
-			sword.attackLeft(this);
-		}
-		else if(longSword != null) {
-			longSword.attackLeft(this);
-		}
-		else if(mace != null) {
-			mace.attackLeft(this);
-		}
-		if (controller != null) {
-			controller.setWeaponDurability();
+		if(weapon != null) {
+			weapon.attackLeft(this);
+			updateWeaponDurability();
 		}
 	}
 	
@@ -465,20 +431,17 @@ public class Player extends Entity implements Subject {
 		this.lastWeaponSwing = lastWeaponSwing;
 	}
 
-	public LongSword getLongSword() {
-		return longSword;
-	}
-
-	public void setLongSword(LongSword longSword) {
-		this.longSword = longSword;
-	}
-
-	public Mace getMace() {
-		return mace;
-	}
-
-	public void setMace(Mace mace) {
-		this.mace = mace;
+	
+	/**
+	 * Returns the durability of Sword.
+	 * @return
+	 */
+	
+	public int getWeaponDurability() {
+		if (weapon == null) {
+			return 0;
+		}
+		return weapon.getHitsLeft();
 	}
 
 	public DungeonController getController() {
@@ -499,11 +462,43 @@ public class Player extends Entity implements Subject {
 	}
 	
 	/**
+	 * Updates the front end weapon durability.
+	 */
+	public void updateWeaponDurability() {
+		if (controller != null) {
+			controller.setWeaponDurability();
+		}
+	}
+	
+	/**
 	 * Updates the goal for frontend.
 	 */
 	public void updateGoal() {
 		if (controller != null) {
 			controller.updateGoal();
 		}
+	}
+
+	public Weapons getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Weapons weapon) {
+		this.weapon = weapon;
+	}
+	
+	/**
+	 * Returns the imageView of the weapon to frontend
+	 * @return
+	 */
+	public ImageView getWeaponView() {
+		return weapon.getWeaponView();
+	}
+	
+	/**
+	 * Sets the player at the front of the entities.
+	 */
+	public void toFront() {
+		getEntityView().toFront();
 	}
 }

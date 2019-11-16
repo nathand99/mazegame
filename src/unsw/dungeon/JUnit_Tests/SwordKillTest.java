@@ -42,7 +42,7 @@ public class SwordKillTest {
 		//player starts at 1,1
 		
 		// do i have sword 
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//check if enemies are still there
 		assertEquals(dungeon.isEnemy(1, 0), true);
@@ -110,7 +110,7 @@ public class SwordKillTest {
 		assertEquals(dungeon.isEnemy(1, 3), true);
 		
 		//check sword 
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//move down then attack 
 		player.moveDown();
@@ -121,7 +121,7 @@ public class SwordKillTest {
 		catch(InterruptedException ex){ Thread.currentThread().interrupt();}
 		
 		//check sword 
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//check if enemies are still there
 	
@@ -176,7 +176,7 @@ public class SwordKillTest {
 		assertEquals(dungeon.isEnemy(1, 3), true);
 		
 		//check sword 
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//move down and attack
 		player.moveDown();
@@ -187,7 +187,7 @@ public class SwordKillTest {
 		catch(InterruptedException ex){ Thread.currentThread().interrupt();}
 		
 		//check sword
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//check if enemies are still there
 		assertEquals(dungeon.isEnemy(1, 0), true);
@@ -240,7 +240,7 @@ public class SwordKillTest {
 		assertEquals(dungeon.isEnemy(1, 3), true);
 		
 		//check sword
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//mpve down and attack
 		player.moveDown();
@@ -251,7 +251,7 @@ public class SwordKillTest {
 		catch(InterruptedException ex){ Thread.currentThread().interrupt();}
 		
 		//check sword
-		assertEquals(player.getSword(), null);
+		assertEquals(player.getWeapon(), null);
 		
 		//check if enemies are still there
 		assertEquals(dungeon.isEnemy(1, 0), true);

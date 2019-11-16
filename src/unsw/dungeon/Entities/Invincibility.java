@@ -62,7 +62,9 @@ public class Invincibility extends Entity implements PickupItem {
 		// once player picks up potion, go invincible
 		this.invincible(p);
 		// remove potion from the dungeon
-		this.getEntityView().setVisible(false);
+		if (this.getEntityView() != null) {
+			this.getEntityView().setVisible(false);
+		}
 		dungeon.removeEntity(this);
 		return null;
 	}

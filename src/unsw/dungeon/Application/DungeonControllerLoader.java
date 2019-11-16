@@ -69,8 +69,8 @@ public class DungeonControllerLoader extends DungeonLoader {
         fireTrapImage = new Image("/fire_trap.png");
         fireImage = new Image("/fire.png");
         houndImage = new Image("/hound.png");
-        longSwordImage = new Image("/greatsword_1_new.png");
-        maceImage = new Image("/greatsword_1_new.png");
+        longSwordImage = new Image("/longsword.png");
+        maceImage = new Image("/mace.png");
     }
 
     @Override

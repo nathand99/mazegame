@@ -40,7 +40,7 @@ class PickupItemTest {
 		dungeon.addEntity(treasure6);									// add the 6 treasure
 		
 		assertEquals(player.getKey(), null);	// player initally has no key in inventory
-		assertEquals(player.getSword(), null);	// player initally has no sword in inventory
+		assertEquals(player.getWeapon(), null);	// player initally has no sword in inventory
 		assertEquals(player.getTreasure(), 0);	// player initally has 0 treasure
 		
 		player.moveDown();						// player moves down 1 space onto 0,1
@@ -51,7 +51,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player picks up key from ground and puts it in inventory
-		assertEquals(player.getSword(), null);	// player has no sword in inventory
+		assertEquals(player.getWeapon(), null);	// player has no sword in inventory
 		assertEquals(player.getTreasure(), 0);	// player has 0 treasure
     	
     	player.moveDown();						// player moves down 1 space
@@ -62,7 +62,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player picks up sword from ground and puts it in inventory
+		assertEquals(player.getWeapon(), sword);	// player picks up sword from ground and puts it in inventory
 		assertEquals(player.getTreasure(), 0);	// player has 0 treasure
 		
 		player.moveDown();						// player moves down 1 space
@@ -73,7 +73,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 1);	// player picks up treasure from ground and puts it in inventory
 		
 		// player now has 1 treasure
@@ -86,7 +86,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 2);	// player has 2 treasure
 		
 		player.moveDown();						// player moves down 1 space
@@ -97,7 +97,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 3);	// player has 3 treasure
 		
 		player.moveDown();						// player moves down 1 space
@@ -108,7 +108,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 4);	// player has 4 treasure
 		
 		player.moveDown();						// player moves down 1 space
@@ -119,7 +119,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 5);	// player has 5 treasure
 		
 		player.moveDown();						// player moves down 1 space
@@ -130,7 +130,7 @@ class PickupItemTest {
 		}
 		
 		assertEquals(player.getKey(), key);		// player has key in inventory
-		assertEquals(player.getSword(), sword);	// player has sword in inventory
+		assertEquals(player.getWeapon(), sword);	// player has sword in inventory
 		assertEquals(player.getTreasure(), 6);	// player has 6 treasure
 	}
 

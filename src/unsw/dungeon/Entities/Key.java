@@ -35,7 +35,9 @@ public class Key extends Entity implements PickupItem {
 		// if player has no key, put this key in inventory - return null
 		if (p.getKey() == null) {
 			p.setKey(this);
-			this.getEntityView().setVisible(false);
+			if (this.getEntityView() != null) {
+				this.getEntityView().setVisible(false);
+			}
 			dungeon.removeEntity(this);
 			return null;
 		// if player has key, swap keys - return players key - to be placed on ground

@@ -1,18 +1,21 @@
 package unsw.dungeon.Entities;
 
+import javafx.scene.image.ImageView;
 import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 
 public class Mace extends Entity implements PickupItem, Weapons {
 	
 
-	private int longSwordID;
+	private int maceID;
 	private Dungeon dungeon;
 	private int hitsLeft = 1;
 
 	
     /**
-     * Create a sword positioned in square (x,y)
+     * Create a mace positioned in square (x,y)
+     * Mace hits all 4 squares around player, regardless of swing direction. 
+     * Only 1 hit total.
      * @param dungeon
      * @param x
      * @param y
@@ -26,18 +29,28 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	@Override
 	public Entity pickup(Player p) {
 		// if player has no sword, put this sword in inventory - return null
-		if (p.getMace() == null) {
-			p.setMace(this);
-			this.getEntityView().setVisible(false);
+		if (p.getWeapon() == null) {
+			p.setWeapon(this);
+			if (this.getEntityView() != null) {
+				this.getEntityView().setVisible(false);
+			}
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
-		} else {			
-			Mace temp = p.getMace();
+		} else {
+			Weapons prevWeapon = p.getWeapon();
+			((Entity) prevWeapon).x().set(this.getX());
+			((Entity) prevWeapon).y().set(this.getY());
+			
+			if (p.getController() != null) {
+				this.getEntityView().setVisible(false);
+				prevWeapon.getWeaponView().setVisible(true);
+			}
+			
 			dungeon.removeEntity(this);
-			p.setMace(this);
+			p.setWeapon(this);
 			// drop sword where the player is with the ID of the sword the player had
-			return new Mace(dungeon, p.getX(), p.getY(), new Collectable());			
+			return (Entity) prevWeapon;			
 		}
 	}
     
@@ -62,7 +75,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	public void MaceSwing(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
-		if (player.getMace() != null) {
+		if (player.getWeapon() != null) {
 			player.notifyEnemyWeapon(player.getX()-1, player.getY());
 			player.notifyEnemyWeapon(player.getX()+1, player.getY());
 			player.notifyEnemyWeapon(player.getX(), player.getY()-1);
@@ -75,20 +88,29 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	 * -1 durability to sword.
 	 */
 	public void useHit() {
-		dungeon.getPlayer().getMace().setHitsLeft(dungeon.getPlayer().getMace().getHitsLeft()-1);
-		if (dungeon.getPlayer().getMace().getHitsLeft() == 0) {
-			dungeon.getPlayer().setMace(null);
+		this.setHitsLeft(hitsLeft - 1);
+		if (hitsLeft == 0) {
+			dungeon.getPlayer().setWeapon(null);
 		}
 	}
-    public int getLongSwordID() {
-        return this.longSwordID;
+	
+	@Override
+    public int getWeaponID() {
+        return this.maceID;
     }
-
+	
+    @Override
 	public int getHitsLeft() {
 		return hitsLeft;
 	}
-
+    
+    @Override
 	public void setHitsLeft(int hitsLeft) {
 		this.hitsLeft = hitsLeft;
+	}
+    
+    @Override
+	public ImageView getWeaponView() {
+		return this.getEntityView();
 	}
 }

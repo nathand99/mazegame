@@ -131,9 +131,10 @@ public class DungeonController {
         keyImage.setVisible(false);
         weaponImage.setVisible(false);
         
-        for (ImageView entity : initialEntities)
+        for (ImageView entity : initialEntities) {
             squares.getChildren().add(entity);
-    	
+        }
+        player.toFront();
     }
     
     /**
@@ -233,8 +234,9 @@ public class DungeonController {
     		treasureCount.setText(String.valueOf(player.getTreasure()));
     	} else {
     		// add new code for different weapons here.
+    		weaponImage.setImage(player.getWeaponView().getImage());
     		weaponImage.setVisible(true);
-    		weaponDurability.setText(String.valueOf(player.getSwordDurability()));
+    		weaponDurability.setText(String.valueOf(player.getWeaponDurability()));
     	}
     }
     
@@ -242,7 +244,7 @@ public class DungeonController {
      * Sets the weapon durability again, to update. Removes image if durability hits 0.
      */
     public void setWeaponDurability() {
-    	int durability = player.getSwordDurability();
+    	int durability = player.getWeaponDurability();
     	if (durability <= 0) {
     		weaponImage.setVisible(false);
     	}

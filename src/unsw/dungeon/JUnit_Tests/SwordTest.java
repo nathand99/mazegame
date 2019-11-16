@@ -21,7 +21,7 @@ class SwordTest {
 		Sword sword = new Sword(dungeon, 0, 1, new Collectable());	// create a new sword (1 square below player)
 		dungeon.addEntity(sword);										// add sword to dungeon
 		
-		assertEquals(player.getSword(), null);	// player initally has no sword in inventory
+		assertEquals(player.getWeapon(), null);	// player initally has no sword in inventory
 		player.moveDown();						// player moves down 1 space
 		try {
 		    Thread.sleep(400);
@@ -29,7 +29,7 @@ class SwordTest {
 		    Thread.currentThread().interrupt();
 		}
 		
-		assertEquals(player.getSword(), sword);		// player picks up sword from ground and puts it in inventory
+		assertEquals(player.getWeapon(), sword);		// player picks up sword from ground and puts it in inventory
 		
 		// now check the sword is not on the ground
 		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());	// get all entities on the square of the player
@@ -52,7 +52,7 @@ class SwordTest {
 		dungeon.addEntity(sword1);
 		dungeon.addEntity(sword2);										// add swords to dungeon
 		
-		assertEquals(player.getSword(), null);	// player initally has no sword in inventory
+		assertEquals(player.getWeapon(), null);	// player initally has no sword in inventory
 		player.moveDown();						// player moves down 1 space
 		try {
 		    Thread.sleep(400);
@@ -60,7 +60,7 @@ class SwordTest {
 		    Thread.currentThread().interrupt();
 		}
 		
-		assertEquals(player.getSword(), sword1);	// player picks up sword 1 from ground and puts it in inventory
+		assertEquals(player.getWeapon(), sword1);	// player picks up sword 1 from ground and puts it in inventory
 		
 		// now check sword 1 is not on the ground
 		List<Entity> entities = dungeon.getCurrentEntity(player.getX(), player.getY());	// get all entities on the square of the player
@@ -80,7 +80,7 @@ class SwordTest {
 		    Thread.currentThread().interrupt();
 		}
     	
-    	assertEquals(player.getSword(), sword2); // player picks up sword 2 from ground and puts it in inventory
+    	assertEquals(player.getWeapon(), sword2); // player picks up sword 2 from ground and puts it in inventory
     	// now check sword 1 is on the ground
 		List<Entity> entities2 = dungeon.getCurrentEntity(player.getX(), player.getY());	// get all entities on the square of the player
     	Sword s = null;
@@ -90,7 +90,7 @@ class SwordTest {
     			break;
     		}
     	}
-    	assertEquals(s.getswordID(),sword1.getswordID());	// the player drops sword 1 on the ground
+    	assertEquals(s.getWeaponID(),sword1.getWeaponID());	// the player drops sword 1 on the ground
 	}
 
 }

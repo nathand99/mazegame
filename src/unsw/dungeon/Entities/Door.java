@@ -34,7 +34,10 @@ public class Door extends Entity {
 			if (player.getKey().getkeyID() == doorID) {				
 				// remove the locked door
 				dungeon.removeEntity(this);
-				this.getEntityView().setImage(new Image("/open_door.png"));
+				if (this.getEntityView() != null) {
+					this.getEntityView().setImage(new Image("/open_door.png"));
+				}
+				
 				// add in an unlocked door where the locked one was
 				Door new_door = new Door(this.dungeon, this.getX(), this.getY(), this.getdoorID(), new Moveable());
 				dungeon.addEntity(new_door);
