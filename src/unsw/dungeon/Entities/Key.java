@@ -38,11 +38,13 @@ public class Key extends Entity implements PickupItem {
 			if (this.getEntityView() != null) {
 				this.getEntityView().setVisible(false);
 			}
+			keySound();
 			dungeon.removeEntity(this);
 			return null;
 		// if player has key, swap keys - return players key - to be placed on ground
 		} else {			
 			Key temp = p.getKey();
+			keySound();
 			dungeon.removeEntity(this);
 			p.setKey(this);
 			// drop key where the player is, with the ID of the key the player had
@@ -50,6 +52,11 @@ public class Key extends Entity implements PickupItem {
 		}
 	}	
     
+	public void keySound() {
+		SoundEffects keySound = new SoundEffects();
+		keySound.playSound("./sound/key.wav");
+	}
+	
     public int getkeyID() {
         return keyID;
     }

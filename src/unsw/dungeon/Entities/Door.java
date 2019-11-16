@@ -33,6 +33,7 @@ public class Door extends Entity {
 		if (player.getKey() != null) {
 			if (player.getKey().getkeyID() == doorID) {				
 				// remove the locked door
+				openDoorSound();
 				dungeon.removeEntity(this);
 				if (this.getEntityView() != null) {
 					this.getEntityView().setImage(new Image("/open_door.png"));
@@ -47,6 +48,11 @@ public class Door extends Entity {
 			}
 		}
 		return false;
+	}
+	
+	public void openDoorSound() {
+		SoundEffects openDoorSound = new SoundEffects();
+		openDoorSound.playSound("./sound/opendoor.wav");
 	}
 
 	public int getdoorID() {

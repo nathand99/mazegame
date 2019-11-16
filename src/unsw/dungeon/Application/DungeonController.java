@@ -1,9 +1,12 @@
 package unsw.dungeon.Application;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sound.sampled.AudioSystem;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,6 +25,7 @@ import unsw.dungeon.GoalReader;
 import unsw.dungeon.PickupItem;
 import unsw.dungeon.PlayerGoal;
 import unsw.dungeon.Entities.*;
+import unsw.dungeon.SoundEffects;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -171,7 +175,7 @@ public class DungeonController {
         case S:
         	player.attackS();
         case D:
-        	player.attackD();
+        	player.attackD();        	
         default:
             break;
         }

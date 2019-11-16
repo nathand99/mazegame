@@ -65,10 +65,14 @@ public class Invincibility extends Entity implements PickupItem {
 		if (this.getEntityView() != null) {
 			this.getEntityView().setVisible(false);
 		}
+		invincibleSound();
 		dungeon.removeEntity(this);
 		return null;
 	}
 	
-	
+	public void invincibleSound() {
+		SoundEffects invincibleSound = new SoundEffects();
+		invincibleSound.playSound("./sound/potion.wav");
+	}
 	
 }

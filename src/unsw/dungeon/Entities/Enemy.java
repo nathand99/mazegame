@@ -188,8 +188,13 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 		// TODO Auto-generated method stub
 		if (this.getX() == x && this.getY() == y) {
 			death(goals);
+			enemyDeathSound();
 		}
 
+	}
+	public void enemyDeathSound() {
+		SoundEffects enemyDeathSound = new SoundEffects();
+		enemyDeathSound.playSound("./sound/yell12.wav");
 	}
 	
 	/**

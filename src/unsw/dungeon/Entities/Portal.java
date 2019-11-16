@@ -38,6 +38,7 @@ public class Portal extends Entity{
 			if (e == null) continue;
 			if(e instanceof Portal && ((Portal) e).getId() == getId() && e != this) {
 				// this code can be used to just set the player x-y to the portal.
+				teleSound();
 				player.x().set(e.getX());
 				player.y().set(e.getY());
 				
@@ -74,7 +75,10 @@ public class Portal extends Entity{
 		return false;
 	}
 	
-	
+	public void teleSound() {
+		SoundEffects teleSound = new SoundEffects();
+		teleSound.playSound("./sound/teleport.wav");
+	}
 	
 
 }

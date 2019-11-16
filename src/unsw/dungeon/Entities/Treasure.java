@@ -30,6 +30,11 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
     	player.registerObserver(this);
     }
     
+    public void treasureSound() {
+		SoundEffects treasureSound = new SoundEffects();
+		treasureSound.playSound("./sound/treasure.wav");
+	}
+    
 	@Override
 	public Entity pickup(Player p) {	
 		// increment players treasure counter
@@ -37,6 +42,7 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
 		if (this.getEntityView() != null) {
 			this.getEntityView().setVisible(false);
 		}
+		treasureSound();
 		// remove picked up treasure from the dungeon
 		dungeon.removeEntity(this);
 		

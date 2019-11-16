@@ -6,6 +6,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.Interactable;
 import unsw.dungeon.Moveable;
 import unsw.dungeon.Movement;
+import unsw.dungeon.SoundEffects;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Entities.Player;
 
@@ -30,13 +31,17 @@ public class Fire extends Entity {
 		this.getEntityView().setVisible(false);
 	}
 	
+	public void fireSound() {
+		SoundEffects fireSound = new SoundEffects();
+		fireSound.playSound("./sound/fire1.wav");
+	}
 	
 	public void activate() {
 		checkKill();
 		
 		setMovement(new Interactable());
 		this.getEntityView().setVisible(true);
-		
+		fireSound();
 		try {Thread.sleep(300);}					// lasts 0.3s
 		catch(InterruptedException ex) { Thread.currentThread().interrupt();}
 		deactivate();
