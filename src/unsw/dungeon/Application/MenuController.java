@@ -30,15 +30,19 @@ public class MenuController {
 	 */
 	@FXML
 	public void initalize() {
+		int level;
 		for (int i = 0; i < levelGrid.getRowCount(); i++) {
 			for (int j = 0; j < levelGrid.getColumnCount(); j++) {
 				String levelNum = new String();
-				levelNum = String.valueOf(j + i*5 + 1);
+				level = j + i*5 + 1;
+				levelNum = String.valueOf(level);
 				Button levelButton = new Button(levelNum);
+				final int levelF = level;
 				levelButton.setOnAction(new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent e) {
 				        try {
-							dungeonScreen.start();
+				        	
+							dungeonScreen.start(levelF);
 						} catch (IOException error) {
 							error.printStackTrace();
 						}
