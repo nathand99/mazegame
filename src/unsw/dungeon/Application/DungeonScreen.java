@@ -29,13 +29,15 @@ public class DungeonScreen {
      * Starts the dungeon
      * @throws IOException
      */
-    public void start() throws IOException {
+    public void start(int mapNo) throws IOException {
+    	String mapNumber = String.valueOf(mapNo);
     	stage.setTitle("Dungeon");
-    	String map = "dungeons/20.json"; // need to add file string and the .json
+    	String map = "dungeons/" + mapNumber + ".json"; // need to add file string and the .json
         loader = new DungeonControllerLoader(map);
         controller = loader.loadController();
         controller.setMenuScreen(menuScreen);
         controller.setDungeonScreen(this);
+        controller.setMapNumber(mapNo);
         // new
         GoalReader goal = controller.readGoal(map);
         goal.loadGoal();
