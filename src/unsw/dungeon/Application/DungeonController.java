@@ -120,6 +120,8 @@ public class DungeonController {
             pane.autosize();
             // tweaked some of the values.
             menuButton.setLayoutX(newVal.doubleValue() - 63);
+            
+            goalID.setMinWidth(newVal.doubleValue());
         });
         
         // move restartButton 75 px to the left of where quit button ends up
