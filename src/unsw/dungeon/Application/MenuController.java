@@ -33,15 +33,14 @@ public class MenuController {
 		int level;
 		for (int i = 0; i < levelGrid.getRowCount(); i++) {
 			for (int j = 0; j < levelGrid.getColumnCount(); j++) {
-				String levelNum = new String();
+				String levelName = new String();
 				level = j + i*5 + 1;
-				levelNum = String.valueOf(level);
-				Button levelButton = new Button(levelNum);
+				levelName = nameLevel(level);
+				Button levelButton = new Button(levelName);
 				final int levelF = level;
 				levelButton.setOnAction(new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent e) {
 				        try {
-				        	
 							dungeonScreen.start(levelF);
 						} catch (IOException error) {
 							error.printStackTrace();
@@ -53,6 +52,31 @@ public class MenuController {
 		}
 	}
 	
+	/**
+	 * Names the levels
+	 * @param level
+	 * @return
+	 */
+	private String nameLevel(int level) {
+		String name;
+		if (level <= 3) {
+			name = "Exit " + String.valueOf(level);
+		} else if (level <= 6) {
+			name = "Treasure " + String.valueOf(level - 3);
+		} else if (level <= 9) {
+			name = "Boulder " + String.valueOf(level - 6);
+		} else if (level <= 12) {
+			name = "Enemy " + String.valueOf(level - 9);
+		} else if (level <= 15) {
+			name = "And Goal " + String.valueOf(level - 12);
+		} else if (level <= 18) {
+			name = "Or Goal " + String.valueOf(level - 15);
+		} else {
+			name = "Wildcard " + String.valueOf(level - 18);
+		}
+		return name;
+	}
+
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
 		this.dungeonScreen = dungeonScreen;
 	}
