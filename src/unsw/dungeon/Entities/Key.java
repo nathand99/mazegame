@@ -38,18 +38,36 @@ public class Key extends Entity implements PickupItem {
 			if (this.getEntityView() != null) {
 				this.getEntityView().setVisible(false);
 			}
+			keySound();
 			dungeon.removeEntity(this);
 			return null;
 		// if player has key, swap keys - return players key - to be placed on ground
 		} else {			
 			Key temp = p.getKey();
+			temp.x().setValue(this.getX());
+			temp.y().setValue(this.getY());
+			if (this.getEntityView() != null) {
+				temp.getEntityView().setVisible(true);
+				this.getEntityView().setVisible(false);
+			}
+			keySound();
 			dungeon.removeEntity(this);
 			p.setKey(this);
 			// drop key where the player is, with the ID of the key the player had
-			return new Key(dungeon, p.getX(), p.getY(), temp.keyID, new Collectable());			
+			return temp;			
 		}
 	}	
     
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player uses key
+     */
+	public void keySound() {
+		SoundEffects keySound = new SoundEffects();
+		keySound.playSound("./sound/key.wav");
+	}
+	
     public int getkeyID() {
         return keyID;
     }

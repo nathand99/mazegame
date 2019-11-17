@@ -225,6 +225,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         				new KeyFrame(Duration.seconds(0.5),
         				new KeyValue(node.translateYProperty(), (newValue.intValue() - 1) * 32)));
         		timeline.play(); 
+        		//timeline.onFinishedProperty()
         		
             }
         });

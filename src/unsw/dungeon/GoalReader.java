@@ -45,7 +45,8 @@ public class GoalReader {
 		JSONObject JSONGoals = json.getJSONObject("goal-condition"); //goal-condition is an object
 		String initialGoal = (String) JSONGoals.get("goal");
 		//System.out.println(initialGoal);
-		Goal playerGoals = createGoal(initialGoal);
+		//JSONObject JSONGoals = json.getJSONObject("goal-condition");
+		Goal playerGoals = createGoal(initialGoal, JSONGoals);
 		goals.addGoal(playerGoals);
 		player.addGoals(goals);
 		goals.setPlayer(player);
@@ -56,15 +57,21 @@ public class GoalReader {
 	 * @param conjunction - "and" or "or"
 	 * @return
 	 */
-	public MultipleGoal createMultiGoal(String conjunction) {
+	public MultipleGoal createMultiGoal(String conjunction, JSONObject JSONGoals) {
 		MultipleGoal newGoal = new MultipleGoal(conjunction);
-		JSONObject JSONGoals = json.getJSONObject("goal-condition"); //goal-condition is an object
+		//JSONGoals = json.getJSONObject("goal-condition"); //goal-condition is an object
 		JSONArray subgoals = JSONGoals.getJSONArray("subgoals");
+		/*for (int j = 0; j < depth; j++) {
+			subgoals = ((JSONArray) subgoals).getJSONArray("subgoals");
+		}*/
+		// System.out.println(subgoals.length());
 		for (int i = 0; i < subgoals.length(); i++) {
 			JSONObject subgoal = subgoals.getJSONObject(i);
 			String subgoalString = (String) subgoal.get("goal");
-			Goal nextGoal = createGoal(subgoalString);
+			// System.out.println(subgoalString);
+			Goal nextGoal = createGoal(subgoalString, subgoal);
 			newGoal.addGoal(nextGoal);
+			
 		}
 		return newGoal;
 	}
@@ -118,14 +125,14 @@ public class GoalReader {
 	 * @param goal - "AND", "OR" or a goal (ie. "boulders").
 	 * @return
 	 */
-	public Goal createGoal(String goal) {
+	public Goal createGoal(String goal, JSONObject JSONGoals) {
 		// and goal
 		if (goal.equals("AND")) {
-			MultipleGoal andGoal = createMultiGoal("and");
+			MultipleGoal andGoal = createMultiGoal("and", JSONGoals);
 			return andGoal;
 		// or goal
 		} else if (goal.equals("OR")) {
-			MultipleGoal orGoal = createMultiGoal("or");
+			MultipleGoal orGoal = createMultiGoal("or", JSONGoals);
 			return orGoal;
 		// single goal
 		} else {

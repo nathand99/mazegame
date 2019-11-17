@@ -34,6 +34,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
 			if (this.getEntityView() != null) {
 				this.getEntityView().setVisible(false);
 			}
+			pickupSound();
 			dungeon.removeEntity(this);
 			return null;
 		// if player has sword, swap sword - return players sword - to be placed on ground
@@ -46,7 +47,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
 				this.getEntityView().setVisible(false);
 				prevWeapon.getWeaponView().setVisible(true);
 			}
-			
+			pickupSound();
 			dungeon.removeEntity(this);
 			p.setWeapon(this);
 			// drop sword where the player is with the ID of the sword the player had
@@ -54,6 +55,24 @@ public class Mace extends Entity implements PickupItem, Weapons {
 		}
 	}
     
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * > for when player uses mace
+     */
+	public void maceSound() {
+		SoundEffects maceSound = new SoundEffects();
+		maceSound.playSound("./sound/mace.wav");
+	}
+	/**
+     * Sound function calls play method in sound effect class
+     * on sound file 
+     * >for when player picks mace up
+     */
+	public void pickupSound() {
+		SoundEffects pickupSound = new SoundEffects();
+		pickupSound.playSound("./sound/key.wav");
+	}
 	
 	@Override
 	public void attackLeft(Player player) {
@@ -72,10 +91,15 @@ public class Mace extends Entity implements PickupItem, Weapons {
 		MaceSwing(player);
 	}
 	
+	/**
+	 * Mace swings one square about the players position
+	 * @param player
+	 */
 	public void MaceSwing(Player player) {
 		int now = (int) System.currentTimeMillis();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
+			maceSound();
 			player.notifyEnemyWeapon(player.getX()-1, player.getY());
 			player.notifyEnemyWeapon(player.getX()+1, player.getY());
 			player.notifyEnemyWeapon(player.getX(), player.getY()-1);

@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import java.awt.Point;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,11 +10,152 @@ import java.util.Random;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+
 public class GenerateMaps {
 	
 	
 	public static void createMaze(int x, int y) {
 		
+	}
+	
+	
+	/**
+	 *  generates a horizontal line of walls.
+	 * @param x
+	 * @param y1
+	 * @param y2
+	 * @param name
+	 */
+	public static void addWallV(int x, int y1, int y2, String name) {
+		JSONObject result = new JSONObject();
+		JSONArray final_entites_array = new JSONArray();
+		
+		for (int i = y1  ; i <= y2 ; i++) {
+			JSONObject final_enities_wall = new JSONObject();
+			final_enities_wall.put("x", x);
+			final_enities_wall.put("y", i);
+			final_enities_wall.put("type", "wall");
+			final_entites_array.put(final_enities_wall);
+		}
+		
+		result.put("entities", final_entites_array);
+		
+		try (FileWriter file = new FileWriter("./dungeons/" + name +".json")){
+			file.write(result.toString(2));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	/**
+	 *  generates a vertical line of walls.
+	 * @param x
+	 * @param y1
+	 * @param y2
+	 * @param name
+	 */
+	public static void addWallH(int x1, int x2, int y, String name) {
+		JSONObject result = new JSONObject();
+		JSONArray final_entites_array = new JSONArray();
+		
+		for (int i = x1  ; i <= x2 ; i++) {
+			JSONObject final_enities_wall = new JSONObject();
+			final_enities_wall.put("x", i);
+			final_enities_wall.put("y", y);
+			final_enities_wall.put("type", "wall");
+			final_entites_array.put(final_enities_wall);
+		}
+		
+		result.put("entities", final_entites_array);
+		
+		try (FileWriter file = new FileWriter("./dungeons/" + name +".json")){
+			file.write(result.toString(2));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Very basic, creates a map of size with wall around it.
+	 * @param x
+	 * @param y
+	 * @param name
+	 */
+	public static void simpleCreate(int x, int y, String name) {
+		ArrayList<Point> usedCoordinates = new ArrayList<>(); 
+		ArrayList<Point> goal_list = new ArrayList<>(); 
+		
+		JSONObject result = new JSONObject();
+		result.put("width", x);
+		result.put("height", y);
+		
+		JSONArray final_entites_array = new JSONArray();
+		
+		// player done
+		JSONObject final_enities_player = new JSONObject();
+		final_enities_player.put("x", 1);
+		final_enities_player.put("y", 1);
+		final_enities_player.put("type", "player");
+		final_entites_array.put(final_enities_player);
+		usedCoordinates.add(new Point(1,1));
+		
+		// surrounding wall
+		// left side 0,0 0,1 ... 0,19
+		for (int i = 0  ; i < y ; i++) {
+			if (!usedCoordinates.contains(new Point(0,i))) {
+				JSONObject final_enities_wall = new JSONObject();
+				final_enities_wall.put("x", 0);
+				final_enities_wall.put("y", i);
+				final_enities_wall.put("type", "wall");
+				final_entites_array.put(final_enities_wall);
+				usedCoordinates.add(new Point(0,i));
+			}
+		}
+				
+					// right side 19,0 ... 19,19
+					for (int i = 0  ; i < y ; i++) {
+						if (!usedCoordinates.contains(new Point(x-1,i))) {
+							JSONObject final_enities_wall = new JSONObject();
+							final_enities_wall.put("x", x-1);
+							final_enities_wall.put("y", i);
+							final_enities_wall.put("type", "wall");
+							final_entites_array.put(final_enities_wall);
+							usedCoordinates.add(new Point(x-1,i));
+						}
+					}
+					// up 0,0 1,0 ... 19,0
+					for (int i = 0  ; i < x ; i++) {
+						if (!usedCoordinates.contains(new Point(i,0))) {
+							JSONObject final_enities_wall = new JSONObject();
+							final_enities_wall.put("x", i);
+							final_enities_wall.put("y", 0);
+							final_enities_wall.put("type", "wall");
+							final_entites_array.put(final_enities_wall);
+							usedCoordinates.add(new Point(i,0));
+						}
+					}
+					
+					// down 0,19 .. 19,19
+					for (int i = 0  ; i < x ; i++) {
+						if (!usedCoordinates.contains(new Point(i,y-1))) {
+							JSONObject final_enities_wall = new JSONObject();
+							final_enities_wall.put("x", i);
+							final_enities_wall.put("y", y-1);
+							final_enities_wall.put("type", "wall");
+							final_entites_array.put(final_enities_wall);
+							usedCoordinates.add(new Point(i,y-1));
+						}
+					}
+
+					result.put("entities", final_entites_array);
+					
+					try (FileWriter file = new FileWriter("./dungeons/" + name +".json")){
+						file.write(result.toString(2));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					//*/
 	}
 	
 	public static void createMap(String location, int num_maps,int x, int y, String... entities) {
@@ -386,7 +528,15 @@ public class GenerateMaps {
 	// type of entities that can be added:
 	// door_key, boulder_switch, treasure, portal, invincibility
 	public static void main(String[] args) {
-		
+		// x, y1, y2
+		 //addWallH(10,  18, 6, "wallH");
+		// x1, x2, y
+		//addWallV(14, 4, 10, "wallV");
+<<<<<<< HEAD
+		 simpleCreate(15, 11, "10");
+=======
+		 //simpleCreate(20, 12, "19");
+>>>>>>> 3bb849d108049aec2bb61b7a978810ad306f4013
 		/*
 		//parameters: location, num_maps, x, y, entities...
 		
