@@ -24,6 +24,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
     public Mace(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
+		this.setEntityName("weapon");
     }
     
 	@Override

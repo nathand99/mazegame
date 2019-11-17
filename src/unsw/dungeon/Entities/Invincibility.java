@@ -25,6 +25,7 @@ public class Invincibility extends Entity implements PickupItem {
 	public Invincibility(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
+		this.setEntityName("invincibility");
 	}
 	
 	/**

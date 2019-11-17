@@ -94,9 +94,26 @@ public class DungeonController {
 		menuScreen.start();
 	}
     
+    /**
+     * Restarts the current level
+     * @throws IOException
+     */
     public void restart() throws IOException {
     	dungeon.deregisterAll();
 		dungeonScreen.start(mapNumber);
+	}
+    
+    /**
+     * Goes to the next level.
+     * @throws IOException
+     */
+    public void nextLevel() throws IOException {
+    	dungeon.deregisterAll();
+    	if (mapNumber == 20) {
+    		goToMenu();
+    		return;
+    	}
+		dungeonScreen.start(mapNumber + 1);
 	}
 
     @FXML
@@ -220,13 +237,13 @@ public class DungeonController {
      */
     public void invAdd(PickupItem item) {
     	// must update for weapon if extra weapons come out.
-    	if (item instanceof Key) {
+    	if (((Entity)item).getEntityName().equals("key")) {
     		keyImage.setVisible(true);
     		keyID.setText(String.valueOf(player.getKeyID()));
-    	} else if (item instanceof Treasure) {
+    	} else if (((Entity)item).getEntityName().equals("treasure")) {
     		treasureImage.setVisible(true);
     		treasureCount.setText(String.valueOf(player.getTreasure()));
-    	} else if (item instanceof Weapons){
+    	} else if (((Entity)item).getEntityName().equals("weapon")){
     		// add new code for different weapons here.
     		weaponImage.setImage(player.getWeaponView().getImage());
     		weaponImage.setVisible(true);

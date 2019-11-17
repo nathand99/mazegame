@@ -19,6 +19,7 @@ public class FireTrap extends Entity {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.timeGap = timeGap;
+		this.setEntityName("fireTrap");
 		t = new Timer();
 	}
 	

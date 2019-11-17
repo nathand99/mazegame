@@ -88,7 +88,7 @@ public class GoalReader {
 		switch(goal) {
 		case "boulders":
 			for (Entity entity : entities) {
-				if (entity instanceof FloorSwitch) {
+				if (entity.getEntityName().equals("floorSwitch")) {
 					i++;
 				}
 			}
@@ -96,7 +96,7 @@ public class GoalReader {
 			break;
 		case "enemies":
 			for (Entity entity : entities) {
-				if (entity instanceof Enemy) {
+				if (entity.getEntityName().equals("enemy")) {
 					i++;
 				}
 			}
@@ -104,7 +104,7 @@ public class GoalReader {
 			break;
 		case "treasure":
 			for (Entity entity : entities) {
-				if (entity instanceof Treasure) {
+				if (entity.getEntityName().equals("treasure")) {
 					i++;
 				}
 			}

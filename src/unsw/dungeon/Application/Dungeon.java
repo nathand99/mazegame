@@ -71,13 +71,19 @@ public class Dungeon {
      */
     public void registerAll() {
     	for (Entity entity : entities) {
-    		if (entity instanceof GoalObserver) {
+    		if (entity.getEntityName().equals("treasure")) {
     			((GoalObserver) entity).register();
     		}
-    		else if (entity instanceof EnemyObserver) {
+    		else if (entity.getEntityName().equals("exit")) {
+    			((GoalObserver) entity).register();
+    		}
+    		else if (entity.getEntityName().equals("floorSwitch")) {
+    			((GoalObserver) entity).register();
+    		}
+    		else if (entity.getEntityName().equals("enemy")) {
     			((EnemyObserver) entity).register();
     		} 
-    		else if (entity instanceof FireTrap) {
+    		else if (entity.getEntityName().equals("fireTrap")) {
     			((FireTrap) entity).start();
     		}
     	}
@@ -91,7 +97,7 @@ public class Dungeon {
     		player.removeAllEnemies();
     	}
     	for (Entity entity : entities) {
-    		if (entity instanceof FireTrap) {
+    		if (entity.getEntityName().equals("fireTrap")) {
     			((FireTrap) entity).stop();
     		}
     	}
@@ -103,10 +109,16 @@ public class Dungeon {
      */
     public void registerNoMove() {
     	for (Entity entity : entities) {
-    		if (entity instanceof GoalObserver) {
+    		if (entity.getEntityName().equals("treasure")) {
     			((GoalObserver) entity).register();
     		}
-    		else if (entity instanceof EnemyObserver) {
+    		else if (entity.getEntityName().equals("exit")) {
+    			((GoalObserver) entity).register();
+    		}
+    		else if (entity.getEntityName().equals("floorSwitch")) {
+    			((GoalObserver) entity).register();
+    		}
+    		else if (entity.getEntityName().equals("enemy")) {
     			((EnemyObserver) entity).registerNoMove();
     		}
     	}
@@ -139,7 +151,7 @@ public class Dungeon {
     public boolean isEnemy (int x, int y) {
     	for (Entity curr_e: this.entities) {
     		if (curr_e == null) continue;
-    		if ((curr_e.getX() == x) && (curr_e.getY() == y) && curr_e instanceof Enemy) {
+    		if ((curr_e.getX() == x) && (curr_e.getY() == y) && curr_e.getEntityName().equals("enemy")) {
     			return true;
     		}
     	}

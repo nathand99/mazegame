@@ -9,7 +9,7 @@ public class Collectable implements Movement {
 	 */
 	@Override
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {
-		if (movingEntity instanceof Boulder) {
+		if (movingEntity.getEntityName().equals("boulder")) {
 			return false;
 		} 
 		return true;

@@ -33,7 +33,7 @@ public abstract class Enemy extends Entity implements EnemyObserver {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.player = null;
-		
+		this.setEntityName("enemy");
 		
 	}
 	

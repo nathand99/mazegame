@@ -21,7 +21,7 @@ public class Treasure extends Entity implements PickupItem, GoalObserver {
     	super (x, y, movement);
     	this.dungeon = dungeon;
     	this.player = null;
-    	
+    	this.setEntityName("treasure");
     }
     
     @Override

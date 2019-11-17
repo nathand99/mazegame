@@ -19,7 +19,7 @@ public class Exit extends Entity implements GoalObserver {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.player = null;
-		
+		this.setEntityName("exit");
 	}
 	
 	/**

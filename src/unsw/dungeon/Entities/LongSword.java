@@ -23,6 +23,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
     public LongSword(Dungeon dungeon, int x, int y, Movement movement) {
 		super(x, y, movement);
 		this.dungeon = dungeon;
+		this.setEntityName("weapon");
     }
     
     

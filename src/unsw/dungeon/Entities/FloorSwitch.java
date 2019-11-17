@@ -22,7 +22,7 @@ public class FloorSwitch extends Entity implements GoalObserver {
 		this.dungeon = dungeon;
 		this.player = null;
 		this.on = checkOnOff();
-		
+		this.setEntityName("floorSwitch");
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class FloorSwitch extends Entity implements GoalObserver {
 	public boolean checkOnOff() {  
 		List<Entity> entities = dungeon.getCurrentEntity(this.getX(), this.getY());
 		for (Entity entity : entities) {
-			if (entity instanceof Boulder) {
+			if (entity.getEntityName().equals("boulder")) {
 				// System.out.println("There is a boulder now");
 				return true;
 			}

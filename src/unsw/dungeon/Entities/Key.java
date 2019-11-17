@@ -19,6 +19,7 @@ public class Key extends Entity implements PickupItem {
     	super(x, y, movement);
     	this.dungeon = dungeon;
         this.keyID = keyID;
+        this.setEntityName("key");
     }
     
     /**

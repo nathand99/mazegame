@@ -19,6 +19,7 @@ public class Entity {
     private IntegerProperty x, y;
     private Movement movement;
     private ImageView entityView = null;
+    private String entityName;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -81,6 +82,14 @@ public class Entity {
 	
 	public void setMovement(Movement movement) {
 		this.movement = movement;
+	}
+
+	public String getEntityName() {
+		return entityName;
+	}
+
+	public void setEntityName(String entityName) {
+		this.entityName = entityName;
 	}
 	
     

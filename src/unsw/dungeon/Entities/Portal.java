@@ -20,6 +20,7 @@ public class Portal extends Entity{
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.dungeon = dungeon;
+		this.setEntityName("portal");
 	}
 	
 	public int getId() {
@@ -36,7 +37,7 @@ public class Portal extends Entity{
 		
 		for(Entity e : dungeon.getEntities()) {
 			if (e == null) continue;
-			if(e instanceof Portal && ((Portal) e).getId() == getId() && e != this) {
+			if(e.getEntityName().equals("portal") && ((Portal) e).getId() == getId() && e != this) {
 				// this code can be used to just set the player x-y to the portal.
 				teleSound();
 				player.x().set(e.getX());

@@ -22,6 +22,7 @@ public class Door extends Entity {
 		super(x, y, movement);
 		this.dungeon = dungeon;
 		this.doorID = doorID;
+		this.setEntityName("door");
 	}
 	
 	/**

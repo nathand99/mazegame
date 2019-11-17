@@ -11,28 +11,28 @@ public class Interactable implements Movement{
 
 	@Override
 	public boolean canMove(Entity movingEntity, Entity stationaryEntity, String direction) {
-		if (movingEntity instanceof Player) {
+		if (movingEntity.getEntityName().equals("player")) {
 			// should only be sometimes true.
-			if (stationaryEntity instanceof Boulder) {
+			if (stationaryEntity.getEntityName().equals("boulder")) {
 				return successPush((Boulder) stationaryEntity, direction);
 			}
-			else if (stationaryEntity instanceof Portal) {
+			else if (stationaryEntity.getEntityName().equals("portal")) {
 				return teleport((Player) movingEntity,(Portal) stationaryEntity);
 			}
-			else if (stationaryEntity instanceof Door) {
+			else if (stationaryEntity.getEntityName().equals("door")) {
 				return openDoor((Player) movingEntity,(Door) stationaryEntity, direction);
 			}
-			else if (stationaryEntity instanceof Fire) {
+			else if (stationaryEntity.getEntityName().equals("fire")) {
 				if (((Player) movingEntity).isNormalState() == true) {
 					((Player) movingEntity).die();
 				}
 				return true;
 			}
 			return true; // for exit, always true. However, does not always win.
-		} else if (movingEntity instanceof Enemy) {
-			if (stationaryEntity instanceof Exit) {
+		} else if (movingEntity.getEntityName().equals("enemy")) {
+			if (stationaryEntity.getEntityName().equals("exit")) {
 				return true;
-			} else if (stationaryEntity instanceof Portal) {
+			} else if (stationaryEntity.getEntityName().equals("portal")) {
 				return true;
 			} else {
 				return false;

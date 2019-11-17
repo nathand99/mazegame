@@ -49,6 +49,7 @@ public class Player extends Entity implements Subject {
     public Player(Dungeon dungeon, int x, int y, Movement movement) {
         super(x, y, movement);
         this.dungeon = dungeon;
+        this.setEntityName("player");
         enemyObservers = new ArrayList<EnemyObserver>();
         goalObservers = new ArrayList<GoalObserver>();
         this.setGoals(new PlayerGoal(this));
@@ -171,7 +172,22 @@ public class Player extends Entity implements Subject {
     	PickupItem item = null;
     	// check if there is a Pickup_item on players location
     	for (Entity e : entities) {
-    		if (e instanceof PickupItem) {
+    		if (e.getEntityName().equals("treasure")) {
+    			item = (PickupItem) e;
+    			
+    			break;
+    		}
+    		else if (e.getEntityName().equals("weapon")) {
+    			item = (PickupItem) e;
+    			
+    			break;
+    		}
+    		else if (e.getEntityName().equals("invincibility")) {
+    			item = (PickupItem) e;
+    			
+    			break;
+    		}
+    		else if (e.getEntityName().equals("key")) {
     			item = (PickupItem) e;
     			
     			break;
@@ -206,7 +222,12 @@ public class Player extends Entity implements Subject {
     	if (goals.checkCompletion()) {
     		// TODO: stub, should actually do stuff when front end is done.
     		winGameSound();
-    		System.out.println("You win!");
+    		try {
+				controller.nextLevel();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		//
     	}
     }
     
