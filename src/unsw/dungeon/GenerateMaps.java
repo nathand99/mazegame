@@ -532,7 +532,7 @@ public class GenerateMaps {
 		 //addWallH(10,  18, 6, "wallH");
 		// x1, x2, y
 		//addWallV(14, 4, 10, "wallV");
-		 //simpleCreate(17, 14, "15");
+		 //simpleCreate(20, 12, "19");
 		/*
 		//parameters: location, num_maps, x, y, entities...
 		
