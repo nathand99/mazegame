@@ -170,114 +170,10 @@
       "y": 4,
       "type": "treasure"
     },
-    {
-      "x": 4,
-      "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
+    
     {
       "x": 6,
       "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 7,
-      "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 8,
-      "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 5,
-      "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 4,
-      "y": 5,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 6,
-      "y": 5,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 7,
-      "y": 5,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 8,
-      "y": 5,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 5,
-      "y": 5,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 3,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 4,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 6,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 7,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 8,
-      "time_gap": 1000,
-      "type": "fire_trap"
-    	
-    },
-    {
-      "x": 3,
-      "y": 5,
       "time_gap": 1000,
       "type": "fire_trap"
     	
@@ -404,6 +300,12 @@
       "x": 7,
       "y": 9,
       "type": "wall"
+    },
+    {
+      "x": 2,
+      "y": 7,
+      "type": "hound",
+      "direction": "UP"
     },
     {
       "x": 8,
