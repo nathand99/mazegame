@@ -50,6 +50,8 @@ public class DungeonController {
 
     private Dungeon dungeon;
     
+    private int mapNumber;
+    
     @FXML
     private Button menuButton;
     @FXML
@@ -95,7 +97,7 @@ public class DungeonController {
     
     public void restart() throws IOException {
     	dungeon.deregisterAll();
-		dungeonScreen.start();
+		dungeonScreen.start(mapNumber);
 	}
 
     @FXML
@@ -121,6 +123,8 @@ public class DungeonController {
             pane.autosize();
             // tweaked some of the values.
             menuButton.setLayoutX(newVal.doubleValue() - 63);
+            
+            goalID.setMinWidth(newVal.doubleValue());
         });
         
         // move restartButton 75 px to the left of where quit button ends up
@@ -269,5 +273,13 @@ public class DungeonController {
     	PlayerGoal goal = player.getGoals();
     	goalID.setText(goal.returnStringGoals());
     }
+
+	public int getMapNumber() {
+		return mapNumber;
+	}
+
+	public void setMapNumber(int mapNumber) {
+		this.mapNumber = mapNumber;
+	}
 }
 

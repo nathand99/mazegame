@@ -533,10 +533,11 @@ public class GenerateMaps {
 		// x1, x2, y
 		//addWallV(14, 4, 10, "wallV");
 <<<<<<< HEAD
-		 simpleCreate(15, 11, "10");
+		 simpleCreate(20, 12, "20");
 =======
-		 //simpleCreate(20, 12, "19");
->>>>>>> 3bb849d108049aec2bb61b7a978810ad306f4013
+		 //simpleCreate(14, 11, "18");
+		
+>>>>>>> cff2860f79ceb61de871a8cdd38d27232e0ef3dc
 		/*
 		//parameters: location, num_maps, x, y, entities...
 		
