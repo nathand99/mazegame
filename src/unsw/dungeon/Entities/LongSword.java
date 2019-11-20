@@ -79,7 +79,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	
 	@Override
 	public void attackLeft(Player player) {
-		int now = (int) System.currentTimeMillis();
+		long now = System.nanoTime();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
 			longSwordSound();
@@ -91,7 +91,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	}
 	@Override
 	public void attackRight(Player player) {
-		int now = (int) System.currentTimeMillis();
+		long now =  System.nanoTime();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
 			longSwordSound();
@@ -103,7 +103,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	}
 	@Override
 	public void attackAbove(Player player) {
-		int now = (int) System.currentTimeMillis();
+		long now = System.nanoTime();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
 			longSwordSound();
@@ -115,7 +115,8 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	}
 	@Override
 	public void attackBelow(Player player) {
-		int now = (int) System.currentTimeMillis();
+		System.out.println("The weapon works");
+		long now = System.nanoTime();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
 			longSwordSound();
@@ -147,7 +148,7 @@ public class LongSword extends Entity implements PickupItem, Weapons {
 	}
     
     @Override
-	public void setHitsLeft(int hitsLeft) {
+	public void setHitsLeft (int hitsLeft) {
 		this.hitsLeft = hitsLeft;
 	}
     

@@ -97,7 +97,7 @@ public class Mace extends Entity implements PickupItem, Weapons {
 	 * @param player
 	 */
 	public void MaceSwing(Player player) {
-		int now = (int) System.currentTimeMillis();
+		long now =  System.nanoTime();
     	if (now - player.getLastWeaponSwing() < player.getMinClickDelay()) return;
 		if (player.getWeapon() != null) {
 			maceSound();

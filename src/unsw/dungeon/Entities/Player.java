@@ -10,6 +10,19 @@ import unsw.dungeon.*;
 import unsw.dungeon.Application.Dungeon;
 import unsw.dungeon.Application.DungeonController;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import unsw.dungeon.*;
+import unsw.dungeon.Entities.*;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -17,7 +30,7 @@ import unsw.dungeon.Application.DungeonController;
  */
 public class Player extends Entity implements Subject {
 	
-	static final int minClickDelay = 400;
+	static final int minClickDelay = 400000000;
 	
     private Dungeon dungeon;
     
@@ -25,8 +38,8 @@ public class Player extends Entity implements Subject {
     private List<GoalObserver> goalObservers;
     private DungeonController controller;
     
-    private int lastClickTime = 0;
-    private int lastWeaponSwing = 0;
+    private long lastClickTime =  System.nanoTime() - minClickDelay;
+    private long lastWeaponSwing =  System.nanoTime() - minClickDelay;
     
     // goals
     private PlayerGoal goals;
@@ -59,9 +72,10 @@ public class Player extends Entity implements Subject {
      * moves up
      */
     public void moveUp() {
-    	int now = (int) System.currentTimeMillis();
+    	System.out.println("this works");
+    	long now =  System.nanoTime();
     	if (now - lastClickTime < minClickDelay) return;
-    	
+    	System.out.println("Timer works");
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() - 1);
         if (getY() > 0 && moveTo.size() == 0) {
             y().set(getY() - 1); 
@@ -77,7 +91,7 @@ public class Player extends Entity implements Subject {
         	y().set(getY() - 1); 
         	notifyGoalObservers();
         	pickup();
-        	lastClickTime = now;
+        	//lastClickTime = now;
         	notifyEnemyObservers();
         	checkKey();
         }
@@ -87,9 +101,10 @@ public class Player extends Entity implements Subject {
      * moves down
      */
     public void moveDown() {
-    	int now = (int) System.currentTimeMillis();
+    	System.out.println("this works");
+    	long now =  System.nanoTime();
     	if (now - lastClickTime < minClickDelay) return;
-    	
+    	System.out.println("Timer works");
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX(), this.getY() + 1);
         if (getY() < dungeon.getHeight() - 1 && moveTo.size() == 0) {
             y().set(getY() + 1);
@@ -101,10 +116,10 @@ public class Player extends Entity implements Subject {
         			return;
         		}
         	}
-        	y().set(getY() + 1);  
+        	y().set(getY() + 1);   
         	notifyGoalObservers();
         	pickup();
-        	lastClickTime = now;
+        	//lastClickTime = now;
         	notifyEnemyObservers();
         	checkKey();
         } 
@@ -114,9 +129,10 @@ public class Player extends Entity implements Subject {
      * moves left
      */
     public void moveLeft() {
-    	int now = (int) System.currentTimeMillis();
+    	System.out.println("this works");
+    	long now =  System.nanoTime();
     	if (now - lastClickTime < minClickDelay) return;
-    	
+    	System.out.println("Timer works");
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() - 1, this.getY());
         if (getX() > 0 && moveTo.size() == 0) {
             x().set(getX() - 1);
@@ -141,9 +157,10 @@ public class Player extends Entity implements Subject {
      * moves right
      */
     public void moveRight() {
-    	int now = (int) System.currentTimeMillis();
+    	System.out.println("this works");
+    	long now =  System.nanoTime();
     	if (now - lastClickTime < minClickDelay) return;
-    	
+    	System.out.println("Timer works");
     	List<Entity> moveTo = dungeon.getCurrentEntity(this.getX() + 1, this.getY());
         if (getX() < dungeon.getWidth() - 1 && moveTo.size() == 0) {
             x().set(getX() + 1);
@@ -158,7 +175,7 @@ public class Player extends Entity implements Subject {
         	x().set(getX() + 1); 
         	notifyGoalObservers();
         	pickup();
-        	lastClickTime = now;
+        	//lastClickTime = now;
         	notifyEnemyObservers();
         	checkKey();
         } 
@@ -473,11 +490,11 @@ public class Player extends Entity implements Subject {
 		loseGameSound.playSound("./sound/game_over.wav");
 	}
 	
-	public int getLastWeaponSwing() {
+	public long getLastWeaponSwing() {
 		return lastWeaponSwing;
 	}
 
-	public void setLastWeaponSwing(int lastWeaponSwing) {
+	public void setLastWeaponSwing(long lastWeaponSwing) {
 		this.lastWeaponSwing = lastWeaponSwing;
 	}
 
